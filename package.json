@@ -1,0 +1,57 @@
+{
+  "name": "@yonyou/ac-input-locale",
+  "version": "0.0.1",
+  "description": " ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "uba server",
+    "build": "uba build"
+  },
+  "bugs": {
+    "url": "https://github.com/tinper-acs/ac-input-locale/issues"
+  },
+  "homepage": "https://github.com/tinper-acs/ac-input-locale#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinper-acs/ac-input-locale.git"
+  },
+  "author": "jonyshi@yonyou.com",
+  "license": "MIT",
+  "devDependencies": {
+    "ac-tools": "^0.0.6",
+    "autoprefixer": "^7.1.6",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "bee-button": "^1.0.6",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "cssnano": "^3.10.0",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "node-sass": "^4.7.2",
+    "open-browser-webpack-plugin": "0.0.5",
+    "postcss-loader": "^2.0.9",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "uba": "2.2.3",
+    "uglifyjs-webpack-plugin": "^1.1.2",
+    "url-loader": "^0.6.2",
+    "webpack-hot-middleware": "^2.21.0"
+  },
+  "dependencies": {
+    "bee-button": "^1.0.6",
+    "bee-form": "^2.0.4",
+    "bee-layout": "^1.2.7",
+    "bee-pagination": "^1.0.3",
+    "bee-panel": "^1.0.0",
+    "prop-types": "^15.6.0",
+    "tinper-bee": "^1.2.0"
+  }
+}

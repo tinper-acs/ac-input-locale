@@ -1,0 +1,50 @@
+.ac-input-locale{
+  position: relative;
+  min-width: 100px;
+  min-height: 30px;
+
+  .popconfirm{
+    width: auto;
+  } 
+}
+
+.popconfirm.u-popconfirm.right>.arrow{
+  top: 37%;
+}
+.popconfirm .u-popconfirm-confirm>button{
+  width: 80px;
+  height: 30px;
+  line-height: 26px;
+}
+.popconfirm .form .u-label{
+  margin-right: 15px;
+}
+.popconfirm .form .u-form-control{
+  width: 80%;
+}
+.popconfirm .form .u-form-item{
+  min-height:60px;
+}
+
+.input-icon{
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  background: url("./assets/images/language.png") no-repeat;
+  background-size: 100%;
+}
+
+.input-icon:hover{
+  background: url("./assets/images/language_hove.png") no-repeat;
+  background-size: 100%;
+}
+.popconfirm-content{
+  width: 500px; 
+}
+
+.u-popconfirm{
+  max-width: initial;
+}
