@@ -10,6 +10,9 @@ $ ynpm install @yonyou/ac-input-locale --save
 
 import {AcInputLocale} from '@yonyou/ac-input-locale';
 
+样式引入
+
+import '@yonyou/ac-input-locale/build/ac-input-locale.css' 
 ```
 
 ##效果

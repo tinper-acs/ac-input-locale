@@ -24,7 +24,7 @@ var _beeForm = require('bee-form');
 
 var _beeForm2 = _interopRequireDefault(_beeForm);
 
-require('./index.less');
+require('../build/ac-input-locale.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
