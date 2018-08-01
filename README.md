@@ -4,15 +4,15 @@
 
 
 ```
-$ ynpm install @yonyou/ac-input-locale --save
+$ ynpm install @yonyou/ac-input-locale --save-dev
 
 引入
 
-import {AcInputLocale} from '@yonyou/ac-input-locale';
+import AcInputLocale from '@yonyou/ac-input-locale/dist';
 
 样式引入
 
-import '@yonyou/ac-input-locale/build/ac-input-locale.css' 
+import '@yonyou/ac-input-locale/build/ac-input-locale.css';
 ```
 
 ##效果
