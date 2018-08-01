@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { FormControl, Button ,Popconfirm,Label} from 'tinper-bee';
 import Form from 'bee-form';
 const FormItem = Form.FormItem;
-import './style.css';
+import './index.less';
+
 
 const propTypes = {
     className: PropTypes.string,
@@ -36,6 +37,11 @@ class AcInputLocale extends Component {
         if(nextProps.localeList != this.props.localeList){
             this.setState({
                 value:this.getListToMap(nextProps.localeList)
+            })
+        }
+        if(nextProps.locale != this.props.locale){
+            this.setState({
+                localeValue:this.state.value[nextProps.locale].value
             })
         }
     }

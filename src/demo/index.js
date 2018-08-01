@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'bee-button';
 import './demo.less';
-
+// import '../../demo.less';
 
 
 const CARET = <i className="uf uf-arrow-down"></i>;

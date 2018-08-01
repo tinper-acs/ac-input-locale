@@ -6,7 +6,8 @@
  */
 
 import React, { Component } from 'react';
-import AcInputLocale from '../../src/index';
+// import AcInputLocale from '../../index';
+import AcInputLocale from '../../../dist/index';
 import Button from 'bee-button';
 
  class Demo1 extends Component {
