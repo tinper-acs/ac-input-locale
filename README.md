@@ -8,7 +8,7 @@ $ ynpm install @yonyou/ac-input-locale --save-dev
 
 引入
 
-import AcInputLocale from '@yonyou/ac-input-locale/dist';
+import AcInputLocale from '@yonyou/ac-input-locale';
 
 样式引入
 
