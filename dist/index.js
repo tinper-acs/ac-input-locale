@@ -24,8 +24,6 @@ var _beeForm = require('bee-form');
 
 var _beeForm2 = _interopRequireDefault(_beeForm);
 
-require('./index.less');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
