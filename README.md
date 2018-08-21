@@ -17,7 +17,7 @@ import '@yonyou/ac-input-locale/build/ac-input-locale.css';
 
 ##效果
  
- ![avatar](https://github.com/tinper-acs/ac-input-locale/local.jpg)
+ ![avatar](https://github.com/tinper-acs/ac-input-locale/blob/master/local.jpg)
 
 ## API
 
