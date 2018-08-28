@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title></title>
+    <title>ac-input-locale</title>
     <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="assets/css/bootstrap-responsive.css"/>
     <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css"/>
@@ -14,10 +14,72 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span3"><ul class="nav nav-list">
+    <li class="sidebar-header-2"><a href="#ac-input-locale">ac-input-locale</a></li>
+    <li class="sidebar-header-2"><a href="#api">API</a></li>
+    <li class="sidebar-header-4"><a href="#开发调试">开发调试</a></li>
 </ul>
       </div>
-      <div class="span9 main"><p>### </p>
-      </div>
+      <div class="span9 main"><h2 id="ac-input-locale">ac-input-locale</h2>
+<blockquote>
+<p> 多语言 Input 组件</p>
+</blockquote>
+<pre class="hljs"><code>$ ynpm install @yonyou/<span class="hljs-keyword">ac</span>-<span class="hljs-keyword">input</span>-locale --<span class="hljs-keyword">save</span>-dev
+
+引入
+
+import AcInputLocale from '@yonyou/<span class="hljs-keyword">ac</span>-<span class="hljs-keyword">input</span>-locale';
+
+样式引入
+
+import '@yonyou/<span class="hljs-keyword">ac</span>-<span class="hljs-keyword">input</span>-locale/build/<span class="hljs-keyword">ac</span>-<span class="hljs-keyword">input</span>-locale.css';</code></pre><p>##效果</p>
+<p> <img src="https://github.com/tinper-acs/ac-input-locale/blob/master/local.jpg" alt="avatar"></p>
+<h2 id="api">API</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:right">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:center">容器样式</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">---</td>
+</tr>
+<tr>
+<td style="text-align:left">onSave</td>
+<td style="text-align:center">点击确定的钩子函数</td>
+<td style="text-align:center">fun</td>
+<td style="text-align:right">object</td>
+</tr>
+<tr>
+<td style="text-align:left">onCancel</td>
+<td style="text-align:center">点击取消的钩子函数</td>
+<td style="text-align:center">fun</td>
+<td style="text-align:right">Object</td>
+</tr>
+<tr>
+<td style="text-align:left">locale</td>
+<td style="text-align:center">系统语言</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">&#39;zh-cn/en/tw&#39;/</td>
+</tr>
+<tr>
+<td style="text-align:left">localeList</td>
+<td style="text-align:center">语言列表</td>
+<td style="text-align:center">Array</td>
+<td style="text-align:right">---</td>
+</tr>
+</tbody>
+</table>
+<h4 id="开发调试">开发调试</h4>
+<pre class="hljs"><code>$ <span class="hljs-built_in">cd</span> @yonyou/ac-input-locale
+$ npm install
+$ npm run dev</code></pre>      </div>
     </div>
   </div>
 

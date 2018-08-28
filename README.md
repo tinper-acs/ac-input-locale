@@ -12,12 +12,14 @@ import AcInputLocale from '@yonyou/ac-input-locale';
 
 样式引入
 
-import '@yonyou/ac-input-locale/build/ac-input-locale.css';
+import '@yonyou/ac-input-locale/dist/index.css';
 ```
 
 ##效果
 
  ![avatar](https://github.com/tinper-acs/ac-input-locale/blob/master/local.jpg)
+
+ ![效果2](http://upload-images.jianshu.io/upload_images/8194969-aee1bf72ef11bf74?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## API
 
