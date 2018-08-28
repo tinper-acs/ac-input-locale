@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/tinper-acs/ac-input-locale.git"
   },
-  "author": "17310740616",
+  "author": "wangshih@yonyou.com",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
