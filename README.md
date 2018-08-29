@@ -1,6 +1,6 @@
 ## ac-input-locale
 
->  多语言 Input 组件
+>  多语言 Input 组件 [进入示例](https://tinper-acs.github.io/ac-input-locale/)
 
 
 ```
@@ -15,11 +15,9 @@ import AcInputLocale from '@yonyou/ac-input-locale';
 import '@yonyou/ac-input-locale/dist/index.css';
 ```
 
-##效果
+##效果  [进入示例](https://tinper-acs.github.io/ac-input-locale/)
 
- ![avatar](https://raw.githubusercontent.com/fridaydream/blogpic/master/ac-input-locale2.gif)
-
- ![效果2](http://upload-images.jianshu.io/upload_images/8194969-aee1bf72ef11bf74?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image](https://github.com/tinper-acs/ac-input-locale/tree/master/docs/locale.png)
 
 ## API
 
@@ -37,6 +35,11 @@ import '@yonyou/ac-input-locale/dist/index.css';
 
 ```sh
 $ cd @yonyou/ac-input-locale
-$ npm install
+
+$ ynpm install
+
 $ npm run dev
+
 ```
+
+
