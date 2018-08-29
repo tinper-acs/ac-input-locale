@@ -17,7 +17,7 @@ import '@yonyou/ac-input-locale/dist/index.css';
 
 ##效果  [进入示例](https://tinper-acs.github.io/ac-input-locale/)
 
-![](media/15355446781426/15355446867533.png)
+![-w453](media/15355446781426/15355446867533.png)
 
 ## API
 
