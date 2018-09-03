@@ -52,11 +52,11 @@ module.exports = webpackMerge(baseConfig, {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoader: 2
-            }
+            // options: {
+            //   modules: true,
+            //   sourceMap: true,
+            //   importLoader: 2
+            // }
           },
           "less-loader"
         ]

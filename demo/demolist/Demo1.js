@@ -6,7 +6,7 @@
  */
 
 import React, { Component } from 'react';
-import AcInputLocale from '../../src/index';
+import AcInputLocale from '../../src/index.js';
 import Button from 'bee-button';
 
  class Demo1 extends Component {
@@ -27,6 +27,22 @@ import Button from 'bee-button';
                     }
                 ]
         }
+    }
+
+    componentDidMount() {
+        this.setState({
+            locale: [
+                {
+                    locale:"zh-cn",label:"中文",value:"英语"
+                },
+                {
+                    locale:"zh-en",label:"英文",value:"english2"
+                },
+                {
+                    locale:"zh-tw",label:"台湾",value:"yingyu"
+                }
+            ]
+        })
     }
  
     onSave=(localeList)=>{

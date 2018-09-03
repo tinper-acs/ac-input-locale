@@ -1,6 +1,6 @@
 {
   "name": "@yonyou/ac-input-locale",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -75,8 +75,10 @@
   },
   "dependencies": {
     "bee-form": "^2.0.6",
+    "bee-label": "^1.0.0",
     "bee-layout": "^1.2.7",
     "bee-panel": "^1.0.0",
+    "bee-popconfirm": "^1.0.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "tinper-bee": "^1.5.8",
