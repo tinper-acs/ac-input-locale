@@ -33,13 +33,13 @@ import Button from 'bee-button';
         this.setState({
             locale: [
                 {
-                    locale:"zh-cn",label:"中文",value:"英语"
+                    locale:"zh-cn",label:"中文",value:""
                 },
                 {
-                    locale:"zh-en",label:"英文",value:"english2"
+                    locale:"zh-en",label:"英文",value:""
                 },
                 {
-                    locale:"zh-tw",label:"台湾",value:"yingyu"
+                    locale:"zh-tw",label:"台湾",value:""
                 }
             ]
         })
@@ -66,7 +66,7 @@ import Button from 'bee-button';
                     <Button onClick={()=>{this.onClick("zh-en")}}>[英语]</Button>
                     <Button onClick={()=>{this.onClick("zh-cn")}}>[中文]</Button>
                 </div>
-                <AcInputLocale colors="brand" locale={sysLocale}  localeList={locale}  onSave={this.onSave}></AcInputLocale> 
+                <AcInputLocale colors="brand" placeholder="aa" locale={sysLocale} localeList={locale}  onSave={this.onSave}></AcInputLocale> 
             </div>
         )
     }

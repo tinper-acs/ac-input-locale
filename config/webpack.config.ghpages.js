@@ -11,9 +11,9 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const baseConfig = require('./webpack.base')
 module.exports = webpackMerge(baseConfig, {
-  mode:'production',
+  mode:'development',
   entry: {
-      app: path.join(__dirname, '../demo/index.js')
+      app: path.join(__dirname, '../demo/demolist/Demo1.js')
   },
   // externals:['react','react-dom','prop-types'],
   output: {

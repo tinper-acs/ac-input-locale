@@ -6,7 +6,7 @@
  */
 
 import React, { Component } from 'react';
-import AcInputLocale from '../../src/index';
+import AcInputLocale from '../src';
 
  class Demo2 extends Component {
 

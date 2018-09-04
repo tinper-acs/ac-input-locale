@@ -15,8 +15,8 @@ const propTypes = {
     className: PropTypes.string,
     onSave:PropTypes.func,//确定按钮钩子函数
     onCancel:PropTypes.func,//取消按钮钩子函数
-    locale:PropTypes.string,
-    localeList:PropTypes.array,
+    locale:PropTypes.string, //语种
+    localeList:PropTypes.array, //语种数组
 }
 
 const defaultProps = {
@@ -24,7 +24,6 @@ const defaultProps = {
 }
 
 class AcInputLocale extends Component {
-
     constructor(props) {
         super(props);
         let {locale,localeList} = props;
@@ -102,20 +101,30 @@ class AcInputLocale extends Component {
         });
         this.props.onSave && this.props.onSave(value);
     }
+    // 点击出现confirm
+    onClick= ()=> {
+        let {locale,localeList} = this.props;
+        this.setState({
+            value:this.getListToMap(localeList)
+        })
+        debugger
+    }
 
     render() {
         let {localeValue} = this.state;
-        let {className} = this.props;
+        let {className,placeholder,rootClose,placement} = this.props;
+        let option = {placeholder,rootClose,placement}
         return (
         <div className={`ac-input-locale ${className?className:""}`} >
             <FormControl
                 className="input"
                 value={localeValue}
+                placeholder={placeholder}
                 ref={(input) => {this.textInput = input}}
             />
             <Popconfirm className="popconfirm" trigger="click" placement="right"
             onCancel={this.onCancel} onClose={this.onClose}
-            content={this.getPopContent()}>
+            content={this.getPopContent()} onClick={this.onClick} {...option}>
                 <div className="input-icon" />
             </Popconfirm>
         </div>
