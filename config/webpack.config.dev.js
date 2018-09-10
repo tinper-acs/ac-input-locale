@@ -9,7 +9,7 @@ const config = webpackMerge(baseConfig, {
   devtool: '#cheap-module-eval-source-map',
   entry: [
     'react-hot-loader/patch',
-    path.join(__dirname, '../demo/app.js'),
+    path.join(__dirname, '../demo/index.js'),
   ],
   output: {
     filename: '[name].[hash].js',
@@ -22,16 +22,23 @@ const config = webpackMerge(baseConfig, {
         test: /\.css$/,
         use: [
           'style-loader',
-          "css-loader"
+          "css-loader",
+          {
+            loader: "postcss-loader"
+          }
         ]
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['style-loader', 'css-loader', {
+          loader: "postcss-loader"
+        },'sass-loader']
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: ['style-loader', 'css-loader', {
+          loader: "postcss-loader"
+        },'less-loader']
       }
     ]
   },

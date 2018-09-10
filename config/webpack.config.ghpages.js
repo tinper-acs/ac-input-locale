@@ -13,13 +13,13 @@ const baseConfig = require('./webpack.base')
 module.exports = webpackMerge(baseConfig, {
   mode:'development',
   entry: {
-      app: path.join(__dirname, '../demo/demolist/Demo1.js')
+      app: path.join(__dirname, '../demo/index.js')
   },
   // externals:['react','react-dom','prop-types'],
   output: {
-      filename: '[name].[hash].js',
+      filename: '[name].[hash]11.js',
       path: path.join(__dirname, '../ghpages'),
-      publicPath: '/'
+      publicPath: 'https://tinper-acs.github.io/ac-input-locale/'
   },
   module: {
     rules: [
@@ -48,7 +48,7 @@ module.exports = webpackMerge(baseConfig, {
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true 
+        sourceMap: true
       }),
       new OptimizeCSSAssetsPlugin({})  // use OptimizeCSSAssetsPlugin
     ], // [new UglifyJsPlugin({...})]
