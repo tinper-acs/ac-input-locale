@@ -152,7 +152,8 @@ class AcInputLocale extends Component {
       this.setState({ showModal: false });
     }
 
-    open() {
+    open(event) {
+      event.stopPropagation();
       let {localeList,status} = this.props;
       if(status==='preview'){
         return
