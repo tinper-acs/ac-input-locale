@@ -2,10 +2,14 @@
 .ac-input-locale{
   position: relative;
   min-width: 100px;
-  min-height: 30px;
-  line-height: 30px;
+  min-height: 36px;
+  line-height: 36px;
   .popconfirm{
     width: auto;
+  }
+  .input-text{
+    line-height: 36px;
+    height: 36px;
   }
   .u-popover-content{
     padding: 16px 30px;
@@ -18,35 +22,20 @@
   }
 }
 
-.popconfirm.u-popconfirm.right>.arrow{
-  top: 37%;
-}
-.popconfirm .u-popconfirm-confirm>button{
-  width: 80px;
-  height: 30px;
-  line-height: 26px;
-}
-.popconfirm .form .u-label{
-  margin-right: 15px;
-}
-.popconfirm .form .u-form-control{
-  width: 80%;
-}
-.popconfirm .form .u-form-item{
-  min-height:60px;
-}
 
 .input-icon{
   cursor: pointer;
   position: absolute;
-  top: 0px;
-  right: 5px;
-  width: 30px;
-  height: 30px;
-  background: url("./assets/images/language.png") no-repeat 10% center;
-  background-size: 80%;
+  top: 4px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  background: url("./assets/images/language.png") no-repeat center;
+  background-size: 100%;
 }
-
+.input-icon:hover{
+  background: url("./assets/images/language_hover.png") no-repeat center;
+}
 .popconfirm-content{
   width: 500px;
 }
@@ -109,6 +98,8 @@
       }
       .u-form-control {
           width: auto;
+          height: 36px;
+          line-height: 36px;
       }
       .calendar-picker {
           display: inline-block;
@@ -146,8 +137,9 @@
       .u-label {
           width: 100%;
           text-align: right;
-          height: 30px;
-          line-height: 30px;
+          font-size: 14px;
+          height: 36px;
+          line-height: 36px;
       }
       .u-form-control {
           width: 80%;

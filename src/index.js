@@ -12,7 +12,7 @@ import 'bee-layout/build/Layout.css';
 import 'bee-popover/build/Popover.css';
 import 'bee-modal/build/Modal.css';
 import 'bee-form/build/Form.css';
-
+import languagePic from './assets/images/language.png'
 
 const FormItem = Form.FormItem;
 import './index.less';
@@ -76,7 +76,7 @@ class AcInputLocale extends Component {
             'localeFlag':'当前'
           },
           'en_US':{
-            'title':'language settings',
+            'title':'Language Setting',
             'okName':'save',
             'cancelName':'cancel',
             'localeFlag':'current'
@@ -88,7 +88,7 @@ class AcInputLocale extends Component {
             'localeFlag':'當前'
           },
           'fr_FR':{
-            'title':'Programmation multilingue',
+            'title':'Programmation Multilingue',
             'okName':'conservation',
             'cancelName':'supprimer',
             'localeFlag':'actuellement'
@@ -204,13 +204,13 @@ class AcInputLocale extends Component {
                   trigger="hover"
                   id="right"
                 >
-                  <div className="input-icon" />
+                  <img src={languagePic} alt="preview" style={{paddingLeft:'10px'}}/>
                 </Popover>
               </div>
             ):(
               <div>
                 <FormControl
-                  className="input"
+                  className="input-text"
                   value={localeValue}
                   {...formControlTypeOption}
                   onChange={(v)=>{
