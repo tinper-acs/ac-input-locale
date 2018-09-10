@@ -1,22 +1,23 @@
 // /**
 //  *
 //  * @title 多语言 Input 组件
-//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 包含预览状态和编辑状态切换
-//  *
+//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 改变默认模态框中文字说明
+//  * 绿色代表 当前语种
+//  * 编辑状态 改变默认模态框中文字说明
 //  */
 
 import React, { Component } from 'react';
 import AcInputLocale from '../../src/index.js';
 import Button from 'bee-button';
 
- class Demo1 extends Component {
+ class Demo4 extends Component {
 
     constructor(props){
         super(props)
         this.state={
             sysLocale:"en_US",  //默认语种
             locale:"en_US",     //当前语种
-            status:"preview",
+            status:"editor",
             localeList: {
               "zh_CN":{label:"简体中文",value:"苹果"},
               "en_US":{label:"英文",value:"apple"},
@@ -94,15 +95,6 @@ import Button from 'bee-button';
                     系统语种：{localeJson[sysLocale]}
                   </span>
                   <br/>
-                  <span>
-                    <div className="btn">
-                      <span style={{width: '100px',lineHeight: '45px'}}>
-                      当前状态</span>
-                      <Button onClick={()=>{this.changeStatus("preview")}} colors={status=='preview'?'success':null}>[预览]</Button>
-                      <Button onClick={()=>{this.changeStatus("editor")}} colors={status=='editor'?'success':null}>[编辑]</Button>
-                    </div>
-
-                  </span>
                 </div>
                 名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} onChange={this.onChange} modalLocale={modalLocale}></AcInputLocale>
             </div>
@@ -110,4 +102,4 @@ import Button from 'bee-button';
     }
 }
 
-export default Demo1;
+export default Demo4;
