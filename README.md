@@ -24,7 +24,7 @@ import '@yonyou/ac-input-locale/dist/index.css';
 |className|容器样式|string| --- | 否 |
 |onOk|点击确定的钩子函数|fun|object | 否 |
 |onCancel|点击取消的钩子函数|fun|Object | 否 |
-|locale|系统语言|string | -- | 是 |
+|locale|当前语种|string | -- | 是 |
 |localeList|语言列表|object| -- | 是 |
 |onChange|输入框的change的钩子函数|fun| object | 否 |
 |isTextarea|是否textarea，默认false|bool| -- | 否 |
