@@ -7,8 +7,13 @@ import Form from 'bee-form';
 
 import 'bee-form-control/build/FormControl.css'
 import 'bee-button/build/Button.css'
-import 'bee-popconfirm/build/Popconfirm.css'
 import 'bee-label/build/Label.css'
+import 'bee-layout/build/Layout.css';
+import 'bee-popover/build/Popover.css';
+import 'bee-modal/build/Modal.css';
+import 'bee-form/build/Form.css';
+
+
 const FormItem = Form.FormItem;
 import './index.less';
 
