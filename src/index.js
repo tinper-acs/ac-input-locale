@@ -94,7 +94,6 @@ class AcInputLocale extends Component {
             'localeFlag':'actuellement'
           }
         }, modalLocale)
-        console.log(modalLocaleTmp)
         this.state={
           localeList,
           localeValue,
@@ -226,6 +225,11 @@ class AcInputLocale extends Component {
                       localeList
                     })
                   }}
+                  onClick={
+                    (e) => {
+                      e.stopPropagation()
+                    }
+                  }
                   ref={(input) => {this.textInput = input}}
                 />
                 <div className="input-icon" onClick = { this.open } />
