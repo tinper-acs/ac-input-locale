@@ -10,6 +10,17 @@ const nodeExternals = require('webpack-node-externals');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const baseConfig = require('./webpack.base')
+const pkg = require('../package.json')
+const name = pkg.name
+let publicPath = '/'
+// 取package.json中 name 进行处理
+// github.io 路径需要绝对路径或者正确的相对路径，用户可以自定义publicPath，视情况而定
+if (name.startsWith('@yonyou')) {
+  publicPath = name.replace('@yonyou', '')
+} else if(!name.startsWith('/')){
+  publicPath = `/${name}`
+}
+
 module.exports = webpackMerge(baseConfig, {
   mode:'development',
   entry: {
@@ -19,7 +30,7 @@ module.exports = webpackMerge(baseConfig, {
   output: {
       filename: '[name].[hash]11.js',
       path: path.join(__dirname, '../ghpages'),
-      publicPath: 'https://tinper-acs.github.io/ac-input-locale/'
+      publicPath: publicPath
   },
   module: {
     rules: [
@@ -69,7 +80,7 @@ module.exports = webpackMerge(baseConfig, {
         },
         styles: {
           name: 'styles',
-          test: /\.(sa|sc|c)ss$/,
+          test: /\.(sa|sc|c|le)ss$/,
           chunks: 'all',
           enforce: true
         }

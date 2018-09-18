@@ -73,25 +73,29 @@ class AcInputLocale extends Component {
             'title':'多语言设置',
             'okName':'保存',
             'cancelName':'取消',
-            'localeFlag':'当前'
+            'localeFlag':'当前',
+            'placeholder':'请输入...'
           },
           'en_US':{
             'title':'Language Setting',
             'okName':'save',
             'cancelName':'cancel',
-            'localeFlag':'current'
+            'localeFlag':'current',
+            'placeholder':'please input...'
           },
           'zh_TW':{
             'title':'多語言設置',
             'okName':'保存',
             'cancelName':'取消',
-            'localeFlag':'當前'
+            'localeFlag':'當前',
+            'placeholder':'請輸入...'
           },
           'fr_FR':{
             'title':'Programmation Multilingue',
             'okName':'conservation',
             'cancelName':'supprimer',
-            'localeFlag':'actuellement'
+            'localeFlag':'actuellement',
+            'placeholder':'S’il vous plaît, entrez....'
           }
         }, modalLocale)
         this.state={
@@ -191,6 +195,8 @@ class AcInputLocale extends Component {
       let { localeValue, locale, localeList, status, modalLocale } = this.state
       let formControlTypeOption={}
       isTextarea?formControlTypeOption={componentClass:'textarea'}:null
+
+      console.log('localeList', localeList)
       return (
         <div className={`ac-input-locale ${className ? className : null}`} >
 
@@ -240,9 +246,11 @@ class AcInputLocale extends Component {
           <Modal show = {
             this.state.showModal
           }
+          className="ac-input-locale-modal"
           onHide = {
               this.close
           }
+          enforceFocus={ false }
           >
             <Modal.Header closeButton={true}>
               <Modal.Title className="modal-title">{modalLocale[locale].title}</Modal.Title>
@@ -263,7 +271,7 @@ class AcInputLocale extends Component {
                       </Col>
                       <Col md={9}>
                         <FormControl
-                          placeholder="请输入..."
+                          placeholder={modalLocale[locale].placeholder}
                           onChange={(v)=>{
                             localeList = JSON.parse(JSON.stringify(localeList));
                             localeList[localeKey].value=v

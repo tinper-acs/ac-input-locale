@@ -7,10 +7,10 @@
 
 import React, { Component } from 'react';
 import AcInputLocale from '../../src/index.js';
+// import AcInputLocale from '../../dist/index.css';
 import Button from 'bee-button';
 
  class Demo1 extends Component {
-
     constructor(props){
         super(props)
         this.state={
@@ -18,10 +18,10 @@ import Button from 'bee-button';
             locale:"en_US",     //当前语种
             status:"preview",
             localeList: {
-              "zh_CN":{label:"简体中文",value:"苹果"},
-              "en_US":{label:"英文",value:"apple"},
-              "zh_TW":{label:"繁体中文",value:"平锅"},
-              "fr_FR":{label:"法语",value:"frenchapple"}
+              "zh_CN":{label:"ll",value:"ll"},
+              "en_US":{label:"ss",value:"ss"},
+              "zh_TW":{label:"cc",value:"cc"},
+              "fr_FR":{label:"ff",value:"frenchapple"}
             },
             localeJson:{
               "zh_CN":"简体中文",

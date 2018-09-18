@@ -12,10 +12,11 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const baseConfig = require('./webpack.base')
 module.exports = webpackMerge(baseConfig, {
   mode:'production',
+  // devtool: '#source-map',
   entry: {
       app: path.join(__dirname, '../src/index.js')
   },
-  externals:['react','react-dom','prop-types'],
+  externals:['react','react-dom','prop-types','tinper-bee'],
   output: {
       filename: 'index.js',
       path: path.join(__dirname, '../dist'),
