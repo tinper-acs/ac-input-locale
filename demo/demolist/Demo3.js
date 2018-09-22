@@ -29,8 +29,10 @@ import Button from 'bee-button';
               "en_US":"英文",
               "zh_TW":"繁体中文",
               "fr_FR":"法语"
-            }
+            },
+            backdrop: false
         }
+
     }
 
     componentDidMount() {
@@ -73,7 +75,7 @@ import Button from 'bee-button';
     }
 
     render () {
-        let {localeList,sysLocale,locale,status,localeJson} = this.state;
+        let {localeList,sysLocale,locale,status,localeJson,backdrop} = this.state;
         // let modalLocale = {
         //   'fr_FR':{
         //     'title':'Multilingual établir12',
@@ -96,7 +98,7 @@ import Button from 'bee-button';
                   </span>
                   <br/>
                 </div>
-                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} onChange={this.onChange}></AcInputLocale>
+                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} backdrop={backdrop} onChange={this.onChange}></AcInputLocale>
             </div>
         )
     }

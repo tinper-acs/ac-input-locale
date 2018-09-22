@@ -26,14 +26,15 @@ const propTypes = {
     localeList:PropTypes.object.isRequired, //语种数组
     onChange:PropTypes.func, //文本框改变回掉
     isTextarea:PropTypes.bool, // 是否textarea 默认false
-    modalLocale:PropTypes.object
+    modalLocale:PropTypes.object,
+    backdrop: PropTypes.bool,  //是否弹出遮罩层/遮罩层点击是否触发关闭
 }
 
 const defaultProps = {
     classnames:'',
     status:'preview',
     isTextarea:false,
-
+    backdrop: true
 }
 
 const getContent = (localeList) => {
@@ -191,15 +192,13 @@ class AcInputLocale extends Component {
     }
 
     render() {
-      const { className, placeholder, placement, onChange,isTextarea } = this.props
+      const { className, placeholder, placement, onChange,isTextarea, backdrop } = this.props
       let { localeValue, locale, localeList, status, modalLocale } = this.state
       let formControlTypeOption={}
       isTextarea?formControlTypeOption={componentClass:'textarea'}:null
 
-      console.log('localeList', localeList)
       return (
         <div className={`ac-input-locale ${className ? className : null}`} >
-
           {
             status==='preview'?(
               <div>
@@ -246,6 +245,7 @@ class AcInputLocale extends Component {
           <Modal show = {
             this.state.showModal
           }
+          backdrop={backdrop}
           className="ac-input-locale-modal"
           onHide = {
               this.close
