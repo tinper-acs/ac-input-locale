@@ -1,13 +1,12 @@
 // /**
 //  *
 //  * @title 多语言 Input 组件
-//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 包含预览状态和编辑状态切换
+//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 包含预览状态和编辑状态切换.当前语种对应的字段内容为空时，显示默认语种内容。
 //  *
 //  */
 
 import React, { Component } from 'react';
 import AcInputLocale from '../../src/index.js';
-// import AcInputLocale from '../../dist/index.css';
 import Button from 'bee-button';
 
  class Demo1 extends Component {
@@ -15,7 +14,7 @@ import Button from 'bee-button';
         super(props)
         this.state={
             sysLocale:"en_US",  //默认语种
-            locale:"en_US",     //当前语种
+            locale:"",     //当前语种
             status:"preview",
             localeList: {
               "zh_CN":{label:"ll",value:"ll"},

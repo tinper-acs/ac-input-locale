@@ -62,8 +62,11 @@ const getContent = (localeList) => {
 class AcInputLocale extends Component {
     constructor(props) {
         super(props);
-        let {locale,localeList,status,modalLocale} = props;
+        let {locale,localeList,status,modalLocale,sysLocale} = props;
         let localeValue = ''
+        if (!locale) {
+          locale = sysLocale || 'zh_CN'
+        }
         Object.keys(localeList).forEach((localeKey)=>{
           if(localeKey === locale) {
             localeValue = localeList[localeKey].value
@@ -129,10 +132,19 @@ class AcInputLocale extends Component {
           localeValue
         })
       }
-      // debugger
+      // let { locale, sysLocale } = this.props
+      // if (!locale) {
+      //   locale = sysLocale || ''
+      // }
+
       // // 只改变语种，不改变语种列表
       if(nextProps.locale != this.props.locale && nextProps.localeList == this.props.localeList){
-        let {locale} = nextProps;
+        let { locale, sysLocale } = nextProps;
+
+        if (!locale) {
+          locale = sysLocale || 'zh_CN'
+        }
+
         let localeValue='';
         Object.keys(nextProps.localeList).forEach((localeKey)=>{
           if(localeKey === locale) {
