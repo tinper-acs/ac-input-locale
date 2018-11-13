@@ -8,6 +8,8 @@ import './demo.scss';
 import '../static/demo/atom-one-dark.css'
 
 const pkg = require('../package.json')
+console.log('pkg.name', pkg.name)
+
 const CARET = <i className="uf uf-arrow-down"></i>;
 
 const CARETUP = <i className="uf uf-arrow-up"></i>;
@@ -31,7 +33,7 @@ class Demo extends Component {
         const { title, example, code, desc  } = this.props;
         let caret = this.state.open ? CARETUP : CARET;
         let text = this.state.open ? "隐藏代码" : "查看代码";
-
+        console.log('process.env.NODE_ENV===', process.env.NODE_ENV==='development')
         const footer = (
             <Button shape="block" onClick={ this.handleClick }>
                 { caret }
