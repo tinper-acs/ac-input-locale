@@ -1,7 +1,12 @@
 
 import  React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormControl, Button,Label,Col , Row,Popover } from 'tinper-bee';
+import { Col , Row } from 'tinper-bee';
+import FormControl from 'bee-form-control'
+import Button from 'bee-button'
+import Label from 'bee-label'
+import Popover from 'bee-popover'
+
 import Modal from 'bee-modal'
 import Form from 'bee-form';
 
@@ -196,6 +201,13 @@ class AcInputLocale extends Component {
       this.setState({
         localeValue
       });
+
+      if (this.props.form) {
+        let obj = {};
+        obj[this.props.inputId] = localeValue
+        this.props.form.setFieldsValue(obj)
+      }
+
       this.props.onOk && this.props.onOk(localeList);
       this.close()
     }
@@ -208,109 +220,236 @@ class AcInputLocale extends Component {
       let { localeValue, locale, localeList, status, modalLocale } = this.state
       let formControlTypeOption={}
       isTextarea?formControlTypeOption={componentClass:'textarea'}:null
+      let getFieldProps, getFieldError
 
-      return (
-        <div className={`ac-input-locale ${className ? className : null}`} >
-          {
-            status==='preview'?(
-              <div>
-                {localeValue}
-                <Popover
-                  placement="right"
-                  content={getContent(localeList)}
-                  trigger="hover"
-                  id="right"
-                >
-                  <img src={languagePic} alt="preview" style={{paddingLeft:'10px'}}/>
-                </Popover>
-              </div>
-            ):(
-              <div>
-                <FormControl
-                  className="input-text"
-                  value={localeValue}
-                  {...formControlTypeOption}
-                  onChange={(v)=>{
-                    Object.keys(localeList).forEach((localeKey)=>{
-                      if(localeKey === locale){
-                        localeList[localeKey].value=v
-                      }
-                    })
-                    onChange&&onChange(localeList,v)
-                    this.setState({
-                      localeValue:v,
-                      localeList
-                    })
-                  }}
-                  onClick={
-                    (e) => {
-                      e.stopPropagation()
-                    }
-                  }
-                  ref={(input) => {this.textInput = input}}
-                />
-                <div className="input-icon" onClick = { this.open } />
-              </div>
-            )
-          }
-
-          <Modal show = {
-            this.state.showModal
-          }
-          backdrop={backdrop}
-          className="ac-input-locale-modal"
-          onHide = {
-              this.close
-          }
-          enforceFocus={ false }
-          >
-            <Modal.Header closeButton={true}>
-              <Modal.Title className="modal-title">{modalLocale[locale].title}</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-              {
-                Object.keys(localeList).map((localeKey)=> {
-                  return (<Row className='edit-panel edit-panel-all' key={localeKey}>
-                    <FormItem>
-                      <Col md={3} className="padding-right-0">
-                        <Label>
-                          {
-                            localeKey===locale?<span className="label-default">({modalLocale[locale].localeFlag})</span>:null
-                          }
-                          {localeList[localeKey].label}
-                        </Label>
-                      </Col>
-                      <Col md={9}>
-                        <FormControl
-                          placeholder={modalLocale[locale].placeholder}
-                          onChange={(v)=>{
-                            localeList = JSON.parse(JSON.stringify(localeList));
+      if (this.props.form) {
+        getFieldProps = this.props.form.getFieldProps
+        getFieldError = this.props.form.getFieldError
+        return (
+          <div className={`ac-input-locale ${className ? className : null}`} >
+            {
+              status==='preview'?(
+                <div>
+                  <span className="view-title-content">
+                  {localeValue}
+                  </span>
+                  <Popover
+                    placement="right"
+                    content={getContent(localeList)}
+                    trigger="hover"
+                    id="right"
+                  >
+                    <img src={languagePic} alt="preview" style={{paddingLeft:'10px'}}/>
+                  </Popover>
+                </div>
+              ):(
+                <div>
+                  <FormControl
+                    // value={localeValue}
+                    className="input-text"
+                    {...formControlTypeOption}
+                    {...getFieldProps(this.props.inputId, {
+                      validateTrigger: 'onBlur',
+                      rules: [{
+                          required: true, message: this.props.localeList[locale].errorMsg,
+                      }],
+                      getValueProps: (value) =>{
+                        return {
+                          value: localeValue
+                        }
+                      },
+                      initialValue: localeValue,
+                      onChange:(v)=>{
+                        Object.keys(localeList).forEach((localeKey)=>{
+                          if(localeKey === locale){
                             localeList[localeKey].value=v
-                            this.setState({
-                              localeList
-                            })
-                          }}
-                          value={
-                            localeList[localeKey].value
                           }
-                        />
-                      </Col>
-                    </FormItem>
-                  </Row>)
-                })
-              }
+                        })
+                        onChange&&onChange(localeList,v)
+                        this.setState({
+                          localeValue:v,
+                          localeList
+                        })
+                      }}
+                    ) }
+                    onClick={
+                      (e) => {
+                        e.stopPropagation()
+                      }
+                    }
+                    ref={(input) => {this.textInput = input}}
+                  />
+                  <div className="input-icon" onClick = { this.open } />
+                  <span className='error'>
+                    {getFieldError(this.props.inputId)}
+                  </span>
+                </div>
+              )
+            }
 
-            </Modal.Body>
+            <Modal show = {
+              this.state.showModal
+            }
+            backdrop={backdrop}
+            className="ac-input-locale-modal"
+            onHide = {
+                this.close
+            }
+            enforceFocus={ false }
+            >
+              <Modal.Header closeButton={true}>
+                <Modal.Title className="modal-title">{modalLocale[locale].title}</Modal.Title>
+              </Modal.Header>
 
-            <Modal.Footer>
-              <Button style={{ marginRight: 20,background:'rgba(225,76,70,1)',color:'#fff' }} onClick={this.onOk}>{modalLocale[locale].okName}</Button>
-              <Button style={{color:'rgba(71,77,84,1)',backgroundColor: '#fff'}} onClick={this.onCancel}>{modalLocale[locale].cancelName}</Button>
-            </Modal.Footer>
+              <Modal.Body>
+                {
+                  Object.keys(localeList).map((localeKey)=> {
+                    return (<Row className='edit-panel edit-panel-all' key={localeKey}>
+                      <FormItem>
+                        <Col md={3} className="padding-right-0">
+                          <Label>
+                            {
+                              localeKey===locale?<span className="label-default">({modalLocale[locale].localeFlag})</span>:null
+                            }
+                            {localeList[localeKey].label}
+                          </Label>
+                        </Col>
+                        <Col md={9}>
+                          <FormControl
+                            placeholder={modalLocale[locale].placeholder}
+                            onChange={(v)=>{
+                              localeList = JSON.parse(JSON.stringify(localeList));
+                              localeList[localeKey].value=v
+                              this.setState({
+                                localeList
+                              })
+                            }}
+                            value={
+                              localeList[localeKey].value
+                            }
+                          />
+                        </Col>
+                      </FormItem>
+                    </Row>)
+                  })
+                }
 
-          </Modal>
-        </div>
-      )
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button style={{ marginRight: 20,background:'rgba(225,76,70,1)',color:'#fff' }} onClick={this.onOk}>{modalLocale[locale].okName}</Button>
+                <Button style={{color:'rgba(71,77,84,1)',backgroundColor: '#fff'}} onClick={this.onCancel}>{modalLocale[locale].cancelName}</Button>
+              </Modal.Footer>
+
+            </Modal>
+          </div>
+        )
+      } else {
+        return (
+          <div className={`ac-input-locale ${className ? className : null}`} >
+            {
+              status==='preview'?(
+                <div>
+                  <span className="view-title-content">
+                    {localeValue}
+                  </span>
+                  <Popover
+                    placement="right"
+                    content={getContent(localeList)}
+                    trigger="hover"
+                    id="right"
+                  >
+                    <img src={languagePic} alt="preview" style={{paddingLeft:'10px'}}/>
+                  </Popover>
+                </div>
+              ):(
+                <div>
+                  <FormControl
+                    className="input-text"
+                    value={localeValue}
+                    {...formControlTypeOption}
+                    onChange={(v)=>{
+                      Object.keys(localeList).forEach((localeKey)=>{
+                        if(localeKey === locale){
+                          localeList[localeKey].value=v
+                        }
+                      })
+                      onChange&&onChange(localeList,v)
+                      this.setState({
+                        localeValue:v,
+                        localeList
+                      })
+                    }}
+                    onClick={
+                      (e) => {
+                        e.stopPropagation()
+                      }
+                    }
+                    ref={(input) => {this.textInput = input}}
+                  />
+                  <div className="input-icon" onClick = { this.open } />
+                </div>
+              )
+            }
+
+            <Modal show = {
+              this.state.showModal
+            }
+            backdrop={backdrop}
+            className="ac-input-locale-modal"
+            onHide = {
+                this.close
+            }
+            enforceFocus={ false }
+            >
+              <Modal.Header closeButton={true}>
+                <Modal.Title className="modal-title">{modalLocale[locale].title}</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                {
+                  Object.keys(localeList).map((localeKey)=> {
+                    return (<Row className='edit-panel edit-panel-all' key={localeKey}>
+                      <FormItem>
+                        <Col md={3} className="padding-right-0">
+                          <Label>
+                            {
+                              localeKey===locale?<span className="label-default">({modalLocale[locale].localeFlag})</span>:null
+                            }
+                            {localeList[localeKey].label}
+                          </Label>
+                        </Col>
+                        <Col md={9}>
+                          <FormControl
+                            placeholder={modalLocale[locale].placeholder}
+                            onChange={(v)=>{
+                              localeList = JSON.parse(JSON.stringify(localeList));
+                              localeList[localeKey].value=v
+                              this.setState({
+                                localeList
+                              })
+                            }}
+                            value={
+                              localeList[localeKey].value
+                            }
+                          />
+                        </Col>
+                      </FormItem>
+                    </Row>)
+                  })
+                }
+
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button style={{ marginRight: 20,background:'rgba(225,76,70,1)',color:'#fff' }} onClick={this.onOk}>{modalLocale[locale].okName}</Button>
+                <Button style={{color:'rgba(71,77,84,1)',backgroundColor: '#fff'}} onClick={this.onCancel}>{modalLocale[locale].cancelName}</Button>
+              </Modal.Footer>
+
+            </Modal>
+          </div>
+        )
+      }
     }
 }
 

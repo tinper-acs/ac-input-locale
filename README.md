@@ -30,7 +30,10 @@ import '@yonyou/ac-input-locale/dist/index.css';
 |onChange|输入框的change的钩子函数|fun| object | 否 |
 |isTextarea|是否textarea，默认false|bool| -- | 否 |
 |modalLocale|模态框中title、按钮的文字语态|object| -- | 否 |
+|inputId|input的唯一值|string| -- | 和 form相关联 |
+|form|this.props.form| object | -- | 和 inputId 相关联 |
 
+设置form，启动表单校验。
 
 #### 开发调试
 

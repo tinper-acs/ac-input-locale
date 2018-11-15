@@ -1,5 +1,5 @@
 {
-  "name": "@yonyou/ac-input-locale",
+  "name": "ac-input-locale",
   "version": "1.0.6",
   "description": "",
   "main": "dist/index.js",
@@ -87,5 +87,7 @@
     "react-dom": "^15.3.0 || ^16.0.0",
     "prop-types": "^15.6.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "bee-form-control": "^1.1.6"
+  }
 }
