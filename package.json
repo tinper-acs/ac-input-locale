@@ -1,5 +1,5 @@
 {
-  "name": "ac-input-locale",
+  "name": "@yonyou/ac-input-locale",
   "version": "1.0.6",
   "description": "",
   "main": "dist/index.js",
