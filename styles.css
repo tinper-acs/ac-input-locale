@@ -1209,6 +1209,8 @@ input.u-button[type="submit"] {
       background: transparent;
       border: 0;
       -webkit-appearance: none; }
+      .u-modal .u-modal-header .u-close .uf-close {
+        font-size: 12px; }
   .u-modal .u-modal-title {
     margin: 0;
     line-height: 1.42857143; }
