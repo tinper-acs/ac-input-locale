@@ -14,7 +14,7 @@ import Button from 'bee-button';
         super(props)
         this.state={
             sysLocale:"en_US",  //默认语种
-            locale:"",     //当前语种
+            locale:"en_US",     //当前语种
             status:"preview",
             localeList: {
               "zh_CN":{label:"ll",value:"ll"},
@@ -45,6 +45,9 @@ import Button from 'bee-button';
         //         }
         //     ]
         // })
+        this.setState({
+          locale:"zh_CN"
+        })
     }
 
     onOk=(localeList)=>{

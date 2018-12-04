@@ -46,7 +46,7 @@ const config = webpackMerge(baseConfig, {
     //主机域名
     host: '0.0.0.0',
     compress: true,
-    port: '3000',
+    port: '3002',
     //服务于webpack生成的静态文件，用dist
     // contentBase: path.join(__dirname, '../dist'),
     //热更新

@@ -1,14 +1,17 @@
 
 import  React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Col , Row } from 'tinper-bee';
-import FormControl from 'bee-form-control'
-import Button from 'bee-button'
-import Label from 'bee-label'
+// import { Col , Row } from 'tinper-bee';
+import { FormControl, Button,Label,Col , Row } from 'tinper-bee';
+
+// import FormControl from 'bee-form-control'
+// import Button from 'bee-button'
+// import Label from 'bee-label'
 import Popover from 'bee-popover'
 
 import Modal from 'bee-modal'
 import Form from 'bee-form';
+
 
 import 'bee-form-control/build/FormControl.css'
 import 'bee-button/build/Button.css'
@@ -134,7 +137,8 @@ class AcInputLocale extends Component {
         })
         this.setState({
           localeList:localeList,
-          localeValue
+          localeValue,
+          locale
         })
       }
       // let { locale, sysLocale } = this.props

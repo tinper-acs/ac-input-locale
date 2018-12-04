@@ -1,6 +1,6 @@
 {
   "name": "@yonyou/ac-input-locale",
-  "version": "1.0.6",
+  "version": "1.10.4",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -36,14 +36,11 @@
     "babel-preset-es2015-loose": "^8.0.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
-    "bee-button": "^1.0.6",
     "bee-form": "^2.0.6",
-    "bee-label": "^1.0.0",
     "bee-layout": "^1.2.7",
     "bee-modal": "^1.0.3",
     "bee-panel": "^1.0.0",
     "bee-popconfirm": "^1.0.2",
-    "bee-popover": "^1.0.2",
     "css-loader": "^1.0.0",
     "cssnano": "^4.1.0",
     "eslint": "^5.4.0",
@@ -88,6 +85,9 @@
     "prop-types": "^15.6.0"
   },
   "dependencies": {
-    "bee-form-control": "^1.1.6"
+    "bee-button": "^1.0.6",
+    "bee-form-control": "^1.0.7",
+    "bee-label": "^1.0.0",
+    "bee-popover": "^1.0.3"
   }
 }

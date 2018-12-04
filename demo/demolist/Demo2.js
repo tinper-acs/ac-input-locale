@@ -47,6 +47,10 @@ import Button from 'bee-button';
         //         }
         //     ]
         // })
+        // debugger
+        this.setState({
+          locale:"zh_CN"
+        })
     }
 
     onOk=(localeList)=>{
@@ -90,6 +94,7 @@ import Button from 'bee-button';
                 <div>
                   <span style={{fontFize:18}}>
                     系统语种：{localeJson[sysLocale]}
+                    当前语种：{locale}
                   </span>
                   <br/>
                 </div>

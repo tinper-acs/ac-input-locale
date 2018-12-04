@@ -70,7 +70,14 @@
 <td style="text-align:center">当前语种</td>
 <td style="text-align:center">string</td>
 <td style="text-align:right">--</td>
-<td style="text-align:right">是</td>
+<td style="text-align:right">否 当前语种为空时，默认显示系统语种，若系统语种也为空时，显示zh_CN</td>
+</tr>
+<tr>
+<td style="text-align:left">sysLocale</td>
+<td style="text-align:center">系统语种</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">--</td>
+<td style="text-align:right">否</td>
 </tr>
 <tr>
 <td style="text-align:left">localeList</td>
@@ -100,8 +107,23 @@
 <td style="text-align:right">--</td>
 <td style="text-align:right">否</td>
 </tr>
+<tr>
+<td style="text-align:left">inputId</td>
+<td style="text-align:center">input的唯一值</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">--</td>
+<td style="text-align:right">和 form相关联</td>
+</tr>
+<tr>
+<td style="text-align:left">form</td>
+<td style="text-align:center">this.props.form</td>
+<td style="text-align:center">object</td>
+<td style="text-align:right">--</td>
+<td style="text-align:right">和 inputId 相关联</td>
+</tr>
 </tbody>
 </table>
+<p>设置form，启动表单校验。</p>
 <h4 id="开发调试">开发调试</h4>
 <pre class="hljs"><code>$ <span class="hljs-built_in">cd</span> @yonyou/ac-input-locale
 
