@@ -16,12 +16,34 @@ import Button from 'bee-button';
             sysLocale:"en_US",  //默认语种
             locale:"en_US",     //当前语种
             status:"preview",
-            localeList: {
-              "zh_CN":{label:"ll",value:"ll"},
-              "en_US":{label:"ss",value:"ss"},
-              "zh_TW":{label:"cc",value:"cc"},
-              "fr_FR":{label:"ff",value:"frenchapple"}
-            },
+            localeListAll: {
+              "zh_CN":{
+                  "zh_CN":{"label":"简体中文","value":""},
+                  "en_US":{"label":"英文","value":""},
+                  "zh_TW":{"label":"繁体中文","value":""},
+                  "fr_FR":{"label":"法语","value":""}
+              },
+              "en_US":{
+                  "zh_CN":{"label":"Simplified Chinese","value":""},
+                  "en_US":{"label":"English","value":""},
+                  "zh_TW":{"label":"traditional Chinese","value":""},
+                  "fr_FR":{"label":"French","value":""}
+              },
+              "zh_TW":{
+                  "zh_CN":{"label":"簡體中文","value":""},
+                  "en_US":{"label":"英文","value":""},
+                  "zh_TW":{"label":"繁體中文","value":""},
+                  "fr_FR":{"label":"法語","value":""}
+              },
+              "fr_FR":{
+                  "zh_CN":{"label":"Chinois simplifié","value":""},
+                  "en_US":{"label":"Anglais","value":""},
+                  "zh_TW":{"label":"Chinois traditionnel","value":""},
+                  "fr_FR":{"label":"Français","value":""}
+              }
+              
+          },
+          localeList:{},
             localeJson:{
               "zh_CN":"简体中文",
               "en_US":"英文",
@@ -45,8 +67,15 @@ import Button from 'bee-button';
         //         }
         //     ]
         // })
+
         this.setState({
-          locale:"zh_CN"
+          locale:"zh_CN",
+          localeList:{
+            "zh_CN":{"label":"简体中文","value":""},
+            "en_US":{"label":"英文","value":""},
+            "zh_TW":{"label":"繁体中文","value":""},
+            "fr_FR":{"label":"法语","value":""}
+        }
         })
     }
 
@@ -59,7 +88,8 @@ import Button from 'bee-button';
 
     onClick = (key)=>{
         this.setState({
-          locale:key
+          locale:key,
+          localeList:this.state.localeListAll[key]
         })
     }
     changeStatus=(key)=>{
@@ -74,15 +104,15 @@ import Button from 'bee-button';
     }
 
     render () {
-        let {localeList,sysLocale,locale,status,localeJson} = this.state;
-        let modalLocale = {
-          'fr_FR':{
-            'title':'Multilingual établir12',
-            'okName':'conservation12',
-            'cancelName':'supprimer12',
-            'localeFlag':'1fasf'
-          }
-        }
+        let {localeList,sysLocale,locale,status,localeJson,required} = this.state;
+        // let modalLocale = {
+        //   'fr_FR':{
+        //     'title':'Multilingual établir12',
+        //     'okName':'conservation12',
+        //     'cancelName':'supprimer12',
+        //     'localeFlag':'1fasf'
+        //   }
+        // }
         return (
             <div className="demoPadding">
                 <div className="btn">
@@ -106,7 +136,7 @@ import Button from 'bee-button';
 
                   </span>
                 </div>
-                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} onChange={this.onChange} modalLocale={modalLocale}></AcInputLocale>
+                名称：<AcInputLocale localeList={localeList}    sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} onChange={this.onChange}  ></AcInputLocale>
             </div>
         )
     }

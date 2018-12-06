@@ -70,7 +70,7 @@ const getContent = (localeList) => {
 class AcInputLocale extends Component {
     constructor(props) {
         super(props);
-        let {locale,localeList,status,modalLocale,sysLocale} = props;
+        let {locale,localeList,status,modalLocale,sysLocale,required} = props;
         let localeValue = ''
         if (!locale) {
           locale = sysLocale || 'zh_CN'
@@ -86,35 +86,53 @@ class AcInputLocale extends Component {
             'okName':'保存',
             'cancelName':'取消',
             'localeFlag':'当前',
-            'placeholder':'请输入...'
+            'defaultFlag':'默认',
+            'placeholder':'请输入...',
+            "errorMsg":"不能为空",
+            'currentLang':"当前语种",
+            'defaultLang':"默认语种"
           },
           'en_US':{
             'title':'Language Setting',
             'okName':'save',
             'cancelName':'cancel',
             'localeFlag':'current',
-            'placeholder':'please input...'
+            'defaultFlag':'default',
+            'placeholder':'please input...',
+            "errorMsg":"Required",
+            'currentLang':"Current language",
+            'defaultLang':"Default language"
           },
           'zh_TW':{
             'title':'多語言設置',
             'okName':'保存',
             'cancelName':'取消',
             'localeFlag':'當前',
-            'placeholder':'請輸入...'
+            'defaultFlag':'默認',
+            'placeholder':'請輸入...',
+            "errorMsg":"不能為空",
+            'currentLang':"當前語種",
+            'defaultLang':"默認語種"
           },
           'fr_FR':{
             'title':'Programmation Multilingue',
             'okName':'conservation',
             'cancelName':'supprimer',
             'localeFlag':'actuellement',
-            'placeholder':'S’il vous plaît, entrez....'
+            'defaultFlag':'Par défaut',
+            'placeholder':'S’il vous plaît, entrez....',
+            "errorMsg":"Champs obligatoires",
+            'currentLang':"Langue actuelle",
+            'defaultLang':"Langue par défaut"
           }
         }, modalLocale)
         this.state={
           localeList,
           localeValue,
+          sysLocale,
           locale,
           status,
+          required,
           showModal: false,
           modalLocale:modalLocaleTmp
         }
@@ -218,10 +236,43 @@ class AcInputLocale extends Component {
     onCancel() {
       this.close()
     }
-
+    //校验处理
+    checkValidValue =(rule, value, callback)=>{
+      let self = this;
+      let {required,localeList,locale,sysLocale} = self.state;
+      let currentLanguage = self.state.modalLocale[locale]?self.state.modalLocale[locale].currentLang:"当前语种" ;
+      let defaultLanguage = self.state.modalLocale[locale]?self.state.modalLocale[locale].defaultLang:"默认语种" ;
+      let errMessage = self.state.modalLocale[locale]?self.state.modalLocale[locale].errorMsg:"不能为空" ;
+      if(required){
+        if(!localeList[locale].value){
+          callback(currentLanguage +" "+ errMessage)
+        }
+        if(!localeList[sysLocale].value){
+          callback(defaultLanguage +" "+  errMessage);
+        }
+      }
+      callback();
+    }
+    //label左侧的渲染
+    renderLabelLeft (localeKey){
+      
+      let { localeValue, locale, localeList, status, modalLocale,sysLocale } = this.state
+      if(locale == sysLocale){
+        if(localeKey == locale){
+          return <span className="label-default">({modalLocale[locale].localeFlag+"/"+modalLocale[locale].defaultFlag})</span>
+        } 
+      }else{
+        if(localeKey == locale){
+          return <span className="label-default">({modalLocale[locale].localeFlag})</span>
+        }
+        if(localeKey == sysLocale){
+          return <span className="label-default">({modalLocale[locale].defaultFlag})</span>
+        }
+      }
+    }
     render() {
       const { className, placeholder, placement, onChange,isTextarea, backdrop } = this.props
-      let { localeValue, locale, localeList, status, modalLocale } = this.state
+      let { localeValue, locale, localeList, status, modalLocale,sysLocale } = this.state
       let formControlTypeOption={}
       isTextarea?formControlTypeOption={componentClass:'textarea'}:null
       let getFieldProps, getFieldError
@@ -254,9 +305,15 @@ class AcInputLocale extends Component {
                     {...formControlTypeOption}
                     {...getFieldProps(this.props.inputId, {
                       validateTrigger: 'onBlur',
-                      rules: [{
-                          required: true, message: this.props.localeList[locale].errorMsg,
-                      }],
+                      rules: [
+                        //{
+                        //  required: this.props.required, message: this.state.localeList[locale]?this.state.localeList[locale].errorMsg:"",
+                        //required: this.props.required
+                         // validator:this.checkValidValue
+                      //},
+                      {
+                        validator: this.checkValidValue
+                    }],
                       getValueProps: (value) =>{
                         return {
                           value: localeValue
@@ -313,7 +370,7 @@ class AcInputLocale extends Component {
                         <Col md={3} className="padding-right-0">
                           <Label>
                             {
-                              localeKey===locale?<span className="label-default">({modalLocale[locale].localeFlag})</span>:null
+                              this.renderLabelLeft(localeKey)           
                             }
                             {localeList[localeKey].label}
                           </Label>
