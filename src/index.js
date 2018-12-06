@@ -279,23 +279,27 @@ class AcInputLocale extends Component {
       }
     }
     renderLabelright (localeKey){
-      let { localeValue, locale, localeList, status, modalLocale,sysLocale } = this.state
-      if(locale == sysLocale){
-        if(localeKey == locale){
-          return <span className="require-star"> *</span>
-        } 
-      }else{
-        if(localeKey == locale){
-          return <span className="require-star"> *</span>
-        }
-        if(localeKey == sysLocale){
-          return <span className="require-star"> *</span>
+      let { localeValue, locale, localeList, status, modalLocale,sysLocale,required} = this.state
+      if(required){
+        if(locale == sysLocale ){
+          if(localeKey == locale){
+            return <span className="require-star" > *</span>
+          } 
+        }else{
+          if(localeKey == locale){
+            return <span className="require-star"> *</span>
+          }
+          if(localeKey == sysLocale){
+            return <span className="require-star"> *</span>
+          }
         }
       }
+    
     }
     render() {
       const { className, placeholder, placement, onChange,isTextarea, backdrop } = this.props
       let { localeValue, locale, localeList, status, modalLocale,sysLocale } = this.state
+      let defaultValue = localeList[sysLocale].value;
       let formControlTypeOption={}
       isTextarea?formControlTypeOption={componentClass:'textarea'}:null
       let getFieldProps, getFieldError
@@ -309,7 +313,7 @@ class AcInputLocale extends Component {
               status==='preview'?(
                 <div>
                   <span className="view-title-content">
-                  {localeValue}
+                  {localeValue?localeValue:defaultValue}
                   </span>
                   <Popover
                     placement="right"
