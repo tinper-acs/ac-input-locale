@@ -245,10 +245,18 @@ class AcInputLocale extends Component {
       let errMessage = self.state.modalLocale[locale]?self.state.modalLocale[locale].errorMsg:"不能为空" ;
       if(required){
         if(!localeList[locale].value){
-          callback(currentLanguage +" "+ errMessage)
+          if(localeList[locale].errorMsg){
+            callback(localeList[locale].errorMsg)
+          }else{
+            callback(currentLanguage +" "+ errMessage)
+          } 
         }
         if(!localeList[sysLocale].value){
-          callback(defaultLanguage +" "+  errMessage);
+          if(localeList[locale].errorMsg){
+            callback(localeList[locale].errorMsg)
+          }else{
+            callback(defaultLanguage +" "+  errMessage);
+          }
         }
       }
       callback();
@@ -320,13 +328,7 @@ class AcInputLocale extends Component {
                     {...formControlTypeOption}
                     {...getFieldProps(this.props.inputId, {
                       validateTrigger: 'onBlur',
-                      rules: [
-                        //{
-                        //  required: this.props.required, message: this.state.localeList[locale]?this.state.localeList[locale].errorMsg:"",
-                        //required: this.props.required
-                         // validator:this.checkValidValue
-                      //},
-                      {
+                      rules: [{
                         validator: this.checkValidValue
                     }],
                       getValueProps: (value) =>{
@@ -395,7 +397,6 @@ class AcInputLocale extends Component {
                         </Col>
                         <Col md={8}>
                           <FormControl
-                            
                             placeholder={modalLocale[locale].placeholder}
                             onChange={(v)=>{
                               localeList = JSON.parse(JSON.stringify(localeList));
