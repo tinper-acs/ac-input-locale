@@ -270,6 +270,21 @@ class AcInputLocale extends Component {
         }
       }
     }
+    renderLabelright (localeKey){
+      let { localeValue, locale, localeList, status, modalLocale,sysLocale } = this.state
+      if(locale == sysLocale){
+        if(localeKey == locale){
+          return <span className="require-star"> *</span>
+        } 
+      }else{
+        if(localeKey == locale){
+          return <span className="require-star"> *</span>
+        }
+        if(localeKey == sysLocale){
+          return <span className="require-star"> *</span>
+        }
+      }
+    }
     render() {
       const { className, placeholder, placement, onChange,isTextarea, backdrop } = this.props
       let { localeValue, locale, localeList, status, modalLocale,sysLocale } = this.state
@@ -367,16 +382,20 @@ class AcInputLocale extends Component {
                   Object.keys(localeList).map((localeKey)=> {
                     return (<Row className='edit-panel edit-panel-all' key={localeKey}>
                       <FormItem>
-                        <Col md={3} className="padding-right-0">
+                        <Col md={4} className="padding-right-0">
                           <Label>
                             {
                               this.renderLabelLeft(localeKey)           
                             }
                             {localeList[localeKey].label}
+                            {
+                               this.renderLabelright(localeKey) 
+                            }
                           </Label>
                         </Col>
-                        <Col md={9}>
+                        <Col md={8}>
                           <FormControl
+                            
                             placeholder={modalLocale[locale].placeholder}
                             onChange={(v)=>{
                               localeList = JSON.parse(JSON.stringify(localeList));
