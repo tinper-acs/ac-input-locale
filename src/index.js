@@ -299,7 +299,10 @@ class AcInputLocale extends Component {
     render() {
       const { className, placeholder, placement, onChange,isTextarea, backdrop } = this.props
       let { localeValue, locale, localeList, status, modalLocale,sysLocale } = this.state
-      let defaultValue = localeList[sysLocale].value;
+      let defaultValue;
+      if(localeList && localeList[sysLocale] && localeList[sysLocale].value){
+        defaultValue = localeList[sysLocale].value;
+      }
       let formControlTypeOption={}
       isTextarea?formControlTypeOption={componentClass:'textarea'}:null
       let getFieldProps, getFieldError
