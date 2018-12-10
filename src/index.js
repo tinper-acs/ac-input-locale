@@ -236,6 +236,9 @@ class AcInputLocale extends Component {
     onCancel() {
       this.close()
     }
+    stringTrim(str){
+      return str.replace(/^\s+|\s+$/gm,'');
+    }
     //校验处理
     checkValidValue =(rule, value, callback)=>{
       let self = this;
@@ -244,14 +247,14 @@ class AcInputLocale extends Component {
       let defaultLanguage = self.state.modalLocale[locale]?self.state.modalLocale[locale].defaultLang:"默认语种" ;
       let errMessage = self.state.modalLocale[locale]?self.state.modalLocale[locale].errorMsg:"不能为空" ;
       if(required){
-        if(!localeList[locale].value){
+        if(!self.stringTrim(localeList[locale].value)){
           if(localeList[locale].errorMsg){
             callback(localeList[locale].errorMsg)
           }else{
             callback(currentLanguage +" "+ errMessage)
           } 
         }
-        if(!localeList[sysLocale].value){
+        if(!self.stringTrim(localeList[sysLocale].value)){
           if(localeList[locale].errorMsg){
             callback(localeList[locale].errorMsg)
           }else{
