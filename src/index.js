@@ -505,9 +505,12 @@ class AcInputLocale extends Component {
                         <Col md={3} className="padding-right-0">
                           <Label>
                             {
-                              localeKey===locale?<span className="label-default">({modalLocale[locale].localeFlag})</span>:null
+                              this.renderLabelLeft(localeKey)
                             }
                             {localeList[localeKey].label}
+                            {
+                               this.renderLabelright(localeKey) 
+                            }
                           </Label>
                         </Col>
                         <Col md={9}>
