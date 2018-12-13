@@ -255,8 +255,8 @@ class AcInputLocale extends Component {
           } 
         }
         if(!self.stringTrim(localeList[sysLocale].value)){
-          if(localeList[locale].errorMsg){
-            callback(localeList[locale].errorMsg)
+          if(localeList[sysLocale].errorMsg){
+            callback(localeList[sysLocale].errorMsg)
           }else{
             callback(defaultLanguage +" "+  errMessage);
           }

@@ -1,6 +1,6 @@
 {
   "name": "@yonyou/ac-input-locale",
-  "version": "1.10.4",
+  "version": "1.10.12",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
