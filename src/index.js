@@ -191,11 +191,11 @@ class AcInputLocale extends Component {
       }
     }
 
-    close() {
+    close = () => {
       this.setState({ showModal: false });
     }
 
-    open(event) {
+    open = (event) => {
       event.stopPropagation();
       let {localeList,status} = this.props;
       if(status==='preview'){
@@ -209,7 +209,7 @@ class AcInputLocale extends Component {
       });
     }
 
-    onOk() {
+    onOk = () => {
       const { localeList,locale } = this.state
       let localeListProp = this.props.localeList
       let localeValue
@@ -225,18 +225,39 @@ class AcInputLocale extends Component {
       });
 
       if (this.props.form) {
-        let obj = {};
-        obj[this.props.inputId] = localeValue
-        this.props.form.setFieldsValue(obj)
+        this.props.form.validateFields((err, values) => {
+          if (err) {
+            return;
+              console.log('校验失败', values);
+          } else {
+            this.props.onOk && this.props.onOk(localeList);
+            this.close()
+              console.log('提交成功', values)
+          }
+      });
+      //  let obj = {};
+      //  obj[this.props.inputId] = localeValue
+      //  this.props.form.setFieldsValue(obj,() =>{
+      //     this.props.form.validateFields((err, values) => {
+      //       if (err) {
+      //         return;
+      //           console.log('校验失败', values);
+      //       } else {
+      //         this.props.onOk && this.props.onOk(localeList);
+      //         this.close()
+      //           console.log('提交成功', values)
+      //       }
+      //   });
+      //  })
       }
+     
 
-      this.props.onOk && this.props.onOk(localeList);
+     
+    }
+    onCancel = () => {
       this.close()
     }
-    onCancel() {
-      this.close()
-    }
-    stringTrim(str){
+    stringTrim = (str) =>{
       return str.replace(/^\s+|\s+$/gm,'');
     }
     //校验处理
@@ -261,11 +282,13 @@ class AcInputLocale extends Component {
             callback(defaultLanguage +" "+  errMessage);
           }
         }
+      }else{
+        callback();
       }
-      callback();
     }
+   
     //label左侧的渲染
-    renderLabelLeft (localeKey){
+    renderLabelLeft = (localeKey) =>{
       
       let { localeValue, locale, localeList, status, modalLocale,sysLocale } = this.state
       if(locale == sysLocale){
@@ -281,7 +304,7 @@ class AcInputLocale extends Component {
         }
       }
     }
-    renderLabelright (localeKey){
+    renderLabelright = (localeKey) =>{
       let { localeValue, locale, localeList, status, modalLocale,sysLocale,required} = this.state
       if(required){
         if(locale == sysLocale ){
@@ -301,7 +324,7 @@ class AcInputLocale extends Component {
     }
     render() {
       const { className, placeholder, placement, onChange,isTextarea, backdrop } = this.props
-      let { localeValue, locale, localeList, status, modalLocale,sysLocale } = this.state
+      let { localeValue, locale, localeList, status, modalLocale,sysLocale,required} = this.state
       let defaultValue;
       if(localeList && localeList[sysLocale] && localeList[sysLocale].value){
         defaultValue = localeList[sysLocale].value;
@@ -311,6 +334,21 @@ class AcInputLocale extends Component {
       let getFieldProps, getFieldError
 
       if (this.props.form) {
+         // model弹窗校验数据加工
+      let errMessage = modalLocale[locale]?modalLocale[locale].errorMsg:"不能为空" ;
+      for(var item in localeList){
+       if(item == locale || item == sysLocale){
+         if(required){
+          localeList[item]["required"] = true;
+         }else{
+          localeList[item]["required"] = false;
+         }
+         localeList[item]["errorMessage"] = localeList[item]["label"] + " " +errMessage
+       }else{
+         localeList[item]["required"] = false;
+         localeList[item]["errorMessage"] = localeList[item]["label"] + " " + errMessage
+       }
+      }
         getFieldProps = this.props.form.getFieldProps
         getFieldError = this.props.form.getFieldError
         return (
@@ -406,7 +444,39 @@ class AcInputLocale extends Component {
                           </Label>
                         </Col>
                         <Col md={8}>
-                          <FormControl
+                            <div>
+                              <FormControl
+                                // value={localeValue}
+                                placeholder={modalLocale[locale].placeholder}
+                                value={
+                                  localeList[localeKey].value
+                                }
+                                {...getFieldProps(localeKey, {
+                                  validateTrigger: 'onBlur',
+                                  rules: [{
+                                    required: localeList[localeKey].required, message: localeList[localeKey].errorMessage,
+                                }],
+                                  onChange:(v)=>{
+                                    localeList = JSON.parse(JSON.stringify(localeList));
+                                    localeList[localeKey].value=v
+                                    this.setState({
+                                      localeList
+                                    })
+                                  }}
+                                ) }
+                                onClick={
+                                  (e) => {
+                                    e.stopPropagation()
+                                  }
+                                }
+                                ref={(input) => {this.textInput = input}}
+                              />
+                              <div className="input-icon" onClick = { this.open } />
+                              <span className='error'>
+                                {getFieldError(localeKey)}
+                              </span>
+                            </div>
+                          {/* <FormControl
                             placeholder={modalLocale[locale].placeholder}
                             onChange={(v)=>{
                               localeList = JSON.parse(JSON.stringify(localeList));
@@ -418,7 +488,7 @@ class AcInputLocale extends Component {
                             value={
                               localeList[localeKey].value
                             }
-                          />
+                          /> */}
                         </Col>
                       </FormItem>
                     </Row>)
