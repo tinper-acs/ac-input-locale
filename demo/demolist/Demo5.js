@@ -59,13 +59,17 @@ import Form from 'bee-form';
 
     componentDidMount() {
       this.setState({
-        localeList:
-          {
-            "zh_CN":{"label":"简体中文","value":"","errorMsg":"不能为空"},
-            "en_US":{"label":"英文","value":"","errorMsg":"不能为空"},
-            "zh_TW":{"label":"繁体中文","value":"","errorMsg":"不能为空"},
-            "fr_FR":{"label":"法语","value":"","errorMsg":"不能为空"}
+        localeList:{
+          "zh_CN":{"label":"简体中文","value":"" },
+          "en_US":{"label":"英文","value":"" },
+          "zh_TW":{"label":"繁体中文","value":""},
         }
+        //   {
+        //     "zh_CN":{"label":"简体中文","value":"","errorMsg":"不能为空"},
+        //     "en_US":{"label":"英文","value":"","errorMsg":"不能为空"},
+        //     "zh_TW":{"label":"繁体中文","value":"","errorMsg":"不能为空"},
+        //     "fr_FR":{"label":"法语","value":"","errorMsg":"不能为空"}
+        // }
         
       }
       );
