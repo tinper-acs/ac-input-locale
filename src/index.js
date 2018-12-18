@@ -465,11 +465,13 @@ class AcInputLocale extends Component {
                               <FormControl
                                 // value={localeValue}
                                 placeholder={modalLocale[locale].placeholder}
-                                value={
-                                  localeList[localeKey].value
-                                }
+                                // value={
+                                //   //localeList[localeKey].value
+                                //   1
+                                // }
                                 {...getFieldProps(this.props.inputId + "_" +localeKey, {
                                   validateTrigger: 'onBlur',
+                                  initialValue: localeList[localeKey].value,
                                   rules: [{
                                     required: localeList[localeKey].required, message: localeList[localeKey].errorMessage,
                                 }],
@@ -486,7 +488,7 @@ class AcInputLocale extends Component {
                                     e.stopPropagation()
                                   }
                                 }
-                                ref={(input) => {this.textInput = input}}
+                             //   ref={(input) => {this.textInput = input}}
                               />
                               <div className="input-icon" onClick = { this.open } />
                               <span className='error'>
