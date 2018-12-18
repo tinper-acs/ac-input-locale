@@ -211,9 +211,12 @@ class AcInputLocale extends Component {
 
     onOk = () => {
       const { localeList,locale } = this.state
-      let localeListProp = this.props.localeList
-      let localeValue
+      let localeListProp = this.props.localeList;
+      let {inputId } = this.props;
+      let localeValue;
+      let validateArray = [];
       Object.keys(localeList).forEach((localeKey)=>{
+        validateArray.push(inputId + "_"+ localeKey);
         if(localeKey === locale) {
           localeValue = localeList[localeKey].value
         }
@@ -225,7 +228,7 @@ class AcInputLocale extends Component {
       });
 
       if (this.props.form) {
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields(validateArray,(err, values) => {
           if (err) {
             return;
               console.log('校验失败', values);
@@ -260,6 +263,20 @@ class AcInputLocale extends Component {
     stringTrim = (str) =>{
       return str.replace(/^\s+|\s+$/gm,'');
     }
+    // componentDidMount = () =>{
+    //   let {locale,localeList,modalLocale,sysLocale,required} =this.props;
+    //  // let {required,localeList,locale,sysLocale,modalLocale} = this.state;
+        
+      
+    //     if(required){
+          
+    //        this.setState({localeList});
+    //     }
+        
+        
+      
+    // }
+
     //校验处理
     checkValidValue =(rule, value, callback)=>{
       let self = this;
@@ -334,21 +351,21 @@ class AcInputLocale extends Component {
       let getFieldProps, getFieldError
 
       if (this.props.form) {
-         // model弹窗校验数据加工
-      let errMessage = modalLocale[locale]?modalLocale[locale].errorMsg:"不能为空" ;
-      for(var item in localeList){
-       if(item == locale || item == sysLocale){
-         if(required){
-          localeList[item]["required"] = true;
-         }else{
-          localeList[item]["required"] = false;
-         }
-         localeList[item]["errorMessage"] = localeList[item]["label"] + " " +errMessage
-       }else{
-         localeList[item]["required"] = false;
-         localeList[item]["errorMessage"] = localeList[item]["label"] + " " + errMessage
-       }
-      }
+        // model弹窗校验数据加工
+        let errMessage = modalLocale[locale]?modalLocale[locale].errorMsg:"不能为空" ;
+          for(var item in localeList){
+            if(item == locale || item == sysLocale){
+              if(required){
+               localeList[item]["required"] = true;
+              }else{
+               localeList[item]["required"] = false;
+              }
+              localeList[item]["errorMessage"] = localeList[item]["label"] + " " +errMessage
+            }else{
+              localeList[item]["required"] = false;
+              localeList[item]["errorMessage"] = localeList[item]["label"] + " " + errMessage
+            }
+           }
         getFieldProps = this.props.form.getFieldProps
         getFieldError = this.props.form.getFieldError
         return (
@@ -451,7 +468,7 @@ class AcInputLocale extends Component {
                                 value={
                                   localeList[localeKey].value
                                 }
-                                {...getFieldProps(localeKey, {
+                                {...getFieldProps(this.props.inputId + "_" +localeKey, {
                                   validateTrigger: 'onBlur',
                                   rules: [{
                                     required: localeList[localeKey].required, message: localeList[localeKey].errorMessage,
@@ -473,7 +490,7 @@ class AcInputLocale extends Component {
                               />
                               <div className="input-icon" onClick = { this.open } />
                               <span className='error'>
-                                {getFieldError(localeKey)}
+                                {getFieldError(this.props.inputId + "_" +localeKey)}
                               </span>
                             </div>
                           {/* <FormControl
