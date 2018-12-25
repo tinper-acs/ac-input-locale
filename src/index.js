@@ -433,6 +433,7 @@ class AcInputLocale extends Component {
             <Modal show = {
               this.state.showModal
             }
+             width = '650'
             backdrop={backdrop}
             className="ac-input-locale-modal"
             onHide = {
@@ -575,6 +576,7 @@ class AcInputLocale extends Component {
             <Modal show = {
               this.state.showModal
             }
+             width = '650'
             backdrop={backdrop}
             className="ac-input-locale-modal"
             onHide = {
@@ -591,7 +593,7 @@ class AcInputLocale extends Component {
                   Object.keys(localeList).map((localeKey)=> {
                     return (<Row className='edit-panel edit-panel-all' key={localeKey}>
                       <FormItem>
-                        <Col md={3} className="padding-right-0">
+                        <Col md={4} className="padding-right-0">
                           <Label>
                             {
                               this.renderLabelLeft(localeKey)
@@ -602,7 +604,7 @@ class AcInputLocale extends Component {
                             }
                           </Label>
                         </Col>
-                        <Col md={9}>
+                        <Col md={8}>
                           <FormControl
                             placeholder={modalLocale[locale].placeholder}
                             onChange={(v)=>{
