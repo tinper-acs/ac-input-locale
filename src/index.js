@@ -228,30 +228,24 @@ class AcInputLocale extends Component {
       });
 
       if (this.props.form) {
+         let obj = {};
+        obj[this.props.inputId] = localeValue
         this.props.form.validateFields(validateArray,(err, values) => {
           if (err) {
             return;
               console.log('校验失败', values);
           } else {
+            this.props.form.setFieldsValue(obj)
             this.props.onOk && this.props.onOk(localeList);
             this.close()
               console.log('提交成功', values)
           }
       });
-      //  let obj = {};
-      //  obj[this.props.inputId] = localeValue
-      //  this.props.form.setFieldsValue(obj,() =>{
-      //     this.props.form.validateFields((err, values) => {
-      //       if (err) {
-      //         return;
-      //           console.log('校验失败', values);
-      //       } else {
-      //         this.props.onOk && this.props.onOk(localeList);
-      //         this.close()
-      //           console.log('提交成功', values)
-      //       }
-      //   });
-      //  })
+      // let obj = {};
+      //   obj[this.props.inputId] = localeValue
+      //   this.props.form.setFieldsValue(obj)
+      //   this.props.onOk && this.props.onOk(localeList);
+      //   this.close()
       }
      
 
@@ -299,6 +293,7 @@ class AcInputLocale extends Component {
             callback(defaultLanguage +" "+  errMessage);
           }
         }
+         callback();
       }else{
         callback();
       }
@@ -491,10 +486,11 @@ class AcInputLocale extends Component {
                                 }
                              //   ref={(input) => {this.textInput = input}}
                               />
-                              <div className="input-icon" onClick = { this.open } />
+                              <div className="input-icon" onClick = { this.open } ></div>
                               <span className='error'>
                                 {getFieldError(this.props.inputId + "_" +localeKey)}
                               </span>
+                              
                             </div>
                           {/* <FormControl
                             placeholder={modalLocale[locale].placeholder}
