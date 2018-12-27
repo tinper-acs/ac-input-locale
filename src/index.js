@@ -45,23 +45,40 @@ const defaultProps = {
     backdrop: true
 }
 
+// const getContent = (localeList) => {
+//   let content = Object.keys(localeList).map(localeKey=>(
+//     <Row key={'preview'+localeKey} style={{padding:'4px 0'}}>
+//       <Col md={5} xs={5} sm={5}>
+//           <div className='input-locale-text-r'>
+//             {
+//               localeList[localeKey].label
+//             }:
+//           </div>
+//       </Col>
+//       <Col md={7} xs={7} sm={7}>
+//         <div className="input-locale-text-l">
+//             {
+//               localeList[localeKey].value
+//             }
+//         </div>
+//       </Col>
+//     </Row>
+//   ))
+//   return content
+// }
 const getContent = (localeList) => {
   let content = Object.keys(localeList).map(localeKey=>(
-    <Row key={'preview'+localeKey} style={{padding:'4px 0'}}>
-      <Col md={5} xs={5} sm={5}>
+    <Row key={'preview'+localeKey} style={{padding:'4px 0',display: "flex",display: "-ms-flexbox",display:" -moz-box",display:" -webkit-box"}}>
           <div className='input-locale-text-r'>
             {
               localeList[localeKey].label
             }:
           </div>
-      </Col>
-      <Col md={7} xs={7} sm={7}>
         <div className="input-locale-text-l">
             {
               localeList[localeKey].value
             }
         </div>
-      </Col>
     </Row>
   ))
   return content
