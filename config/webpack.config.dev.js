@@ -9,7 +9,7 @@ const config = webpackMerge(baseConfig, {
   devtool: '#cheap-module-eval-source-map',
   entry: [
     'react-hot-loader/patch',
-    path.join(__dirname, '../demo/index.js'),
+    path.join(__dirname, '../demo/index.jsx'),
   ],
   output: {
     filename: '[name].[hash].js',

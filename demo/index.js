@@ -62,7 +62,6 @@ class DemoGroup extends Component {
         return (
                 <Row>
                     {DemoArray.map((child,index) => {
-
                         return (
                             <Demo example= {child.example} title= {child.title} code= {child.code} desc= {child.desc} key= {index}/>
                         )

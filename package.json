@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/tinper-acs/ac-input-locale.git"
   },
-  "author": "wangshih@yonyou.com",
+  "author": "wangshih@yonyou.com, chenpanf@yonyou.com, number2demon@gmail.com",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^9.1.5",
@@ -40,7 +40,7 @@
     "bee-layout": "^1.2.7",
     "bee-modal": "^1.0.3",
     "bee-panel": "^1.0.0",
-    "bee-popconfirm": "^1.0.2",
+    "bee-popconfirm": "^1.0.13",
     "css-loader": "^1.0.0",
     "cssnano": "^4.1.0",
     "eslint": "^5.4.0",
@@ -88,7 +88,6 @@
     "bee-button": "^1.0.6",
     "bee-form-control": "^1.0.7",
     "bee-label": "^1.0.0",
-    "bee-popover": "^1.0.3",
-    "bee-popconfirm": "^1.0.9"
+    "bee-popover": "^1.0.3"
   }
 }

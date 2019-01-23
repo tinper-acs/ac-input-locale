@@ -24,7 +24,7 @@ if (name.startsWith('@yonyou')) {
 module.exports = webpackMerge(baseConfig, {
   mode:'development',
   entry: {
-      app: path.join(__dirname, '../demo/index.js')
+      app: path.join(__dirname, '../demo/index.jsx')
   },
   // externals:['react','react-dom','prop-types'],
   output: {
