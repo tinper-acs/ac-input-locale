@@ -3,6 +3,8 @@ import  React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Col , Row } from 'tinper-bee';
 import { FormControl, Button,Label,Col , Row } from 'tinper-bee';
+
+
 import ModalWrap from './modal.js'
 
 // import FormControl from 'bee-form-control'
@@ -12,6 +14,7 @@ import Popover from 'bee-popover'
 import Popconfirm from 'bee-popconfirm'
 
 import Form from 'bee-form';
+import Icon from 'bee-icon'
 
 import 'bee-form-control/build/FormControl.css'
 import 'bee-button/build/Button.css'
@@ -21,6 +24,7 @@ import 'bee-popover/build/Popover.css';
 import 'bee-modal/build/Modal.css';
 import 'bee-form/build/Form.css';
 import 'bee-popconfirm/build/Popconfirm.css';
+import 'bee-icon/build/Icon.css'
 import languagePic from './assets/images/language.png'
 
 const FormItem = Form.FormItem;
@@ -71,7 +75,6 @@ class AcInputLocale extends Component {
     constructor(props) {
         super(props);
         let {locale, localeList, status, modalLocale, sysLocale, required, isPopConfirm} = props;
-        console.log('isPopConfirm', isPopConfirm)
         let localeValue = ''
         if (!locale) {
           locale = sysLocale || 'zh_CN'
@@ -411,6 +414,7 @@ class AcInputLocale extends Component {
     render() {
       const { className, onChange, isTextarea, backdrop } = this.props
       let { localeValue, locale, localeList, status, modalLocale, sysLocale, required, isPopConfirm } = this.state
+      console.log('isPopConfirm', isPopConfirm)
       let defaultValue;
       if(localeList && localeList[sysLocale] && localeList[sysLocale].value) {
         defaultValue = localeList[sysLocale].value;
@@ -476,7 +480,7 @@ class AcInputLocale extends Component {
                     />
                     <Popconfirm
                       trigger="click"
-                      rootClose={true}
+                      rootClose
                       placement="right"
                       secondPlacement="bottom"
                       className="ac-input-locale-popconfirm"
@@ -484,9 +488,11 @@ class AcInputLocale extends Component {
                       onCancel={this.close}
                       show={this.state.showPop}
                       onClick={this.open}
+                      onRootClose={this.close}
                       content={this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)}
                     >
-                      <div className="input-pop-icon"  />
+                      <div className="input-pop-icon">
+                      </div>
                     </Popconfirm>
                     <span className='error'>
                       {getFieldError(this.props.inputId)}
@@ -494,20 +500,6 @@ class AcInputLocale extends Component {
                   </div>
                 )
               }
-              <ModalWrap
-                title={modalLocale[locale].title}
-                showModal={this.state.showModal}
-                backdrop={backdrop}
-                onOk={this.onOk}
-                onCancel={this.onCancel}
-                okName={modalLocale[locale].okName}
-                cancelName={modalLocale[locale].cancelName}
-                close={this.close}
-              >
-                {
-                  this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)
-                }
-              </ModalWrap>
             </div>
           )
         }
@@ -557,7 +549,7 @@ class AcInputLocale extends Component {
                 </div>
               )
             }
-             <ModalWrap
+            <ModalWrap
               title={modalLocale[locale].title}
               showModal={this.state.showModal}
               backdrop={backdrop}
@@ -574,6 +566,58 @@ class AcInputLocale extends Component {
           </div>
         )
       } else {
+        if (isPopConfirm) {
+          return (
+            <div className={`ac-input-locale ${className ? className : null}`} >
+              {
+                status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList, languagePic) : (
+                  <div>
+                    <FormControl
+                      className="input-text"
+                      value={localeValue}
+                      {...formControlTypeOption}
+                      onChange={(v)=>{
+                        Object.keys(localeList).forEach((localeKey) => {
+                          if(localeKey === locale){
+                            localeList[localeKey].value = v
+                          }
+                        })
+                        onChange && onChange(localeList,v)
+                        this.setState({
+                          localeValue:v,
+                          localeList
+                        })
+                      }}
+                      onClick={
+                        (e) => {
+                          e.stopPropagation()
+                        }
+                      }
+                      ref={(input) => {this.textInput = input}}
+                    />
+                    <Popconfirm
+                      trigger="click"
+                      rootClose
+                      placement="right"
+                      defaultOverlayShown={false}
+                      secondPlacement="bottom"
+                      className="ac-input-locale-popconfirm"
+                      onClose={this.onOk}
+                      onCancel={this.close}
+                      show={this.state.showPop}
+                      onClick={this.open}
+                      onRootClose={this.close}
+                      content={this.getLocaleNoFormElement(localeList, modalLocale, locale)}
+                    >
+                      <div className="input-pop-icon">
+                      </div>
+                    </Popconfirm>
+                  </div>
+                )
+              }
+            </div>
+          )
+        }
         return (
           <div className={`ac-input-locale ${className ? className : null}`} >
             {
@@ -602,25 +646,10 @@ class AcInputLocale extends Component {
                     }
                     ref={(input) => {this.textInput = input}}
                   />
-                  <Popconfirm
-                    trigger="click"
-                    rootClose={true}
-                    placement="right"
-                    defaultOverlayShown={false}
-                    secondPlacement="bottom"
-                    className="ac-input-locale-popconfirm"
-                    onClose={this.onOk}
-                    onCancel={this.close}
-                    show={this.state.showPop}
-                    onClick={this.open}
-                    content={this.getLocaleNoFormElement(localeList, modalLocale, locale)}
-                  >
-                    <div className="input-pop-icon"  />
-                  </Popconfirm>
+                  <div className="input-icon" onClick = { this.open } />
                 </div>
               )
             }
-
             <ModalWrap
               title={modalLocale[locale].title}
               showModal={this.state.showModal}
