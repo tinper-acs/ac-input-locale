@@ -26,6 +26,7 @@ import 'bee-form/build/Form.css';
 import 'bee-popconfirm/build/Popconfirm.css';
 import 'bee-icon/build/Icon.css'
 import languagePic from './assets/images/language.png'
+import languagePopPic from './assets/images/pop_language.png'
 
 const FormItem = Form.FormItem;
 import './index.less';
@@ -186,7 +187,7 @@ class AcInputLocale extends Component {
         })
       }
       // 改变状态
-      if(nextProps.status !==this.props.status){
+      if(nextProps.status !== this.props.status){
         this.setState({
           status:nextProps.status
         })
@@ -321,7 +322,7 @@ class AcInputLocale extends Component {
             trigger="hover"
             id="right"
           >
-            <img src={languagePic} alt="preview" style={{paddingLeft:'10px'}}/>
+            <img src={ this.state.isPopConfirm ? languagePopPic : languagePic} alt="preview" style={{paddingLeft: '10px', width: '34px'}}/>
           </Popover>
         </div>
       )
