@@ -2375,3 +2375,33 @@ input.u-button[type="submit"] {
 .uf-filterno:before {
   content: "\E9D1"; }
 
+.uf-clean:before {
+  content: "\E9D2"; }
+
+.uf-save:before {
+  content: "\E9D3"; }
+
+.uf-export:before {
+  content: "\E9D4"; }
+
+.uf-import:before {
+  content: "\E9D5"; }
+
+.uf-stop-c:before {
+  content: "\E9D6"; }
+
+.uf-rubber:before {
+  content: "\E9D7"; }
+
+.uf-bediting:before {
+  content: "\E9D8"; }
+
+.uf-maxmize:before {
+  content: "\E9D9"; }
+
+.uf-minimize:before {
+  content: "\E9DA"; }
+
+.uf-globe:before {
+  content: "\E9DB"; }
+
