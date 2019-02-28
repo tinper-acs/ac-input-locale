@@ -1,6 +1,6 @@
 {
-  "name": "ac-input-locale",
-  "version": "1.10.16",
+  "name": "@yonyou/ac-input-locale",
+  "version": "1.10.17-beta",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -59,7 +59,7 @@
     "less-loader": "^4.1.0",
     "markdown-styles": "^3.1.10",
     "mini-css-extract-plugin": "^0.4.2",
-    "node-sass": "^4.10.0",
+    "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
     "postcss": "^7.0.2",
     "postcss-loader": "^3.0.0",
@@ -86,7 +86,7 @@
   },
   "dependencies": {
     "bee-button": "^1.0.6",
-    "bee-form-control": "1.1.4",
+    "bee-form-control": "^1.0.7",
     "bee-icon": "^1.0.7",
     "bee-label": "^1.0.0",
     "bee-popover": "^1.0.3"
