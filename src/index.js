@@ -2,8 +2,8 @@
 import  React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Col , Row } from 'tinper-bee';
-import { FormControl, Button,Label,Col , Row } from 'tinper-bee';
-
+import { Button,Label,Col , Row } from 'tinper-bee';
+import FormControl from 'bee-form-control';
 
 import ModalWrap from './modal.js'
 

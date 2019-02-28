@@ -1,7 +1,8 @@
 import  React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormControl, Button, Label, Col, Row } from 'tinper-bee';
-import Modal from 'bee-modal'
+import { Button, Label, Col, Row } from 'tinper-bee';
+import Modal from 'bee-modal';
+import FormControl from 'bee-form-control';
 import 'bee-modal/build/Modal.css';
 
 import './index.less';
