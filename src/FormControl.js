@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 
-class Demo1 extends Component {
+class FormControl extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,4 +24,4 @@ class Demo1 extends Component {
     }
 }
 
-export default Demo1;
+export default FormControl;

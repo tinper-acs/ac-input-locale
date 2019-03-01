@@ -210,7 +210,6 @@ class AcInputLocale extends Component {
       })
 
       const { isPopConfirm } = this.state
-      console.log('isPopConfirm', isPopConfirm)
       isPopConfirm ? this.setState({ showPop: true }) : this.setState({ showModal: true });
     }
 
@@ -238,13 +237,13 @@ class AcInputLocale extends Component {
         obj[this.props.inputId] = localeValue
         this.props.form.validateFields(validatedArray,(err, values) => {
           if (err) {
-            console.log('校验失败', values);
+            console.log('validate failed', values);
             return;
           } else {
             this.props.form.setFieldsValue(obj)
             this.props.onOk && this.props.onOk(localeList);
             this.close()
-            console.log('提交成功', values)
+            console.log('validate success', values)
           }
         });
       } else {
@@ -415,7 +414,6 @@ class AcInputLocale extends Component {
     render() {
       const { className, onChange, isTextarea, backdrop } = this.props
       let { localeValue, locale, localeList, status, modalLocale, sysLocale, required, isPopConfirm } = this.state
-      console.log('isPopConfirm', isPopConfirm)
       let defaultValue;
       if(localeList && localeList[sysLocale] && localeList[sysLocale].value) {
         defaultValue = localeList[sysLocale].value;
