@@ -18,8 +18,12 @@ class FormControl extends Component {
         this.props.onChange(e.target.value)
     }
     render () {
+        let classes = 'u-form-control';
+        if(this.props.className){
+            classes = 'u-form-control '+this.props.className;
+        }
         return (
-            <input {...this.props} className='u-form-control' onChange={this.onChange} />
+            <input {...this.props} className={classes} onChange={this.onChange} />
         )
     }
 }
