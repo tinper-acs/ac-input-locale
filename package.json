@@ -89,7 +89,6 @@
     "bee-form-control": "^1.0.7",
     "bee-icon": "^1.0.7",
     "bee-label": "^1.0.0",
-    "bee-popover": "^1.0.3",
-    "@yonyou/ac-input-locale": "^1.10.17"
+    "bee-popover": "^1.0.3"
   }
 }
