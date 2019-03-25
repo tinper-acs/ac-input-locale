@@ -243,7 +243,6 @@ class AcInputLocale extends Component {
             this.props.form.setFieldsValue(obj)
             this.props.onOk && this.props.onOk(localeList);
             this.close()
-            console.log('validate success', values)
           }
         });
       } else {
