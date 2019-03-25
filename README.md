@@ -1,7 +1,10 @@
-## ac-input-locale
+# 多语输入 AcInputLocale
 
->  多语言 Input 组件 [进入示例](https://tinper-acs.github.io/ac-input-locale/)
+## 何时使用
 
+多语输入组件
+
+## 如何使用
 
 ```
 $ ynpm install @yonyou/ac-input-locale --save-dev
@@ -15,9 +18,10 @@ import AcInputLocale from '@yonyou/ac-input-locale';
 import '@yonyou/ac-input-locale/dist/index.css';
 ```
 
-##效果  [进入示例](https://tinper-acs.github.io/ac-input-locale/)
+## 代码演示
 
-## API
+
+## API 
 
 |参数|说明|类型|返回值|是否必填|
 |:--|:---:|:--:|---:|---:|
@@ -33,17 +37,8 @@ import '@yonyou/ac-input-locale/dist/index.css';
 |inputId|input的唯一值|string| -- | 和 form相关联 |
 |form|this.props.form| object | -- | 和 inputId 相关联 |
 
+## 注意事项
+
 设置form，启动表单校验。
 
-#### 开发调试
-
-```sh
-$ cd @yonyou/ac-input-locale
-
-$ ynpm install
-
-$ npm run dev
-
-```
-
-
+## 更新日志
