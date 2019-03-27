@@ -87,7 +87,7 @@
     "prop-types": "^15.6.0"
   },
   "dependencies": {
-    "bee-button": "^1.0.6",
+    "bee-button": "latest",
     "bee-form-control": "^1.0.7",
     "bee-icon": "^1.0.7",
     "bee-label": "^1.0.0",
