@@ -96,7 +96,7 @@ class ModalWrap extends Component {
     return (
       <Modal
         show = {showModal}
-        width = '650'
+        width = '600'
         backdrop={backdrop}
         className="ac-input-locale-modal"
         onHide = {
@@ -114,8 +114,8 @@ class ModalWrap extends Component {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button style={{ marginRight: 20, background:'rgba(225,76,70,1)', color:'#fff' }} onClick={onOk}>{okName}</Button>
-          <Button style={{ color:'rgba(71,77,84,1)', backgroundColor: '#fff' }} onClick={onCancel}>{cancelName}</Button>
+         <Button bordered style={{ marginRight: 20,background:'#fff'}} onClick={onCancel}>{cancelName}</Button>
+          <Button colors="primary" onClick={onOk}>{okName}</Button>
         </Modal.Footer>
       </Modal>
     )

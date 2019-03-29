@@ -306,6 +306,9 @@ class AcInputLocale extends Component {
           }
         }
       }
+
+      return <span className="require-star" >&nbsp;</span>
+      
     }
 
     getPreviewElement (localeValue, defaultValue, localeList, languagePic) {
@@ -320,7 +323,8 @@ class AcInputLocale extends Component {
             trigger="hover"
             id="right"
           >
-            <img src={ this.state.isPopConfirm ? languagePopPic : languagePic} alt="preview" style={{paddingLeft: '10px', width: '34px'}}/>
+          <i className="uf uf-globe"/>
+            {/* <img src={ this.state.isPopConfirm ? languagePopPic : languagePic} alt="preview" style={{paddingLeft: '10px', width: '34px'}}/> */}
           </Popover>
         </div>
       )
@@ -328,10 +332,10 @@ class AcInputLocale extends Component {
 
     getLocaleNoFormElement(localeList, modalLocale, locale) {
       return Object.keys(localeList).map((localeKey)=> {
-        return (<Row className='edit-panel edit-panel-all' key={localeKey}>
+        return (<div className='edit-panel edit-panel-all' key={localeKey}>
           <FormItem>
-            <Col md={4} className="padding-right-0">
-              <Label>
+            <div className="u-form-item-label">
+              <Label title={localeList[localeKey].label}>
                 {
                   this.isShowNoneLeftLable ? this.renderLabelLeft(localeKey) : null
                 }
@@ -340,8 +344,8 @@ class AcInputLocale extends Component {
                    this.renderLabelright(localeKey)
                 }
               </Label>
-            </Col>
-            <Col md={8}>
+            </div>
+            <div style={{'display':'inline-block','width':'calc(100% - 130px)'}}>
               <FormControl
                 placeholder={modalLocale[locale].placeholder}
                 onChange={(v)=>{
@@ -355,18 +359,18 @@ class AcInputLocale extends Component {
                   localeList[localeKey].value
                 }
               />
-            </Col>
+            </div>
           </FormItem>
-        </Row>)
+        </div>)
       })
     }
 
     getLocaleFormElement (localeList, modalLocale, locale, getFieldProps, getFieldError) {
       return Object.keys(localeList).map((localeKey)=> {
-        return (<Row className='edit-panel edit-panel-all' key={localeKey}>
+        return (<div className='edit-panel edit-panel-all' key={localeKey}>
           <FormItem>
-            <Col md={4} className="padding-right-0">
-              <Label>
+            <div className="u-form-item-label">
+              <Label title={localeList[localeKey].label}>
                 {
                   this.isShowNoneLeftLable ? this.renderLabelLeft(localeKey) : null
                 }
@@ -375,8 +379,8 @@ class AcInputLocale extends Component {
                   this.renderLabelright(localeKey)
                 }
               </Label>
-            </Col>
-            <Col md={8}>
+            </div>
+            <div style={{'display':'inline-block','width':'calc(100% - 130px)'}}>
               <div>
                 <FormControl
                   placeholder={modalLocale[locale].placeholder}
@@ -401,13 +405,17 @@ class AcInputLocale extends Component {
                   }
                 />
                 <div className="input-icon" onClick = { this.open } ></div>
-                <span className='error'>
-                  {getFieldError(this.props.inputId + "_" +localeKey)}
-                </span>
+                {
+                  getFieldError(this.props.inputId + "_" +localeKey)?
+                  <span className='error uf uf-exc-t'>
+                    {getFieldError(this.props.inputId + "_" +localeKey)}
+                  </span>:''
+                }
+                
               </div>
-            </Col>
+            </div>
           </FormItem>
-        </Row>)
+        </div>)
       })
     }
     render() {
@@ -489,12 +497,14 @@ class AcInputLocale extends Component {
                       onRootClose={this.close}
                       content={this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)}
                     >
-                      <div className="input-pop-icon">
+                      <div className="input-pop-icon uf uf-globe">
                       </div>
                     </Popconfirm>
-                    <span className='error'>
+                    {
+                      getFieldError(this.props.inputId)?<span className='error uf uf-exc-t'>
                       {getFieldError(this.props.inputId)}
-                    </span>
+                    </span>:''
+                    }
                   </div>
                 )
               }
@@ -540,10 +550,12 @@ class AcInputLocale extends Component {
                     }
                     ref={(input) => {this.textInput = input}}
                   />
-                  <div className="input-icon" onClick = { this.open } />
-                  <span className='error'>
+                  <div className="uf uf-globe input-icon" onClick = { this.open } />
+                  {
+                    getFieldError(this.props.inputId)?<span className='error uf uf-exc-t'>
                     {getFieldError(this.props.inputId)}
-                  </span>
+                  </span>:''
+                  }
                 </div>
               )
             }
@@ -644,7 +656,7 @@ class AcInputLocale extends Component {
                     }
                     ref={(input) => {this.textInput = input}}
                   />
-                  <div className="input-icon" onClick = { this.open } />
+                  <div className="uf uf-globe input-icon" onClick = { this.open } />
                 </div>
               )
             }

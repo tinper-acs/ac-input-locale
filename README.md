@@ -7,15 +7,15 @@
 ## 如何使用
 
 ```
-$ ynpm install @yonyou/ac-input-locale --save-dev
+$ ynpm install ac-input-locale --save-dev
 
 引入
 
-import AcInputLocale from '@yonyou/ac-input-locale';
+import AcInputLocale from 'ac-input-locale';
 
 样式引入
 
-import '@yonyou/ac-input-locale/dist/index.css';
+import 'ac-input-locale/dist/index.css';
 ```
 
 ## 代码演示
