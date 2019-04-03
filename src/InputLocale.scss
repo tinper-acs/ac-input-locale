@@ -1,0 +1,386 @@
+@import "../node_modules/tinper-bee-core/scss/minxin-variables";
+@import "../node_modules/tinper-bee-core/scss/minxin-mixins";
+
+
+
+.ac-input-locale{
+    position: relative;
+    min-width: 100px;
+    min-height: 32px;
+    line-height: 32px;
+    
+    .uf.uf-globe{
+      font-size: 20px
+    }
+    .input-pop-icon{
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 10px;
+    }
+  
+    .error{
+      padding-left: 10px;
+      color: red;
+    }
+    .popconfirm{
+      width: auto;
+    }
+    .input-text{
+      line-height: 32px;
+      height: 32px;
+    }
+    .u-form-control[disabled] + .uf-globe{
+        cursor: not-allowed;
+    }
+    .u-popover-content{
+      padding: 16px 30px;
+      background:rgba(252,252,252,1);
+      border-radius:3px;
+      border:1px solid rgba(223,225,227,1);
+    }
+    .u-row{
+      padding-bottom: 7px;
+    }
+    .input-icon{
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 10px;
+      font-size: 20px;
+      // background: url("./assets/images/language.png") no-repeat center;
+      background-size: 100%;
+    }
+    .input-icon:hover{
+      // background: url("./assets/images/language_hover.png") no-repeat center;
+    }
+  }
+  
+  .input-locale-text{
+    padding: 4px 0;
+    display: flex;
+    display: -ms-flexbox;
+    display: -moz-box;
+    display: -webkit-box
+  }
+  .input-locale-text-r{
+    text-align:right;
+    font-size:12px;
+    font-weight:400;
+    width:80px;
+    color:rgba(71,77,84,1);
+    padding-right:10px;
+  }
+  .input-locale-text-l{
+    word-wrap: break-word;
+    font-size:12px;
+    font-weight:400;
+    color:rgba(110,110,119,1);
+    text-align:left;
+    max-width:300px;
+    padding-right:10px;
+  }
+  
+  
+  
+  .ac-input-locale-popconfirm.u-popconfirm{
+    min-width: 600px;
+    width: 600px;
+  }
+  
+  .ac-input-locale-modal,{
+      .cancel-qx{
+          margin-right: 8px;
+          background: #fff
+      }
+      .cancel-qx:hover{
+          color: rgb(33,33,33);
+          background-color: #EBECF0;
+          border-color: rgb(165, 173, 186);
+      }
+      .u-modal-header{
+          padding:16px;
+      }
+    .u-popconfirm-confirm{
+      text-align: right;
+    }
+    .require-star{
+      width: 16px;
+      margin-right: 8px;
+      color: #f53c32;
+      display: inline-block;
+    }
+    .u-modal-content .modal-title{
+      font-size:14px;
+      font-weight:normal;
+      color:rgba(71,77,84,1);
+    }
+    .u-modal-body{
+      background: #F7F9FB;
+    }
+  
+    .edit-panel {
+      .padding-right-0{
+        padding-right: 0;
+      }
+      
+      .u-form-item {
+          min-width: 100%;
+          min-height: 58px;
+  
+          .u-form-item-label{
+              display: inline-block;
+              float: left;
+              width: 130px;
+          }
+          .error {
+              margin-left: 100px;
+              color: #f53c32;
+              display: block;
+              padding-top:0;
+              display: inline-block;
+              font-size: 12px;
+          }
+          .u-label {
+              display: inline-block;
+          }
+          .u-label.time {
+              position: relative;
+              bottom: 10px;
+          }
+          .u-label+* {
+              min-width: 200px;
+              display: inline-block;
+          }
+          .mast {
+              width: 5px;
+              min-width: auto;
+              margin-right: 5px;
+              color: red;
+          }
+          .datepicker-input-group {
+              .u-input-group-btn {
+                  .uf-calendar {
+                      padding: 0;
+                  }
+              }
+          }
+          .u-switch {
+              min-width: auto;
+          }
+          .u-select {
+              width: auto;
+          }
+          .calendar-picker {
+              display: inline-block;
+              min-width: 200px;
+              width: auto;
+              input {
+                  width: 100%;
+              }
+          }
+          .u-form-control-close {
+              width: auto;
+              .u-form-control {
+                  width: 100%
+              }
+          }
+      }
+      .search-panel-btn {
+          text-align: right;
+          padding: 10px 0;
+      }
+    }
+    .edit-panel-all {
+      .u-form-item {
+          padding: 0;
+          .u-label {
+              width: 100%;
+              text-align: right;
+              font-size: 14px;
+              height: 32px;
+              line-height: 32px;
+              padding: 0;
+              display: inline-block;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              color: #212121;
+          }
+          @media (max-width: 992px) {
+            .u-label {
+              text-align: left;
+            }
+          }
+          
+          @media (max-width: 992px) {
+            .u-form-control {
+              width: 100%;
+            }
+          }
+          .error {
+              margin-left: 0;
+          }
+      }
+    }
+    .label-default{
+      font-weight:400;
+      font-size:14px;
+      color:rgba(225,76,70,1);
+      line-height:20px;
+      padding-right:5px;
+    }
+  }
+  
+  
+  
+  
+  .ac-input-locale-popconfirm{
+      .u-form-item-label{
+          width: 130px;
+          display: inline-block;
+          float: left;
+      }
+    
+    .u-popconfirm-content{
+      padding: 30px 30px 0;
+    }
+    .u-popconfirm-confirm{
+      text-align: right;
+      .u-button{
+        width: 72px;
+        height: 32px;
+      }
+    }
+    .require-star{
+      width: 16px;
+      margin-right: 8px;
+      color: #f53c32;
+      display: inline-block;
+    }
+    .u-modal-content .modal-title{
+      font-size:19px;
+      font-weight:400;
+      color:rgba(71,77,84,1);
+      line-height:28px;
+    }
+  
+    .edit-panel {
+      background: #FFF;
+      .padding-right-0{
+        padding-right: 0;
+      }
+  
+      .u-form-item {
+          min-width: 100%;
+          margin-bottom: 10px;
+          min-height: 58px;
+          .error {
+              margin-left: 100px;
+              color: #f53c32;
+              display: block;
+              padding-top:0;
+              display: inline-block;
+              font-size: 12px;
+          }
+          .u-label {
+              min-width: 100px;
+              display: inline-block;
+              padding: 0;
+          }
+          .u-label.time {
+              position: relative;
+              bottom: 10px;
+          }
+          .u-label+* {
+              min-width: 200px;
+              display: inline-block;
+          }
+          .mast {
+              width: 5px;
+              min-width: auto;
+              margin-right: 5px;
+              color: red;
+          }
+          .datepicker-input-group {
+              .u-input-group-btn {
+                  .uf-calendar {
+                      padding: 0;
+                  }
+              }
+          }
+          .u-switch {
+              min-width: auto;
+          }
+          .u-select {
+              width: auto;
+          }
+          .calendar-picker {
+              display: inline-block;
+              min-width: 200px;
+              width: auto;
+              input {
+                  width: 100%;
+              }
+          }
+          .u-form-control-close {
+              width: auto;
+              .u-form-control {
+                  width: 100%
+              }
+          }
+      }
+      .search-panel-btn {
+          text-align: right;
+          padding: 10px 0;
+      }
+    }
+    .edit-panel-center {
+      text-align: center;
+      .u-form-item {
+          min-width: auto;
+          display: inline-block;
+          .error {
+              text-align: left;
+          }
+      }
+    }
+  
+    .edit-panel-all {
+      .u-form-item {
+          padding: 0;
+          .u-label {
+              width: 100%;
+              text-align: right;
+              font-size: 14px;
+              height: 32px;
+              line-height: 32px;
+              padding: 0;
+          }
+          @media (max-width: 992px) {
+            .u-label {
+              text-align: left;
+            }
+          }
+          .u-form-control {
+              width: 100%;
+          }
+          @media (max-width: 992px) {
+            .u-form-control {
+              width: 100%;
+            }
+          }
+          .error {
+              margin-left: 0;
+          }
+      }
+    }
+    .label-default{
+      font-weight:400;
+      font-size:14px;
+      color:rgba(225,76,70,1);
+      line-height:20px;
+      padding-right:5px;
+    }
+  }
+  

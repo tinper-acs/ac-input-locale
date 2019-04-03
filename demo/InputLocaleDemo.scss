@@ -1,0 +1,28 @@
+@import "../src/InputLocale.scss";
+
+.demoPadding{
+    padding: 10px;
+    width: 300px;
+    .u-button{
+      width: 100px;
+      margin-right: 10px;
+      line-height: 36px;
+      height: 36px;
+      padding: 0;
+    }
+}
+
+.input2{
+    margin-top: 30px;
+}
+
+.btn{
+    display: flex;
+    margin: 10px;
+    margin-bottom: 30px;
+}
+
+.btn>button:nth-child(2){
+    margin-left: 10px;
+    margin-right: 10px;
+}
