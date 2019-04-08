@@ -127,7 +127,9 @@
       .u-form-item {
           min-width: 100%;
           min-height: 58px;
-  
+        .u-form-control{
+            width: 100%
+        }
           .u-form-item-label{
               display: inline-block;
               float: left;
@@ -251,6 +253,12 @@
         width: 72px;
         height: 32px;
       }
+      .u-button-border{
+        margin-right: 8px;
+      }
+      .u-button-primary{
+        margin-left: 0;
+      }
     }
     .require-star{
       width: 16px;
@@ -273,7 +281,6 @@
   
       .u-form-item {
           min-width: 100%;
-          margin-bottom: 10px;
           min-height: 58px;
           .error {
               margin-left: 100px;
