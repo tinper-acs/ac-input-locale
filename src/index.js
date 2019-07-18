@@ -22,6 +22,7 @@ const propTypes = {
     backdrop: PropTypes.bool,  //是否弹出遮罩层/遮罩层点击是否触发关闭
     required: PropTypes.bool, // 是否要求当前语种和系统语种必填
     isPopConfirm: PropTypes.bool, // 录入时是否是popconfirm,还是modal的样式
+    showIcon:PropTypes.bool
 }
 
 const defaultProps = {
@@ -30,7 +31,8 @@ const defaultProps = {
     isTextarea:false,
     backdrop: true,
     required: false,
-    isPopConfirm: false
+    isPopConfirm: false,
+    showIcon:true
 }
 
 const getContent = (localeList) => {
@@ -301,7 +303,9 @@ class AcInputLocale extends Component {
             trigger="hover"
             id="right"
           >
-          <i className="uf uf-globe"/>
+            {
+              this.props.showIcon?<i className="uf uf-globe"/>:<span></span>
+            }
           </Popover>
         </div>
       )
@@ -381,7 +385,10 @@ class AcInputLocale extends Component {
                     }
                   }
                 />
-                <div className="input-icon" onClick = { this.open } ></div>
+                {
+                  this.props.showIcon? <div className="input-icon" onClick = { this.open } ></div>:''
+                }
+               
                 {
                   getFieldError(this.props.inputId + "_" +localeKey)?
                   <span className='error uf uf-exc-t'>
@@ -476,8 +483,9 @@ class AcInputLocale extends Component {
                       onRootClose={this.close}
                       content={this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)}
                     >
-                      <div className="input-pop-icon uf uf-globe">
-                      </div>
+                      {
+                        this.props.showIcon?<div className="input-pop-icon uf uf-globe"></div>:<span></span>
+                      }
                     </Popconfirm>
                     {
                       getFieldError(this.props.inputId)?<span className='error uf uf-exc-t'>
@@ -530,7 +538,10 @@ class AcInputLocale extends Component {
                     }
                     ref={(input) => {this.textInput = input}}
                   />
-                  <div className="uf uf-globe input-icon" onClick = {disabled?()=>{}: this.open } />
+                  {
+                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = {disabled?()=>{}: this.open } />:''
+                  }
+                  
                   {
                     getFieldError(this.props.inputId)?<span className='error uf uf-exc-t'>
                     {getFieldError(this.props.inputId)}
@@ -636,7 +647,9 @@ class AcInputLocale extends Component {
                     }
                     ref={(input) => {this.textInput = input}}
                   />
-                  <div className="uf uf-globe input-icon" onClick = { this.open } />
+                  {
+                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = { this.open } />:''
+                  }
                 </div>
               )
             }

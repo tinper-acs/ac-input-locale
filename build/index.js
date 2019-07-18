@@ -52,7 +52,8 @@ var propTypes = {
   modalLocale: _propTypes2["default"].object,
   backdrop: _propTypes2["default"].bool, //是否弹出遮罩层/遮罩层点击是否触发关闭
   required: _propTypes2["default"].bool, // 是否要求当前语种和系统语种必填
-  isPopConfirm: _propTypes2["default"].bool // 录入时是否是popconfirm,还是modal的样式
+  isPopConfirm: _propTypes2["default"].bool, // 录入时是否是popconfirm,还是modal的样式
+  showIcon: _propTypes2["default"].bool
 };
 
 var defaultProps = {
@@ -61,7 +62,8 @@ var defaultProps = {
   isTextarea: false,
   backdrop: true,
   required: false,
-  isPopConfirm: false
+  isPopConfirm: false,
+  showIcon: true
 };
 
 var getContent = function getContent(localeList) {
@@ -248,7 +250,7 @@ var AcInputLocale = function (_Component) {
           trigger: 'hover',
           id: 'right'
         },
-        _react2["default"].createElement('i', { className: 'uf uf-globe' })
+        this.props.showIcon ? _react2["default"].createElement('i', { className: 'uf uf-globe' }) : _react2["default"].createElement('span', null)
       )
     );
   };
@@ -340,7 +342,7 @@ var AcInputLocale = function (_Component) {
                   e.stopPropagation();
                 }
               })),
-              _react2["default"].createElement('div', { className: 'input-icon', onClick: _this3.open }),
+              _this3.props.showIcon ? _react2["default"].createElement('div', { className: 'input-icon', onClick: _this3.open }) : '',
               getFieldError(_this3.props.inputId + "_" + localeKey) ? _react2["default"].createElement(
                 'span',
                 { className: 'error uf uf-exc-t' },
@@ -452,7 +454,7 @@ var AcInputLocale = function (_Component) {
                 , onRootClose: this.close,
                 content: this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)
               },
-              _react2["default"].createElement('div', { className: 'input-pop-icon uf uf-globe' })
+              this.props.showIcon ? _react2["default"].createElement('div', { className: 'input-pop-icon uf uf-globe' }) : _react2["default"].createElement('span', null)
             ),
             getFieldError(this.props.inputId) ? _react2["default"].createElement(
               'span',
@@ -501,7 +503,7 @@ var AcInputLocale = function (_Component) {
               _this4.textInput = input;
             }
           })),
-          _react2["default"].createElement('div', { className: 'uf uf-globe input-icon', onClick: disabled ? function () {} : this.open }),
+          this.props.showIcon ? _react2["default"].createElement('div', { className: 'uf uf-globe input-icon', onClick: disabled ? function () {} : this.open }) : '',
           getFieldError(this.props.inputId) ? _react2["default"].createElement(
             'span',
             { className: 'error uf uf-exc-t' },
@@ -604,7 +606,7 @@ var AcInputLocale = function (_Component) {
               _this4.textInput = input;
             }
           })),
-          _react2["default"].createElement('div', { className: 'uf uf-globe input-icon', onClick: this.open })
+          this.props.showIcon ? _react2["default"].createElement('div', { className: 'uf uf-globe input-icon', onClick: this.open }) : ''
         ),
         _react2["default"].createElement(
           _modal2["default"],

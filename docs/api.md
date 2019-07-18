@@ -37,6 +37,7 @@ import 'ac-input-locale/dist/index.css';
 |modalLocale|模态框中title、按钮的文字语态|object| -- | 否 |
 |inputId|input的唯一值|string| -- | 和 form相关联 |
 |form|this.props.form| object | -- | 和 inputId 相关联 |
+|showIcon|是否显示图标，默认true| bool | -- | 否 |
 
 ## 注意事项
 
