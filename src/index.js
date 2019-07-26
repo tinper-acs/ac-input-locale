@@ -403,7 +403,7 @@ class AcInputLocale extends Component {
       })
     }
     render() {
-      const { className, onChange, isTextarea, backdrop, disabled } = this.props
+      const { className, onChange, isTextarea, backdrop, disabled,forceSync } = this.props
       let { localeValue, locale, localeList, status, modalLocale, sysLocale, required, isPopConfirm } = this.state
       let defaultValue;
       if(localeList && localeList[sysLocale] && localeList[sysLocale].value) {
@@ -453,6 +453,7 @@ class AcInputLocale extends Component {
                           Object.keys(localeList).forEach((localeKey)=>{
                             if(localeKey === locale){
                               localeList[localeKey].value = v
+                              if(forceSync)localeList[sysLocale].value=v
                             }
                           })
                           onChange && onChange(localeList, v)
@@ -519,9 +520,11 @@ class AcInputLocale extends Component {
                       },
                       initialValue: localeValue,
                       onChange: (v) => {
+
                         Object.keys(localeList).forEach((localeKey)=>{
                           if(localeKey === locale){
                             localeList[localeKey].value=v
+                            if(forceSync)localeList[sysLocale].value=v
                           }
                         })
                         onChange && onChange(localeList,v)
@@ -581,6 +584,7 @@ class AcInputLocale extends Component {
                         Object.keys(localeList).forEach((localeKey) => {
                           if(localeKey === locale){
                             localeList[localeKey].value = v
+                            if(forceSync)localeList[sysLocale].value=v
                           }
                         })
                         onChange && onChange(localeList,v)
@@ -632,6 +636,7 @@ class AcInputLocale extends Component {
                       Object.keys(localeList).forEach((localeKey) => {
                         if(localeKey === locale){
                           localeList[localeKey].value = v
+                          if(forceSync)localeList[sysLocale].value=v
                         }
                       })
                       onChange && onChange(localeList,v)

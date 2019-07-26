@@ -363,7 +363,8 @@ var AcInputLocale = function (_Component) {
         _onChange = _props.onChange,
         isTextarea = _props.isTextarea,
         backdrop = _props.backdrop,
-        disabled = _props.disabled;
+        disabled = _props.disabled,
+        forceSync = _props.forceSync;
     var _state = this.state,
         localeValue = _state.localeValue,
         locale = _state.locale,
@@ -423,6 +424,7 @@ var AcInputLocale = function (_Component) {
                 Object.keys(localeList).forEach(function (localeKey) {
                   if (localeKey === locale) {
                     localeList[localeKey].value = v;
+                    if (forceSync) localeList[sysLocale].value = v;
                   }
                 });
                 _onChange && _onChange(localeList, v);
@@ -485,9 +487,11 @@ var AcInputLocale = function (_Component) {
             },
             initialValue: localeValue,
             onChange: function onChange(v) {
+
               Object.keys(localeList).forEach(function (localeKey) {
                 if (localeKey === locale) {
                   localeList[localeKey].value = v;
+                  if (forceSync) localeList[sysLocale].value = v;
                 }
               });
               _onChange && _onChange(localeList, v);
@@ -541,6 +545,7 @@ var AcInputLocale = function (_Component) {
                 Object.keys(localeList).forEach(function (localeKey) {
                   if (localeKey === locale) {
                     localeList[localeKey].value = v;
+                    if (forceSync) localeList[sysLocale].value = v;
                   }
                 });
                 _onChange && _onChange(localeList, v);
@@ -591,6 +596,7 @@ var AcInputLocale = function (_Component) {
               Object.keys(localeList).forEach(function (localeKey) {
                 if (localeKey === locale) {
                   localeList[localeKey].value = v;
+                  if (forceSync) localeList[sysLocale].value = v;
                 }
               });
               _onChange && _onChange(localeList, v);
