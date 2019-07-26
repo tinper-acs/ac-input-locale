@@ -1,3 +1,13 @@
+<a name="1.11.10"></a>
+## [1.11.10](https://github.com/tinper-bee/ac-input-locale/compare/v1.11.9...v1.11.10) (2019-07-26)
+
+
+### Bug Fixes
+
+* **ac-input-local:** showIcon ([6de3c7a](https://github.com/tinper-bee/ac-input-locale/commit/6de3c7a))
+
+
+
 <a name="1.11.9"></a>
 ## [1.11.9](https://github.com/tinper-bee/ac-input-locale/compare/v1.11.8...v1.11.9) (2019-07-26)
 
