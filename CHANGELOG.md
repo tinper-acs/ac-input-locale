@@ -1,3 +1,13 @@
+<a name="1.11.8"></a>
+## [1.11.8](https://github.com/tinper-bee/ac-input-locale/compare/v1.11.7...v1.11.8) (2019-07-26)
+
+
+### Features
+
+* **ac-input-locale:** forceSync ([ba5f600](https://github.com/tinper-bee/ac-input-locale/commit/ba5f600))
+
+
+
 <a name="1.11.7"></a>
 ## [1.11.7](https://github.com/tinper-bee/ac-input-locale/compare/v1.11.6...v1.11.7) (2019-07-18)
 
