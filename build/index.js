@@ -237,21 +237,25 @@ var AcInputLocale = function (_Component) {
     return _react2["default"].createElement(
       'div',
       null,
-      _react2["default"].createElement(
+      this.props.showIcon ? _react2["default"].createElement(
         'span',
-        { className: 'view-title-content' },
-        localeValue || defaultValue
-      ),
-      _react2["default"].createElement(
-        _tinperBee.Popover,
-        {
-          placement: 'right',
-          content: getContent(localeList),
-          trigger: 'hover',
-          id: 'right'
-        },
-        this.props.showIcon ? _react2["default"].createElement('i', { className: 'uf uf-globe' }) : _react2["default"].createElement('span', null)
-      )
+        null,
+        _react2["default"].createElement(
+          'span',
+          { className: 'view-title-content' },
+          localeValue || defaultValue
+        ),
+        _react2["default"].createElement(
+          _tinperBee.Popover,
+          {
+            placement: 'right',
+            content: getContent(localeList),
+            trigger: 'hover',
+            id: 'right'
+          },
+          _react2["default"].createElement('i', { className: 'uf uf-globe' })
+        )
+      ) : ''
     );
   };
 

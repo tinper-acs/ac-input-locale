@@ -156,6 +156,7 @@ import Form from 'bee-form';
                   status={status}
                   onChange={this.onChange}
                   required={required}
+                  forceSync={true}
                 >
                 </AcInputLocale>
                 <Button onClick={this.save}>保存</Button>
