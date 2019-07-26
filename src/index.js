@@ -294,11 +294,11 @@ class AcInputLocale extends Component {
     getPreviewElement (localeValue, defaultValue, localeList) {
       return (
         <div>
+            <span className="view-title-content">
+              {localeValue || defaultValue}
+            </span>          
           {
-            this.props.showIcon?<span>
-              <span className="view-title-content">
-                {localeValue || defaultValue}
-              </span>
+            this.props.showIcon?
               <Popover
                 placement="right"
                 content={getContent(localeList)}
@@ -307,7 +307,7 @@ class AcInputLocale extends Component {
               >
                 <i className="uf uf-globe"/>
               </Popover>
-            </span>:''
+            :''
           }
         </div>
       )
