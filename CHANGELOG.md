@@ -1,3 +1,8 @@
+<a name="1.11.11"></a>
+## [1.11.11](https://github.com/tinper-bee/ac-input-locale/compare/v1.11.10...v1.11.11) (2019-07-29)
+
+
+
 <a name="1.11.10"></a>
 ## [1.11.10](https://github.com/tinper-bee/ac-input-locale/compare/v1.11.9...v1.11.10) (2019-07-26)
 
