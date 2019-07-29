@@ -358,6 +358,7 @@ var AcInputLocale = function (_Component) {
   AcInputLocale.prototype.render = function render() {
     var _this4 = this;
 
+    var self = this;
     var _props = this.props,
         className = _props.className,
         _onChange = _props.onChange,
@@ -424,9 +425,9 @@ var AcInputLocale = function (_Component) {
                 Object.keys(localeList).forEach(function (localeKey) {
                   if (localeKey === locale) {
                     localeList[localeKey].value = v;
-                    if (forceSync) localeList[sysLocale].value = v;
                   }
                 });
+                if (forceSync) localeList = self.forceSyncChange(localeList, v);
                 _onChange && _onChange(localeList, v);
                 _this4.setState({
                   localeValue: v,
@@ -487,13 +488,12 @@ var AcInputLocale = function (_Component) {
             },
             initialValue: localeValue,
             onChange: function onChange(v) {
-
               Object.keys(localeList).forEach(function (localeKey) {
                 if (localeKey === locale) {
                   localeList[localeKey].value = v;
-                  if (forceSync) localeList[sysLocale].value = v;
                 }
               });
+              if (forceSync) localeList = self.forceSyncChange(localeList, v);
               _onChange && _onChange(localeList, v);
               _this4.setState({
                 localeValue: v,
@@ -545,10 +545,10 @@ var AcInputLocale = function (_Component) {
                 Object.keys(localeList).forEach(function (localeKey) {
                   if (localeKey === locale) {
                     localeList[localeKey].value = v;
-                    if (forceSync) localeList[sysLocale].value = v;
                   }
                 });
                 _onChange && _onChange(localeList, v);
+                if (forceSync) localeList = self.forceSyncChange(localeList, v);
                 _this4.setState({
                   localeValue: v,
                   localeList: localeList
@@ -596,10 +596,10 @@ var AcInputLocale = function (_Component) {
               Object.keys(localeList).forEach(function (localeKey) {
                 if (localeKey === locale) {
                   localeList[localeKey].value = v;
-                  if (forceSync) localeList[sysLocale].value = v;
                 }
               });
               _onChange && _onChange(localeList, v);
+              if (forceSync) localeList = self.forceSyncChange(localeList, v);
               _this4.setState({
                 localeValue: v,
                 localeList: localeList
@@ -806,6 +806,25 @@ var _initialiseProps = function _initialiseProps() {
     }
 
     return _react2["default"].createElement('span', { className: 'require-star' });
+  };
+
+  this.forceSyncChange = function (localeList, value) {
+    var _props3 = _this5.props,
+        inputId = _props3.inputId,
+        form = _props3.form;
+
+    Object.keys(localeList).map(function (item) {
+      localeList[item].value = value;
+      if (form) {
+        var setFieldsValue = form.setFieldsValue;
+
+        var key = inputId + '_' + item;
+        var obj = {};
+        obj[key] = value;
+        setFieldsValue(obj);
+      }
+    });
+    return localeList;
   };
 };
 

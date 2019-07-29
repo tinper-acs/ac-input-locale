@@ -347,7 +347,21 @@ class AcInputLocale extends Component {
         </div>)
       })
     }
-
+    forceSyncChange=(localeList,value)=>{
+      let { inputId,form } = this.props;
+      Object.keys(localeList).map(item=>{
+        localeList[item].value=value;
+        if(form){
+          let {setFieldsValue} = form;
+          let key = `${inputId}_${item}`;
+          let obj = {};
+          obj[key]=value;
+          setFieldsValue(obj)
+        }
+        
+      })
+      return localeList;
+    }
     getLocaleFormElement (localeList, modalLocale, locale, getFieldProps, getFieldError) {
       return Object.keys(localeList).map((localeKey)=> {
         return (<div className='edit-panel edit-panel-all' key={localeKey}>
@@ -405,6 +419,7 @@ class AcInputLocale extends Component {
       })
     }
     render() {
+      const self = this;
       const { className, onChange, isTextarea, backdrop, disabled,forceSync } = this.props
       let { localeValue, locale, localeList, status, modalLocale, sysLocale, required, isPopConfirm } = this.state
       let defaultValue;
@@ -455,9 +470,9 @@ class AcInputLocale extends Component {
                           Object.keys(localeList).forEach((localeKey)=>{
                             if(localeKey === locale){
                               localeList[localeKey].value = v
-                              if(forceSync)localeList[sysLocale].value=v
                             }
                           })
+                          if(forceSync)localeList = self.forceSyncChange(localeList,v);
                           onChange && onChange(localeList, v)
                           this.setState({
                             localeValue: v,
@@ -522,13 +537,12 @@ class AcInputLocale extends Component {
                       },
                       initialValue: localeValue,
                       onChange: (v) => {
-
                         Object.keys(localeList).forEach((localeKey)=>{
                           if(localeKey === locale){
                             localeList[localeKey].value=v
-                            if(forceSync)localeList[sysLocale].value=v
                           }
                         })
+                        if(forceSync)localeList = self.forceSyncChange(localeList,v);
                         onChange && onChange(localeList,v)
                         this.setState({
                           localeValue:v,
@@ -586,10 +600,10 @@ class AcInputLocale extends Component {
                         Object.keys(localeList).forEach((localeKey) => {
                           if(localeKey === locale){
                             localeList[localeKey].value = v
-                            if(forceSync)localeList[sysLocale].value=v
                           }
                         })
                         onChange && onChange(localeList,v)
+                        if(forceSync)localeList = self.forceSyncChange(localeList,v);
                         this.setState({
                           localeValue:v,
                           localeList
@@ -638,10 +652,10 @@ class AcInputLocale extends Component {
                       Object.keys(localeList).forEach((localeKey) => {
                         if(localeKey === locale){
                           localeList[localeKey].value = v
-                          if(forceSync)localeList[sysLocale].value=v
                         }
                       })
                       onChange && onChange(localeList,v)
+                      if(forceSync)localeList = self.forceSyncChange(localeList,v);
                       this.setState({
                         localeValue:v,
                         localeList
