@@ -21,7 +21,7 @@ import Button from 'bee-button';
             localeList: {
               "zh_CN":{label:"简体中文",value:"苹果"},
               "en_US":{label:"英文",value:"apple"},
-              "zh_TW":{label:"繁体中文",value:"平锅"},
+              "zh_TW":{label:"繁体中文",value:"蘋果"},
               "fr_FR":{label:"法语",value:"frenchapple"}
             },
             localeJson:{
