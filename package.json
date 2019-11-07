@@ -1,5 +1,5 @@
 {
- "name": "ac-input-locale",
+ "name": "ac-input-locale-msg",
  "version": "1.11.11",
  "description": "InputLocale ui component for react",
  "keywords": [
@@ -38,18 +38,23 @@
  },
  "dependencies": {
   "babel-runtime": "^6.23.0",
-  "bee-form": "^2.0.10",
+  "bee-form": "^2.0.12",
+  "bee-label": "^1.0.0",
+  "bee-modal": "^2.1.2",
+  "bee-popconfirm": "^2.0.0",
+  "bee-popover": "^3.0.6",
   "classnames": "^2.2.5",
   "express": "^4.16.4",
   "tinper-bee": "^2.0.6",
   "tinper-bee-core": "latest"
  },
  "devDependencies": {
-  "bee-button": "latest",
-  "bee-clipboard": "^2.0.0",
+  "bee-button": "^2.0.11",
+  "bee-clipboard": "^2.0.2",
   "bee-drawer": "0.0.2",
-  "bee-layout": "latest",
-  "bee-panel": "latest",
+  "bee-layout": "^1.2.7",
+  "bee-panel": "^2.0.1",
+  "bee-tools": "^1.0.5",
   "chai": "^3.5.0",
   "console-polyfill": "~0.2.1",
   "cz-conventional-changelog": "^2.1.0",

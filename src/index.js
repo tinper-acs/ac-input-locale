@@ -1,7 +1,11 @@
 
 import  React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button,Label,Col , Row,Popover,Popconfirm } from 'tinper-bee';
+// import { Button,Label,Col , Row,Popover,Popconfirm } from 'tinper-bee';
+import Label from 'bee-label'
+import {Row} from 'bee-layout'
+import Popover from 'bee-popover'
+import Popconfirm from 'bee-popconfirm'
 import FormControl from './FormControl.js';
 import ModalWrap from './modal.js'
 
