@@ -1,5 +1,5 @@
 {
- "name": "ac-input-locale-msg",
+ "name": "ac-input-locale",
  "version": "1.11.11",
  "description": "InputLocale ui component for react",
  "keywords": [
