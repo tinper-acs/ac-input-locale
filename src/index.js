@@ -13,6 +13,53 @@ import Form from 'bee-form';
 
 const FormItem = Form.FormItem;
 
+const modalLocTmp = {
+  'zh_CN': {
+    'title': '多语言设置',
+    'okName': '保存',
+    'cancelName': '取消',
+    'localeFlag': '当前',
+    'defaultFlag': '默认',
+    'placeholder': '请输入...',
+    'errorMsg': '不能为空',
+    'currentLang': '当前语种',
+    'defaultLang': '默认语种'
+  },
+  'en_US': {
+    'title': 'Language Setting',
+    'okName': 'save',
+    'cancelName': 'cancel',
+    'localeFlag': 'current',
+    'defaultFlag': 'default',
+    'placeholder': 'please input...',
+    'errorMsg': 'Required',
+    'currentLang': 'Current language',
+    'defaultLang': 'Default language'
+  },
+  'zh_TW': {
+    'title': '多語言設置',
+    'okName': '保存',
+    'cancelName': '取消',
+    'localeFlag': '當前',
+    'defaultFlag': '默認',
+    'placeholder': '請輸入...',
+    'errorMsg': '不能為空',
+    'currentLang': '當前語種',
+    'defaultLang': '默認語種'
+  },
+  'fr_FR': {
+    'title': 'Programmation Multilingue',
+    'okName': 'conservation',
+    'cancelName': 'supprimer',
+    'localeFlag': 'actuellement',
+    'defaultFlag': 'Par défaut',
+    'placeholder': 'S’il vous plaît, entrez....',
+    'errorMsg': 'Champs obligatoires',
+    'currentLang': 'Langue actuelle',
+    'defaultLang': 'Langue par défaut'
+  }
+}
+
 const propTypes = {
     className: PropTypes.string,
     status:PropTypes.string,
@@ -59,73 +106,18 @@ const getContent = (localeList) => {
 class AcInputLocale extends Component {
     constructor(props) {
         super(props);
-        let {locale, localeList, status, modalLocale, sysLocale, required, isPopConfirm} = props;
-        let localeValue = ''
-        if (!locale) {
-          locale = sysLocale || 'zh_CN'
-        }
-        Object.keys(localeList).forEach((localeKey)=>{
-          if(localeKey === locale) {
-            localeValue = localeList[localeKey].value
-          }
-        })
-        let modalLocaleTmp = Object.assign({}, {
-          'zh_CN': {
-            'title': '多语言设置',
-            'okName': '保存',
-            'cancelName': '取消',
-            'localeFlag': '当前',
-            'defaultFlag': '默认',
-            'placeholder': '请输入...',
-            'errorMsg': '不能为空',
-            'currentLang': '当前语种',
-            'defaultLang': '默认语种'
-          },
-          'en_US': {
-            'title': 'Language Setting',
-            'okName': 'save',
-            'cancelName': 'cancel',
-            'localeFlag': 'current',
-            'defaultFlag': 'default',
-            'placeholder': 'please input...',
-            'errorMsg': 'Required',
-            'currentLang': 'Current language',
-            'defaultLang': 'Default language'
-          },
-          'zh_TW': {
-            'title': '多語言設置',
-            'okName': '保存',
-            'cancelName': '取消',
-            'localeFlag': '當前',
-            'defaultFlag': '默認',
-            'placeholder': '請輸入...',
-            'errorMsg': '不能為空',
-            'currentLang': '當前語種',
-            'defaultLang': '默認語種'
-          },
-          'fr_FR': {
-            'title': 'Programmation Multilingue',
-            'okName': 'conservation',
-            'cancelName': 'supprimer',
-            'localeFlag': 'actuellement',
-            'defaultFlag': 'Par défaut',
-            'placeholder': 'S’il vous plaît, entrez....',
-            'errorMsg': 'Champs obligatoires',
-            'currentLang': 'Langue actuelle',
-            'defaultLang': 'Langue par défaut'
-          }
-        }, modalLocale)
+        let {localeList, locale,sysLocale, status, required, isPopConfirm} = props;
         this.state = {
           localeList,
-          localeValue,
-          sysLocale,
+          localeValue:'',
+          sysLocale: sysLocale|| window.navigator.language.replace('-','_') ||'zh_CN',
           locale,
           status,
           required,
           showModal: false,
           showPop: false,
           isPopConfirm,
-          modalLocale: modalLocaleTmp
+          modalLocale: {}
         }
         this.close = this.close.bind(this);
         this.open = this.open.bind(this);
@@ -133,41 +125,43 @@ class AcInputLocale extends Component {
         this.onCancel = this.onCancel.bind(this);
     }
 
+    // 需要优化
+    componentWillMount(){
+      const {locale, sysLocale,localeList} = this.state
+      const langType = locale ? locale : sysLocale
+      const modalLocTmpKey = Object.keys(modalLocTmp)
+      const modalLocale = {}
+      let modalLocaleProps
+      modalLocTmpKey.forEach((langType) => {
+        modalLocaleProps =
+          this.props.modalLocale && this.props.modalLocale[langType]
+            ? this.props.modalLocale[langType]
+            : {}
+        modalLocale[langType] = { ...modalLocTmp[langType],...modalLocaleProps }
+      })
+      this.setState({
+        localeValue: localeList[langType]?localeList[langType].value:'',
+        modalLocale
+      })
+    }
+
     componentWillReceiveProps(nextProps){
       // 语种列表改变，localeValue也要改变
       // 这里的判断是 对象，判断的是对象引用地址是否一样
+      let {locale, localeList,sysLocale} = nextProps
+      const langType = locale ? locale : sysLocale
       if (this.props.localeList !== nextProps.localeList) {
-        let localeValue='';
-        let {locale, localeList} = nextProps
-        Object.keys(localeList).forEach((localeKey) => {
-          if (localeKey === locale) {
-            localeValue = localeList[localeKey].value
-          }
-        })
         this.setState({
-          localeList:localeList,
-          localeValue,
+          localeList,
+          localeValue:localeList[langType].value,
           locale
         })
       }
-
-      // 只改变语种，不改变语种列表
-      if (nextProps.locale !== this.props.locale && nextProps.localeList === this.props.localeList) {
-        let { locale, sysLocale } = nextProps;
-
-        if (!locale) {
-          locale = sysLocale || 'zh_CN'
-        }
-
-        let localeValue='';
-        Object.keys(nextProps.localeList).forEach((localeKey) => {
-          if(localeKey === locale) {
-            localeValue = nextProps.localeList[localeKey].value
-          }
-        })
+      // 只改变语种，不改变语种列表 ----?????
+      if (locale !== this.props.locale && localeList === this.props.localeList) {
         this.setState({
-          locale,
-          localeValue
+          locale:langType,
+          localeValue:localeList[langType].value
         })
       }
       // 改变状态
@@ -199,20 +193,17 @@ class AcInputLocale extends Component {
 
     onOk = () => {
       const { localeList, locale } = this.state
-      let localeListProp = this.props.localeList;
+      // let localeListProp = this.props.localeList;
       let { inputId } = this.props;
       let localeValue;
       let validatedArray = [];
       Object.keys(localeList).forEach((localeKey) => {
         validatedArray.push(inputId + "_"+ localeKey);
-        if(localeKey === locale) {
-          localeValue = localeList[localeKey].value
-        }
-        localeListProp[localeKey] = localeList[localeKey]
+        // localeListProp[localeKey] = localeList[localeKey]
       })
 
       this.setState({
-        localeValue
+        localeValue:localeList[locale].value
       });
 
       // 如果有form表单，就校验，否则就不校验

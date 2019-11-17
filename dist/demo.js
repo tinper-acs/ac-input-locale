@@ -76,7 +76,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 	
-	var Demo1 = __webpack_require__(365);var Demo2 = __webpack_require__(568);var Demo3 = __webpack_require__(569);var Demo4 = __webpack_require__(570);var Demo5 = __webpack_require__(571);var Demo6 = __webpack_require__(572);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 多语言 Input 组件", "code": "// /**\n//  *\n//  * @title 多语言 Input 组件\n//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 包含预览状态和编辑状态切换.当前语种对应的字段内容为空时，显示默认语种内容。\n//  *\n//  */\n\nimport React, { Component } from 'react';\nimport { Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\n\n class Demo1 extends Component {\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"en_US\",     //当前语种\n            status:\"preview\",\n            localeListAll: {\n              \"zh_CN\":{\n                  \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\"},\n                  \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"法语\",\"value\":\"\"}\n              },\n              \"en_US\":{\n                  \"zh_CN\":{\"label\":\"Simplified Chinese\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"English\",\"value\":\"\"},\n                  \"zh_TW\":{\"label\":\"traditional Chinese\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"French\",\"value\":\"\"}\n              },\n              \"zh_TW\":{\n                  \"zh_CN\":{\"label\":\"簡體中文\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\"},\n                  \"zh_TW\":{\"label\":\"繁體中文\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"法語\",\"value\":\"\"}\n              },\n              \"fr_FR\":{\n                  \"zh_CN\":{\"label\":\"Chinois simplifié\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"Anglais\",\"value\":\"\"},\n                  \"zh_TW\":{\"label\":\"Chinois traditionnel\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"Français\",\"value\":\"\"}\n              }\n\n          },\n          localeList:{},\n          localeJson:{\n            \"zh_CN\":\"简体中文\",\n            \"en_US\":\"英文\",\n            \"zh_TW\":\"繁体中文\",\n            \"fr_FR\":\"法语\"\n          }\n        }\n    }\n\n    componentDidMount() {\n        // this.setState({\n        //     locale: [\n        //         {\n        //             locale:\"zh_CN\",label:\"中文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"en_US\",label:\"英文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"zh_TW\",label:\"台湾\",value:\"\"\n        //         }\n        //     ]\n        // })\n\n        this.setState({\n          locale:\"zh_CN\",\n          localeList:{\n            \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\"},\n            \"en_US\":{\"label\":\"英文\",\"value\":\"\"},\n            \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n            \"fr_FR\":{\"label\":\"法语\",\"value\":\"\"}\n          }\n        })\n    }\n\n    onOk=(localeList)=>{\n      // this.setState({\n      //   localeList\n      // })\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key,\n          localeList:this.state.localeListAll[key]\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    render () {\n        let {localeList,sysLocale,locale,status,localeJson,required} = this.state;\n        console.log(localeList,sysLocale,locale,status,localeJson)\n        // let modalLocale = {\n        //   'fr_FR':{\n        //     'title':'Multilingual établir12',\n        //     'okName':'conservation12',\n        //     'cancelName':'supprimer12',\n        //     'localeFlag':'1fasf'\n        //   }\n        // }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                  </span>\n                  <br/>\n                  <span>\n                    <div className=\"btn\">\n                      <span style={{width: '100px',lineHeight: '45px'}}>\n                      当前状态</span>\n                      <Button onClick={()=>{this.changeStatus(\"preview\")}} colors={status=='preview'?'success':null}>[预览]</Button>\n                      <Button onClick={()=>{this.changeStatus(\"editor\")}} colors={status=='editor'?'success':null}>[编辑]</Button>\n                    </div>\n\n                  </span>\n                </div>\n                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} onChange={this.onChange}  ></AcInputLocale>\n            </div>\n        )\n    }\n}\n\nexport default Demo1;\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 包含预览状态和编辑状态切换.当前语种对应的字段内容为空时，显示默认语种内容。" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 多语言 Input 组件", "code": "// /**\n//  *\n//  * @title 多语言 Input 组件\n//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态\n//  * 绿色代表 当前语种\n//  * 预览状态\n//  */\n\nimport React, { Component } from 'react';\nimport { Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\n\n class Demo2 extends Component {\n\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"en_US\",     //当前语种\n            status:\"preview\",\n            localeList: {\n              \"zh_CN\":{label:\"简体中文\",value:\"苹果\"},\n              \"en_US\":{label:\"英文\",value:\"apple\"},\n              \"zh_TW\":{label:\"繁体中文\",value:\"蘋果\"},\n              \"fr_FR\":{label:\"法语\",value:\"frenchapple\"}\n            },\n            localeJson:{\n              \"zh_CN\":\"简体中文\",\n              \"en_US\":\"英文\",\n              \"zh_TW\":\"繁体中文\",\n              \"fr_FR\":\"法语\"\n            }\n        }\n    }\n\n    componentDidMount() {\n        // this.setState({\n        //     locale: [\n        //         {\n        //             locale:\"zh_CN\",label:\"中文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"en_US\",label:\"英文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"zh_TW\",label:\"台湾\",value:\"\"\n        //         }\n        //     ]\n        // })\n        // debugger\n        this.setState({\n          locale:\"zh_CN\"\n        })\n    }\n\n    onOk=(localeList)=>{\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    render () {\n        let {localeList,sysLocale,locale,status,localeJson} = this.state;\n        // let modalLocale = {\n        //   'fr_FR':{\n        //     'title':'Multilingual établir12',\n        //     'okName':'conservation12',\n        //     'cancelName':'supprimer12',\n        //     'localeFlag':'1fasf'\n        //   }\n        // }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                    当前语种：{locale}\n                  </span>\n                  <br/>\n                </div>\n                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} onChange={this.onChange}></AcInputLocale>\n            </div>\n        )\n    }\n}\n\nexport default Demo2;\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 多语言 Input 组件", "code": "// /**\n//  *\n//  * @title 多语言 Input 组件\n//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 编辑状态\n//  * 绿色代表 当前语种\n//  * 编辑状态\n//  */\n\nimport React, { Component } from 'react';\nimport { Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\n\n class Demo3 extends Component {\n\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"en_US\",     //当前语种\n            status:\"editor\",\n            localeList: {\n              \"zh_CN\":{label:\"简体中文\",value:\"苹果\"},\n              \"en_US\":{label:\"英文\",value:\"apple\"},\n              \"zh_TW\":{label:\"繁体中文\",value:\"蘋果\"},\n              \"fr_FR\":{label:\"法语\",value:\"frenchapple\"}\n            },\n            localeJson:{\n              \"zh_CN\":\"简体中文\",\n              \"en_US\":\"英文\",\n              \"zh_TW\":\"繁体中文\",\n              \"fr_FR\":\"法语\"\n            },\n            backdrop: false\n        }\n\n    }\n\n    componentDidMount() {\n\n        setTimeout(() => {\n          this.setState({\n            locale:\"zh_CN\"\n          })\n        }, 100)\n    }\n\n    onOk=(localeList)=>{\n      // this.setState({\n      //   localeList\n      // })\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    render () {\n        let {localeList,sysLocale,locale,status,localeJson,backdrop} = this.state;\n        // let modalLocale = {\n        //   'fr_FR':{\n        //     'title':'Multilingual établir12',\n        //     'okName':'conservation12',\n        //     'cancelName':'supprimer12',\n        //     'localeFlag':'1fasf'\n        //   }\n        // }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                  </span>\n\n                  <br/>\n                  当前语种：{locale}\n                </div>\n                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} backdrop={backdrop} onChange={this.onChange}></AcInputLocale>\n            </div>\n        )\n    }\n}\n\nexport default Demo3;\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 编辑状态" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 多语言 Input 组件", "code": "// /**\n//  *\n//  * @title 多语言 Input 组件\n//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 改变默认模态框中文字说明\n//  * 绿色代表 当前语种\n//  * 编辑状态 改变默认模态框中文字说明\n//  */\n\nimport React, { Component } from 'react';\nimport { Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\n\n class Demo4 extends Component {\n\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"en_US\",     //当前语种\n            status:\"editor\",\n            localeList: {\n              \"zh_CN\":{label:\"简体中文\",value:\"苹果\"},\n              \"en_US\":{label:\"英文\",value:\"apple\"},\n              \"zh_TW\":{label:\"繁体中文\",value:\"蘋果\"},\n              \"fr_FR\":{label:\"法语\",value:\"frenchapple\"}\n            },\n            localeJson:{\n              \"zh_CN\":\"简体中文\",\n              \"en_US\":\"英文\",\n              \"zh_TW\":\"繁体中文\",\n              \"fr_FR\":\"法语\"\n            }\n        }\n    }\n\n    componentDidMount() {\n        // this.setState({\n        //     locale: [\n        //         {\n        //             locale:\"zh_CN\",label:\"中文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"en_US\",label:\"英文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"zh_TW\",label:\"台湾\",value:\"\"\n        //         }\n        //     ]\n        // })\n    }\n\n    onOk=(localeList)=>{\n      // this.setState({\n      //   localeList\n      // })\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    render () {\n        let {localeList,sysLocale,locale,status,localeJson} = this.state;\n        let modalLocale = {\n          'fr_FR':{\n            'title':'Multilingual établir12',\n            'okName':'conservation12',\n            'cancelName':'supprimer12',\n            'localeFlag':'1fasf'\n          }\n        }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                  </span>\n                  <br/>\n                </div>\n                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} onChange={this.onChange} modalLocale={modalLocale}></AcInputLocale>\n            </div>\n        )\n    }\n}\n\nexport default Demo4;\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 改变默认模态框中文字说明" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 多语言 Input 组件", "code": "// /**\n//  *\n//  * @title 多语言 Input 组件\n//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态\n//  * 绿色代表 当前语种\n//  * 预览状态\n//  */\n\nimport React, { Component } from 'react';\nimport { Form, Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\n class Demo5 extends Component {\n\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"zh_CN\",     //当前语种\n            status:\"\",\n            required:true,\n            localeListAll: {\n              \"zh_CN\":{\n                  \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"法语\",\"value\":\"\" }\n              },\n              \"en_US\":{\n                  \"zh_CN\":{\"label\":\"Simplified Chinese\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"English\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"traditional Chinese\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"French\",\"value\":\"\" }\n              },\n              \"zh_TW\":{\n                  \"zh_CN\":{\"label\":\"簡體中文\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"繁體中文\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"法語\",\"value\":\"\",}\n              },\n              \"fr_FR\":{\n                  \"zh_CN\":{\"label\":\"Chinois simplifié\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"Anglais\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"Chinois traditionnel\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"Français\",\"value\":\"\" }\n              }\n              \n          },\n            localeList: {},\n            localeJson:{\n              \"zh_CN\":\"简体中文\",\n              \"en_US\":\"英文\",\n              \"zh_TW\":\"繁体中文\",\n              \"fr_FR\":\"法语\"\n            }\n        }\n        this.save = this.save.bind(this)\n    }\n\n    componentDidMount() {\n      this.setState({\n        localeList:{\n          \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\" },\n          \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n          \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n        }\n        //   {\n        //     \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"en_US\":{\"label\":\"英文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"fr_FR\":{\"label\":\"法语\",\"value\":\"\",\"errorMsg\":\"不能为空\"}\n        // }\n        \n      }\n      );\n        // this.setState({\n        //     locale: [\n        //         {\n        //             locale:\"zh_CN\",label:\"中文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"en_US\",label:\"英文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"zh_TW\",label:\"台湾\",value:\"\"\n        //         }\n        //     ]\n        // })\n    }\n\n    onOk=(localeList)=>{\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key,\n          localeList:this.state.localeListAll[key]\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    save(e) {\n      e.preventDefault();\n      this.props.form.validateFields((err, values) => {\n          if (err) {\n              console.log('校验失败', values);\n          } else {\n              console.log('提交成功', values)\n\n          }\n      });\n    }\n\n    render () {\n        let {localeList,sysLocale,locale,status,localeJson,required} = this.state;\n        // let modalLocale = {\n        //   'fr_FR':{\n        //     'title':'Multilingual établir12',\n        //     'okName':'conservation12',\n        //     'cancelName':'supprimer12',\n        //     'localeFlag':'1fasf'\n        //   }\n        // }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                  </span>\n                  <br/>\n                </div>\n                名称：\n                <AcInputLocale\n                  inputId={'username'}\n                  form={this.props.form}\n                  localeList={localeList}\n                  sysLocale={sysLocale}\n                  onOk={this.onOk}\n                  locale={locale}\n                  status={status}\n                  onChange={this.onChange}\n                  required={required}\n                >\n                </AcInputLocale>\n                <Button onClick={this.save}>保存</Button>\n            </div>\n        )\n    }\n}\n\nexport default Form.createForm()(Demo5)\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 多语言 Input 组件 录入时是popconfirm 形", "code": "/**\n *\n * @title 多语言 Input 组件 录入时是popconfirm 形式\n * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态\n * 绿色代表 当前语种\n * 预览状态\n */\nimport React, { Component } from 'react';\nimport { Form, Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\nclass Demo6 extends Component {\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"zh_CN\",     //当前语种\n            status:\"\",\n            required:true,\n            localeListAll: {\n              \"zh_CN\":{\n                  \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"法语\",\"value\":\"\" }\n              },\n              \"en_US\":{\n                  \"zh_CN\":{\"label\":\"Simplified Chinese\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"English\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"traditional Chinese\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"French\",\"value\":\"\" }\n              },\n              \"zh_TW\":{\n                  \"zh_CN\":{\"label\":\"簡體中文\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"繁體中文\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"法語\",\"value\":\"\",}\n              },\n              \"fr_FR\":{\n                  \"zh_CN\":{\"label\":\"Chinois simplifié\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"Anglais\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"Chinois traditionnel\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"Français\",\"value\":\"\" }\n              }\n\n          },\n            localeList: {},\n            localeJson:{\n              \"zh_CN\":\"简体中文\",\n              \"en_US\":\"英文\",\n              \"zh_TW\":\"繁体中文\",\n              \"fr_FR\":\"法语\"\n            }\n        }\n        this.save = this.save.bind(this)\n    }\n\n    componentDidMount() {\n      this.setState({\n        localeList:{\n          \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\" },\n          \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n          \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n        }\n        //   {\n        //     \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"en_US\":{\"label\":\"英文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"fr_FR\":{\"label\":\"法语\",\"value\":\"\",\"errorMsg\":\"不能为空\"}\n        // }\n\n      }\n      );\n        // this.setState({\n        //     locale: [\n        //         {\n        //             locale:\"zh_CN\",label:\"中文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"en_US\",label:\"英文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"zh_TW\",label:\"台湾\",value:\"\"\n        //         }\n        //     ]\n        // })\n    }\n\n\n    onOk=(localeList)=>{\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key,\n          localeList:this.state.localeListAll[key]\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    save(e) {\n      e.preventDefault();\n      this.props.form.validateFields((err, values) => {\n          if (err) {\n              console.log('校验失败', values);\n          } else {\n              console.log('提交成功', values)\n          }\n      });\n    }\n\n    render () {\n        let {localeList, sysLocale, locale, status, localeJson, required} = this.state;\n        // let modalLocale = {\n        //   'fr_FR':{\n        //     'title':'Multilingual établir12',\n        //     'okName':'conservation12',\n        //     'cancelName':'supprimer12',\n        //     'localeFlag':'1fasf'\n        //   }\n        // }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                  </span>\n                  <br/>\n                  <span style={{fontFize:18}}>\n                    当前语种：{localeJson[locale]}\n                  </span>\n                  <br/>\n                </div>\n                名称：\n                <AcInputLocale\n                  inputId={'username'}\n                  form={this.props.form}\n                  localeList={localeList}\n                  sysLocale={sysLocale}\n                  onOk={this.onOk}\n                  locale={locale}\n                  status={status}\n                  onChange={this.onChange}\n                  required={required}\n                  isPopConfirm={true}\n                  isShowNoneLeftLable={true}\n                >\n                </AcInputLocale>\n                <Button onClick={this.save}>保存</Button>\n            </div>\n        )\n    }\n}\n\nexport default Form.createForm()(Demo6)\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态" }];
+	var Demo1 = __webpack_require__(365);var Demo2 = __webpack_require__(568);var Demo3 = __webpack_require__(569);var Demo4 = __webpack_require__(570);var Demo5 = __webpack_require__(571);var Demo6 = __webpack_require__(572);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 多语言 Input 组件", "code": "// /**\n//  *\n//  * @title 多语言 Input 组件\n//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 包含预览状态和编辑状态切换.当前语种对应的字段内容为空时，显示默认语种内容。\n//  *\n//  */\n\nimport React, { Component } from 'react';\nimport { Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\n\n class Demo1 extends Component {\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"en_US\",     //当前语种\n            status:\"preview\",\n            localeListAll: {\n              \"zh_CN\":{\n                  \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\"},\n                  \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"法语\",\"value\":\"\"}\n              },\n              \"en_US\":{\n                  \"zh_CN\":{\"label\":\"Simplified Chinese\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"English\",\"value\":\"\"},\n                  \"zh_TW\":{\"label\":\"traditional Chinese\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"French\",\"value\":\"\"}\n              },\n              \"zh_TW\":{\n                  \"zh_CN\":{\"label\":\"簡體中文\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\"},\n                  \"zh_TW\":{\"label\":\"繁體中文\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"法語\",\"value\":\"\"}\n              },\n              \"fr_FR\":{\n                  \"zh_CN\":{\"label\":\"Chinois simplifié\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"Anglais\",\"value\":\"\"},\n                  \"zh_TW\":{\"label\":\"Chinois traditionnel\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"Français\",\"value\":\"\"}\n              }\n\n          },\n          localeList:{},\n          localeJson:{\n            \"zh_CN\":\"简体中文\",\n            \"en_US\":\"英文\",\n            \"zh_TW\":\"繁体中文\",\n            \"fr_FR\":\"法语\"\n          }\n        }\n    }\n\n    componentDidMount() {\n        // this.setState({\n        //     locale: [\n        //         {\n        //             locale:\"zh_CN\",label:\"中文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"en_US\",label:\"英文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"zh_TW\",label:\"台湾\",value:\"\"\n        //         }\n        //     ]\n        // })\n\n        this.setState({\n          locale:\"zh_CN\",\n          localeList:{\n            \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\"},\n            \"en_US\":{\"label\":\"英文\",\"value\":\"\"},\n            \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n            \"fr_FR\":{\"label\":\"法语\",\"value\":\"\"}\n          }\n        })\n    }\n\n    onOk=(localeList)=>{\n      // this.setState({\n      //   localeList\n      // })\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key,\n          localeList:this.state.localeListAll[key]\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    render () {\n        let {localeList,sysLocale,locale,status,localeJson,required} = this.state;\n        // console.log(localeList,sysLocale,locale,status,localeJson)\n        // let modalLocale = {\n        //   'fr_FR':{\n        //     'title':'Multilingual établir12',\n        //     'okName':'conservation12',\n        //     'cancelName':'supprimer12',\n        //     'localeFlag':'1fasf'\n        //   }\n        // }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                  </span>\n                  <br/>\n                  <span>\n                    <div className=\"btn\">\n                      <span style={{width: '100px',lineHeight: '45px'}}>\n                      当前状态</span>\n                      <Button onClick={()=>{this.changeStatus(\"preview\")}} colors={status=='preview'?'success':null}>[预览]</Button>\n                      <Button onClick={()=>{this.changeStatus(\"editor\")}} colors={status=='editor'?'success':null}>[编辑]</Button>\n                    </div>\n\n                  </span>\n                </div>\n                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} onChange={this.onChange}  ></AcInputLocale>\n            </div>\n        )\n    }\n}\n\nexport default Demo1;\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 包含预览状态和编辑状态切换.当前语种对应的字段内容为空时，显示默认语种内容。" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 多语言 Input 组件", "code": "// /**\n//  *\n//  * @title 多语言 Input 组件\n//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态\n//  * 绿色代表 当前语种\n//  * 预览状态\n//  */\n\nimport React, { Component } from 'react';\nimport { Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\n\n class Demo2 extends Component {\n\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"en_US\",     //当前语种\n            status:\"preview\",\n            localeList: {\n              \"zh_CN\":{label:\"简体中文\",value:\"苹果\"},\n              \"en_US\":{label:\"英文\",value:\"apple\"},\n              \"zh_TW\":{label:\"繁体中文\",value:\"蘋果\"},\n              \"fr_FR\":{label:\"法语\",value:\"frenchapple\"}\n            },\n            localeJson:{\n              \"zh_CN\":\"简体中文\",\n              \"en_US\":\"英文\",\n              \"zh_TW\":\"繁体中文\",\n              \"fr_FR\":\"法语\"\n            }\n        }\n    }\n\n    componentDidMount() {\n        // this.setState({\n        //     locale: [\n        //         {\n        //             locale:\"zh_CN\",label:\"中文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"en_US\",label:\"英文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"zh_TW\",label:\"台湾\",value:\"\"\n        //         }\n        //     ]\n        // })\n        // debugger\n        this.setState({\n          locale:\"zh_CN\"\n        })\n    }\n\n    onOk=(localeList)=>{\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    render () {\n        let {localeList,sysLocale,locale,status,localeJson} = this.state;\n        // let modalLocale = {\n        //   'fr_FR':{\n        //     'title':'Multilingual établir12',\n        //     'okName':'conservation12',\n        //     'cancelName':'supprimer12',\n        //     'localeFlag':'1fasf'\n        //   }\n        // }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                    当前语种：{locale}\n                  </span>\n                  <br/>\n                </div>\n                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} onChange={this.onChange}></AcInputLocale>\n            </div>\n        )\n    }\n}\n\nexport default Demo2;\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 多语言 Input 组件", "code": "// /**\n//  *\n//  * @title 多语言 Input 组件\n//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 编辑状态\n//  * 绿色代表 当前语种\n//  * 编辑状态\n//  */\n\nimport React, { Component } from 'react';\nimport { Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\n\n class Demo3 extends Component {\n\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"en_US\",     //当前语种\n            status:\"editor\",\n            localeList: {\n              \"zh_CN\":{label:\"简体中文\",value:\"苹果\"},\n              \"en_US\":{label:\"英文\",value:\"apple\"},\n              \"zh_TW\":{label:\"繁体中文\",value:\"蘋果\"},\n              \"fr_FR\":{label:\"法语\",value:\"frenchapple\"}\n            },\n            localeJson:{\n              \"zh_CN\":\"简体中文\",\n              \"en_US\":\"英文\",\n              \"zh_TW\":\"繁体中文\",\n              \"fr_FR\":\"法语\"\n            },\n            backdrop: false\n        }\n\n    }\n\n    componentDidMount() {\n\n        setTimeout(() => {\n          this.setState({\n            locale:\"zh_CN\"\n          })\n        }, 100)\n    }\n\n    onOk=(localeList)=>{\n      // this.setState({\n      //   localeList\n      // })\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    render () {\n        let {localeList,sysLocale,locale,status,localeJson,backdrop} = this.state;\n        // let modalLocale = {\n        //   'fr_FR':{\n        //     'title':'Multilingual établir12',\n        //     'okName':'conservation12',\n        //     'cancelName':'supprimer12',\n        //     'localeFlag':'1fasf'\n        //   }\n        // }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                  </span>\n\n                  <br/>\n                  当前语种：{locale}\n                </div>\n                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} backdrop={backdrop} onChange={this.onChange}></AcInputLocale>\n            </div>\n        )\n    }\n}\n\nexport default Demo3;\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 编辑状态" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 多语言 Input 组件", "code": "// /**\n//  *\n//  * @title 多语言 Input 组件\n//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 改变默认模态框中文字说明\n//  * 绿色代表 当前语种\n//  * 编辑状态 改变默认模态框中文字说明\n//  */\n\nimport React, { Component } from 'react';\nimport { Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\n\n class Demo4 extends Component {\n\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"en_US\",     //当前语种\n            status:\"editor\",\n            localeList: {\n              \"zh_CN\":{label:\"简体中文\",value:\"苹果\"},\n              \"en_US\":{label:\"英文\",value:\"apple\"},\n              \"zh_TW\":{label:\"繁体中文\",value:\"蘋果\"},\n              \"fr_FR\":{label:\"法语\",value:\"frenchapple\"}\n            },\n            localeJson:{\n              \"zh_CN\":\"简体中文\",\n              \"en_US\":\"英文\",\n              \"zh_TW\":\"繁体中文\",\n              \"fr_FR\":\"法语\"\n            }\n        }\n    }\n\n    componentDidMount() {\n        // this.setState({\n        //     locale: [\n        //         {\n        //             locale:\"zh_CN\",label:\"中文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"en_US\",label:\"英文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"zh_TW\",label:\"台湾\",value:\"\"\n        //         }\n        //     ]\n        // })\n    }\n\n    onOk=(localeList)=>{\n      // this.setState({\n      //   localeList\n      // })\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    render () {\n        let {localeList,sysLocale,locale,status,localeJson} = this.state;\n        let modalLocale = {\n          'fr_FR':{\n            'title':'Multilingual établir12',\n            'okName':'conservation12',\n            'cancelName':'supprimer12',\n            'localeFlag':'1fasf'\n          }\n        }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                  </span>\n                  <br/>\n                </div>\n                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} onChange={this.onChange} modalLocale={modalLocale}></AcInputLocale>\n            </div>\n        )\n    }\n}\n\nexport default Demo4;\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 改变默认模态框中文字说明" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 多语言 Input 组件", "code": "// /**\n//  *\n//  * @title 多语言 Input 组件\n//  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态\n//  * 绿色代表 当前语种\n//  * 预览状态\n//  */\n\nimport React, { Component } from 'react';\nimport { Form, Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\n class Demo5 extends Component {\n\n    constructor(props){\n        super(props)\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"zh_CN\",     //当前语种\n            status:\"\",\n            required:true,\n            localeListAll: {\n              \"zh_CN\":{\n                  \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"法语\",\"value\":\"\" }\n              },\n              \"en_US\":{\n                  \"zh_CN\":{\"label\":\"Simplified Chinese\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"English\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"traditional Chinese\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"French\",\"value\":\"\" }\n              },\n              \"zh_TW\":{\n                  \"zh_CN\":{\"label\":\"簡體中文\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"繁體中文\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"法語\",\"value\":\"\",}\n              },\n              \"fr_FR\":{\n                  \"zh_CN\":{\"label\":\"Chinois simplifié\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"Anglais\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"Chinois traditionnel\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"Français\",\"value\":\"\" }\n              }\n              \n          },\n            localeList: {},\n            localeJson:{\n              \"zh_CN\":\"简体中文\",\n              \"en_US\":\"英文\",\n              \"zh_TW\":\"繁体中文\",\n              \"fr_FR\":\"法语\"\n            }\n        }\n        this.save = this.save.bind(this)\n    }\n\n    componentDidMount() {\n      this.setState({\n        localeList:{\n          \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\" },\n          \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n          \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n        }\n        //   {\n        //     \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"en_US\":{\"label\":\"英文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"fr_FR\":{\"label\":\"法语\",\"value\":\"\",\"errorMsg\":\"不能为空\"}\n        // }\n        \n      }\n      );\n        // this.setState({\n        //     locale: [\n        //         {\n        //             locale:\"zh_CN\",label:\"中文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"en_US\",label:\"英文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"zh_TW\",label:\"台湾\",value:\"\"\n        //         }\n        //     ]\n        // })\n    }\n\n    onOk=(localeList)=>{\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key,\n          localeList:this.state.localeListAll[key]\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    save(e) {\n      e.preventDefault();\n      this.props.form.validateFields((err, values) => {\n          if (err) {\n              console.log('校验失败', values);\n          } else {\n              console.log('提交成功', values)\n\n          }\n      });\n    }\n\n    render () {\n        let {localeList,sysLocale,locale,status,localeJson,required} = this.state;\n        // let modalLocale = {\n        //   'fr_FR':{\n        //     'title':'Multilingual établir12',\n        //     'okName':'conservation12',\n        //     'cancelName':'supprimer12',\n        //     'localeFlag':'1fasf'\n        //   }\n        // }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                  </span>\n                  <br/>\n                </div>\n                名称：\n                <AcInputLocale\n                  inputId={'username'}\n                  form={this.props.form}\n                  localeList={localeList}\n                  sysLocale={sysLocale}\n                  onOk={this.onOk}\n                  locale={locale}\n                  status={status}\n                  onChange={this.onChange}\n                  required={required}\n                  modalLocale={{\n                    'zh_CN':{\n                      title:'哈哈哈'\n                    }\n                  }}\n                >\n                </AcInputLocale>\n                <Button onClick={this.save}>保存</Button>\n            </div>\n        )\n    }\n}\n\nexport default Form.createForm()(Demo5)\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 多语言 Input 组件 录入时是popconfirm 形", "code": "/**\n *\n * @title 多语言 Input 组件 录入时是popconfirm 形式\n * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态\n * 绿色代表 当前语种\n * 预览状态\n */\nimport React, { Component } from 'react';\nimport { Form, Button } from 'tinper-bee';\nimport AcInputLocale from 'ac-input-locale-msg/index.js';\nclass Demo6 extends Component {\n    constructor(props){\n        super(props)\n        console.log('+++++++++++++++++++++=')\n        this.state={\n            sysLocale:\"en_US\",  //默认语种\n            locale:\"zh_CN\",     //当前语种\n            status:\"\",\n            required:true,\n            localeListAll: {\n              \"zh_CN\":{\n                  \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n                  \"fr_FR\":{\"label\":\"法语\",\"value\":\"\" }\n              },\n              \"en_US\":{\n                  \"zh_CN\":{\"label\":\"Simplified Chinese\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"English\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"traditional Chinese\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"French\",\"value\":\"\" }\n              },\n              \"zh_TW\":{\n                  \"zh_CN\":{\"label\":\"簡體中文\",\"value\":\"\"},\n                  \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"繁體中文\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"法語\",\"value\":\"\",}\n              },\n              \"fr_FR\":{\n                  \"zh_CN\":{\"label\":\"Chinois simplifié\",\"value\":\"\" },\n                  \"en_US\":{\"label\":\"Anglais\",\"value\":\"\" },\n                  \"zh_TW\":{\"label\":\"Chinois traditionnel\",\"value\":\"\" },\n                  \"fr_FR\":{\"label\":\"Français\",\"value\":\"\" }\n              }\n\n          },\n            localeList: {},\n            localeJson:{\n              \"zh_CN\":\"简体中文\",\n              \"en_US\":\"英文\",\n              \"zh_TW\":\"繁体中文\",\n              \"fr_FR\":\"法语\"\n            }\n        }\n        this.save = this.save.bind(this)\n    }\n\n    componentDidMount() {\n      this.setState({\n        localeList:{\n          \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\" },\n          \"en_US\":{\"label\":\"英文\",\"value\":\"\" },\n          \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\"},\n        }\n        //   {\n        //     \"zh_CN\":{\"label\":\"简体中文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"en_US\":{\"label\":\"英文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"zh_TW\":{\"label\":\"繁体中文\",\"value\":\"\",\"errorMsg\":\"不能为空\"},\n        //     \"fr_FR\":{\"label\":\"法语\",\"value\":\"\",\"errorMsg\":\"不能为空\"}\n        // }\n\n      }\n      );\n        // this.setState({\n        //     locale: [\n        //         {\n        //             locale:\"zh_CN\",label:\"中文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"en_US\",label:\"英文\",value:\"\"\n        //         },\n        //         {\n        //             locale:\"zh_TW\",label:\"台湾\",value:\"\"\n        //         }\n        //     ]\n        // })\n    }\n\n\n    onOk=(localeList)=>{\n      console.log(localeList)\n    }\n\n    onClick = (key)=>{\n        this.setState({\n          locale:key,\n          localeList:this.state.localeListAll[key]\n        })\n    }\n    changeStatus=(key)=>{\n      this.setState({\n        status:key\n      })\n    }\n\n    onChange = (localeList,localeValue) => {\n      console.log(localeList)\n      console.log(localeValue)\n    }\n\n    save(e) {\n      e.preventDefault();\n      this.props.form.validateFields((err, values) => {\n          if (err) {\n              console.log('校验失败', values);\n          } else {\n              console.log('提交成功', values)\n          }\n      });\n    }\n\n    render () {\n        let {localeList, sysLocale, locale, status, localeJson, required} = this.state;\n        // let modalLocale = {\n        //   'fr_FR':{\n        //     'title':'Multilingual établir12',\n        //     'okName':'conservation12',\n        //     'cancelName':'supprimer12',\n        //     'localeFlag':'1fasf'\n        //   }\n        // }\n        return (\n            <div className=\"demoPadding\">\n                <div className=\"btn\">\n                  <Button onClick={()=>{this.onClick(\"zh_CN\")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"en_US\")}} colors={locale=='en_US'?'success':null}>[英文]</Button>\n                  <Button onClick={()=>{this.onClick(\"zh_TW\")}} colors={locale=='zh_TW'?'success':null}>[繁体中文]</Button>\n                  <Button onClick={()=>{this.onClick(\"fr_FR\")}} colors={locale=='fr_FR'?'success':null}>[法语]</Button>\n                </div>\n                <div>\n                  <span style={{fontFize:18}}>\n                    系统语种：{localeJson[sysLocale]}\n                  </span>\n                  <br/>\n                  <span style={{fontFize:18}}>\n                    当前语种：{localeJson[locale]}\n                  </span>\n                  <br/>\n                </div>\n                名称：\n                <AcInputLocale\n                  isTextear={true}\n                  inputId={'username'}\n                  form={this.props.form}\n                  localeList={localeList}\n                  sysLocale={sysLocale}\n                  onOk={this.onOk}\n                  locale={locale}\n                  status={status}\n                  onChange={this.onChange}\n                  required={required}\n                  isPopConfirm={true}\n                  isShowNoneLeftLable={true}\n                >\n                </AcInputLocale>\n                <Button onClick={this.save}>保存</Button>\n            </div>\n        )\n    }\n}\n\nexport default Form.createForm()(Demo6)\n", "desc": " 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -45641,8 +45641,7 @@
 	        status = _state.status,
 	        localeJson = _state.localeJson,
 	        required = _state.required;
-	
-	    console.log(localeList, sysLocale, locale, status, localeJson);
+	    // console.log(localeList,sysLocale,locale,status,localeJson)
 	    // let modalLocale = {
 	    //   'fr_FR':{
 	    //     'title':'Multilingual établir12',
@@ -45651,6 +45650,7 @@
 	    //     'localeFlag':'1fasf'
 	    //   }
 	    // }
+	
 	    return _react2['default'].createElement(
 	      'div',
 	      { className: 'demoPadding' },
@@ -45795,6 +45795,53 @@
 	
 	var FormItem = _beeForm2['default'].FormItem;
 	
+	var modalLocTmp = {
+	  'zh_CN': {
+	    'title': '多语言设置',
+	    'okName': '保存',
+	    'cancelName': '取消',
+	    'localeFlag': '当前',
+	    'defaultFlag': '默认',
+	    'placeholder': '请输入...',
+	    'errorMsg': '不能为空',
+	    'currentLang': '当前语种',
+	    'defaultLang': '默认语种'
+	  },
+	  'en_US': {
+	    'title': 'Language Setting',
+	    'okName': 'save',
+	    'cancelName': 'cancel',
+	    'localeFlag': 'current',
+	    'defaultFlag': 'default',
+	    'placeholder': 'please input...',
+	    'errorMsg': 'Required',
+	    'currentLang': 'Current language',
+	    'defaultLang': 'Default language'
+	  },
+	  'zh_TW': {
+	    'title': '多語言設置',
+	    'okName': '保存',
+	    'cancelName': '取消',
+	    'localeFlag': '當前',
+	    'defaultFlag': '默認',
+	    'placeholder': '請輸入...',
+	    'errorMsg': '不能為空',
+	    'currentLang': '當前語種',
+	    'defaultLang': '默認語種'
+	  },
+	  'fr_FR': {
+	    'title': 'Programmation Multilingue',
+	    'okName': 'conservation',
+	    'cancelName': 'supprimer',
+	    'localeFlag': 'actuellement',
+	    'defaultFlag': 'Par défaut',
+	    'placeholder': 'S’il vous plaît, entrez....',
+	    'errorMsg': 'Champs obligatoires',
+	    'currentLang': 'Langue actuelle',
+	    'defaultLang': 'Langue par défaut'
+	  }
+	};
+	
 	var propTypes = {
 	  className: _propTypes2['default'].string,
 	  status: _propTypes2['default'].string,
@@ -45851,80 +45898,24 @@
 	
 	    _initialiseProps.call(_this);
 	
-	    var locale = props.locale,
-	        localeList = props.localeList,
-	        status = props.status,
-	        modalLocale = props.modalLocale,
+	    var localeList = props.localeList,
+	        locale = props.locale,
 	        sysLocale = props.sysLocale,
+	        status = props.status,
 	        required = props.required,
 	        isPopConfirm = props.isPopConfirm;
 	
-	    var localeValue = '';
-	    if (!locale) {
-	      locale = sysLocale || 'zh_CN';
-	    }
-	    Object.keys(localeList).forEach(function (localeKey) {
-	      if (localeKey === locale) {
-	        localeValue = localeList[localeKey].value;
-	      }
-	    });
-	    var modalLocaleTmp = _extends({}, {
-	      'zh_CN': {
-	        'title': '多语言设置',
-	        'okName': '保存',
-	        'cancelName': '取消',
-	        'localeFlag': '当前',
-	        'defaultFlag': '默认',
-	        'placeholder': '请输入...',
-	        'errorMsg': '不能为空',
-	        'currentLang': '当前语种',
-	        'defaultLang': '默认语种'
-	      },
-	      'en_US': {
-	        'title': 'Language Setting',
-	        'okName': 'save',
-	        'cancelName': 'cancel',
-	        'localeFlag': 'current',
-	        'defaultFlag': 'default',
-	        'placeholder': 'please input...',
-	        'errorMsg': 'Required',
-	        'currentLang': 'Current language',
-	        'defaultLang': 'Default language'
-	      },
-	      'zh_TW': {
-	        'title': '多語言設置',
-	        'okName': '保存',
-	        'cancelName': '取消',
-	        'localeFlag': '當前',
-	        'defaultFlag': '默認',
-	        'placeholder': '請輸入...',
-	        'errorMsg': '不能為空',
-	        'currentLang': '當前語種',
-	        'defaultLang': '默認語種'
-	      },
-	      'fr_FR': {
-	        'title': 'Programmation Multilingue',
-	        'okName': 'conservation',
-	        'cancelName': 'supprimer',
-	        'localeFlag': 'actuellement',
-	        'defaultFlag': 'Par défaut',
-	        'placeholder': 'S’il vous plaît, entrez....',
-	        'errorMsg': 'Champs obligatoires',
-	        'currentLang': 'Langue actuelle',
-	        'defaultLang': 'Langue par défaut'
-	      }
-	    }, modalLocale);
 	    _this.state = {
 	      localeList: localeList,
-	      localeValue: localeValue,
-	      sysLocale: sysLocale,
+	      localeValue: '',
+	      sysLocale: sysLocale || window.navigator.language.replace('-', '_') || 'zh_CN',
 	      locale: locale,
 	      status: status,
 	      required: required,
 	      showModal: false,
 	      showPop: false,
 	      isPopConfirm: isPopConfirm,
-	      modalLocale: modalLocaleTmp
+	      modalLocale: {}
 	    };
 	    _this.close = _this.close.bind(_this);
 	    _this.open = _this.open.bind(_this);
@@ -45933,45 +45924,51 @@
 	    return _this;
 	  }
 	
+	  // 需要优化
+	
+	
+	  AcInputLocale.prototype.componentWillMount = function componentWillMount() {
+	    var _this2 = this;
+	
+	    var _state = this.state,
+	        locale = _state.locale,
+	        sysLocale = _state.sysLocale,
+	        localeList = _state.localeList;
+	
+	    var langType = locale ? locale : sysLocale;
+	    var modalLocTmpKey = Object.keys(modalLocTmp);
+	    var modalLocale = {};
+	    var modalLocaleProps = void 0;
+	    modalLocTmpKey.forEach(function (langType) {
+	      modalLocaleProps = _this2.props.modalLocale && _this2.props.modalLocale[langType] ? _this2.props.modalLocale[langType] : {};
+	      modalLocale[langType] = _extends({}, modalLocTmp[langType], modalLocaleProps);
+	    });
+	    this.setState({
+	      localeValue: localeList[langType] ? localeList[langType].value : '',
+	      modalLocale: modalLocale
+	    });
+	  };
+	
 	  AcInputLocale.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
 	    // 语种列表改变，localeValue也要改变
 	    // 这里的判断是 对象，判断的是对象引用地址是否一样
-	    if (this.props.localeList !== nextProps.localeList) {
-	      var localeValue = '';
-	      var locale = nextProps.locale,
-	          localeList = nextProps.localeList;
+	    var locale = nextProps.locale,
+	        localeList = nextProps.localeList,
+	        sysLocale = nextProps.sysLocale;
 	
-	      Object.keys(localeList).forEach(function (localeKey) {
-	        if (localeKey === locale) {
-	          localeValue = localeList[localeKey].value;
-	        }
-	      });
+	    var langType = locale ? locale : sysLocale;
+	    if (this.props.localeList !== nextProps.localeList) {
 	      this.setState({
 	        localeList: localeList,
-	        localeValue: localeValue,
+	        localeValue: localeList[langType].value,
 	        locale: locale
 	      });
 	    }
-	
-	    // 只改变语种，不改变语种列表
-	    if (nextProps.locale !== this.props.locale && nextProps.localeList === this.props.localeList) {
-	      var _locale = nextProps.locale,
-	          sysLocale = nextProps.sysLocale;
-	
-	
-	      if (!_locale) {
-	        _locale = sysLocale || 'zh_CN';
-	      }
-	
-	      var _localeValue = '';
-	      Object.keys(nextProps.localeList).forEach(function (localeKey) {
-	        if (localeKey === _locale) {
-	          _localeValue = nextProps.localeList[localeKey].value;
-	        }
-	      });
+	    // 只改变语种，不改变语种列表 ----?????
+	    if (locale !== this.props.locale && localeList === this.props.localeList) {
 	      this.setState({
-	        locale: _locale,
-	        localeValue: _localeValue
+	        locale: langType,
+	        localeValue: localeList[langType].value
 	      });
 	    }
 	    // 改变状态
@@ -46011,47 +46008,6 @@
 	  };
 	
 	  AcInputLocale.prototype.getLocaleNoFormElement = function getLocaleNoFormElement(localeList, modalLocale, locale) {
-	    var _this2 = this;
-	
-	    return Object.keys(localeList).map(function (localeKey) {
-	      return _react2['default'].createElement(
-	        'div',
-	        { className: 'edit-panel edit-panel-all', key: localeKey },
-	        _react2['default'].createElement(
-	          FormItem,
-	          null,
-	          _react2['default'].createElement(
-	            'div',
-	            { className: 'u-form-item-label' },
-	            _react2['default'].createElement(
-	              _beeLabel2['default'],
-	              { title: localeList[localeKey].label },
-	              _this2.isShowNoneLeftLable ? _this2.renderLabelLeft(localeKey) : null,
-	              localeList[localeKey].label,
-	              _this2.renderLabelright(localeKey)
-	            )
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { style: { 'display': 'inline-block', 'width': 'calc(100% - 130px)' } },
-	            _react2['default'].createElement(_FormControl2['default'], {
-	              placeholder: modalLocale[locale].placeholder,
-	              onChange: function onChange(v) {
-	                localeList = JSON.parse(JSON.stringify(localeList));
-	                localeList[localeKey].value = v;
-	                _this2.setState({
-	                  localeList: localeList
-	                });
-	              },
-	              value: localeList[localeKey].value
-	            })
-	          )
-	        )
-	      );
-	    });
-	  };
-	
-	  AcInputLocale.prototype.getLocaleFormElement = function getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError) {
 	    var _this3 = this;
 	
 	    return Object.keys(localeList).map(function (localeKey) {
@@ -46075,12 +46031,53 @@
 	          _react2['default'].createElement(
 	            'div',
 	            { style: { 'display': 'inline-block', 'width': 'calc(100% - 130px)' } },
+	            _react2['default'].createElement(_FormControl2['default'], {
+	              placeholder: modalLocale[locale].placeholder,
+	              onChange: function onChange(v) {
+	                localeList = JSON.parse(JSON.stringify(localeList));
+	                localeList[localeKey].value = v;
+	                _this3.setState({
+	                  localeList: localeList
+	                });
+	              },
+	              value: localeList[localeKey].value
+	            })
+	          )
+	        )
+	      );
+	    });
+	  };
+	
+	  AcInputLocale.prototype.getLocaleFormElement = function getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError) {
+	    var _this4 = this;
+	
+	    return Object.keys(localeList).map(function (localeKey) {
+	      return _react2['default'].createElement(
+	        'div',
+	        { className: 'edit-panel edit-panel-all', key: localeKey },
+	        _react2['default'].createElement(
+	          FormItem,
+	          null,
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'u-form-item-label' },
+	            _react2['default'].createElement(
+	              _beeLabel2['default'],
+	              { title: localeList[localeKey].label },
+	              _this4.isShowNoneLeftLable ? _this4.renderLabelLeft(localeKey) : null,
+	              localeList[localeKey].label,
+	              _this4.renderLabelright(localeKey)
+	            )
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { style: { 'display': 'inline-block', 'width': 'calc(100% - 130px)' } },
 	            _react2['default'].createElement(
 	              'div',
 	              null,
 	              _react2['default'].createElement(_FormControl2['default'], _extends({
 	                placeholder: modalLocale[locale].placeholder
-	              }, getFieldProps(_this3.props.inputId + "_" + localeKey, {
+	              }, getFieldProps(_this4.props.inputId + "_" + localeKey, {
 	                validateTrigger: 'onBlur',
 	                initialValue: localeList[localeKey].value,
 	                rules: [{
@@ -46089,7 +46086,7 @@
 	                onChange: function onChange(v) {
 	                  localeList = JSON.parse(JSON.stringify(localeList));
 	                  localeList[localeKey].value = v;
-	                  _this3.setState({
+	                  _this4.setState({
 	                    localeList: localeList
 	                  });
 	                } }), {
@@ -46097,11 +46094,11 @@
 	                  e.stopPropagation();
 	                }
 	              })),
-	              _this3.props.showIcon ? _react2['default'].createElement('div', { className: 'input-icon', onClick: _this3.open }) : '',
-	              getFieldError(_this3.props.inputId + "_" + localeKey) ? _react2['default'].createElement(
+	              _this4.props.showIcon ? _react2['default'].createElement('div', { className: 'input-icon', onClick: _this4.open }) : '',
+	              getFieldError(_this4.props.inputId + "_" + localeKey) ? _react2['default'].createElement(
 	                'span',
 	                { className: 'error uf uf-exc-t' },
-	                getFieldError(_this3.props.inputId + "_" + localeKey)
+	                getFieldError(_this4.props.inputId + "_" + localeKey)
 	              ) : ''
 	            )
 	          )
@@ -46111,7 +46108,7 @@
 	  };
 	
 	  AcInputLocale.prototype.render = function render() {
-	    var _this4 = this;
+	    var _this5 = this;
 	
 	    var self = this;
 	    var _props = this.props,
@@ -46121,15 +46118,15 @@
 	        backdrop = _props.backdrop,
 	        disabled = _props.disabled,
 	        forceSync = _props.forceSync;
-	    var _state = this.state,
-	        localeValue = _state.localeValue,
-	        locale = _state.locale,
-	        localeList = _state.localeList,
-	        status = _state.status,
-	        modalLocale = _state.modalLocale,
-	        sysLocale = _state.sysLocale,
-	        required = _state.required,
-	        isPopConfirm = _state.isPopConfirm;
+	    var _state2 = this.state,
+	        localeValue = _state2.localeValue,
+	        locale = _state2.locale,
+	        localeList = _state2.localeList,
+	        status = _state2.status,
+	        modalLocale = _state2.modalLocale,
+	        sysLocale = _state2.sysLocale,
+	        required = _state2.required,
+	        isPopConfirm = _state2.isPopConfirm;
 	
 	    var defaultValue = void 0;
 	    if (localeList && localeList[sysLocale] && localeList[sysLocale].value) {
@@ -46184,7 +46181,7 @@
 	                });
 	                if (forceSync) localeList = self.forceSyncChange(localeList, v);
 	                _onChange && _onChange(localeList, v);
-	                _this4.setState({
+	                _this5.setState({
 	                  localeValue: v,
 	                  localeList: localeList
 	                });
@@ -46193,7 +46190,7 @@
 	                e.stopPropagation();
 	              },
 	              ref: function ref(input) {
-	                _this4.textInput = input;
+	                _this5.textInput = input;
 	              }
 	            })),
 	            _react2['default'].createElement(
@@ -46250,7 +46247,7 @@
 	              });
 	              if (forceSync) localeList = self.forceSyncChange(localeList, v);
 	              _onChange && _onChange(localeList, v);
-	              _this4.setState({
+	              _this5.setState({
 	                localeValue: v,
 	                localeList: localeList
 	              });
@@ -46259,7 +46256,7 @@
 	              e.stopPropagation();
 	            },
 	            ref: function ref(input) {
-	              _this4.textInput = input;
+	              _this5.textInput = input;
 	            }
 	          })),
 	          this.props.showIcon ? _react2['default'].createElement('div', { className: 'uf uf-globe input-icon', onClick: disabled ? function () {} : this.open }) : '',
@@ -46304,7 +46301,7 @@
 	                });
 	                _onChange && _onChange(localeList, v);
 	                if (forceSync) localeList = self.forceSyncChange(localeList, v);
-	                _this4.setState({
+	                _this5.setState({
 	                  localeValue: v,
 	                  localeList: localeList
 	                });
@@ -46313,7 +46310,7 @@
 	                e.stopPropagation();
 	              },
 	              ref: function ref(input) {
-	                _this4.textInput = input;
+	                _this5.textInput = input;
 	              }
 	            })),
 	            _react2['default'].createElement(
@@ -46355,7 +46352,7 @@
 	              });
 	              _onChange && _onChange(localeList, v);
 	              if (forceSync) localeList = self.forceSyncChange(localeList, v);
-	              _this4.setState({
+	              _this5.setState({
 	                localeValue: v,
 	                localeList: localeList
 	              });
@@ -46364,7 +46361,7 @@
 	              e.stopPropagation();
 	            },
 	            ref: function ref(input) {
-	              _this4.textInput = input;
+	              _this5.textInput = input;
 	            }
 	          })),
 	          this.props.showIcon ? _react2['default'].createElement('div', { className: 'uf uf-globe input-icon', onClick: this.open }) : ''
@@ -46391,76 +46388,73 @@
 	}(_react.Component);
 	
 	var _initialiseProps = function _initialiseProps() {
-	  var _this5 = this;
+	  var _this6 = this;
 	
 	  this.close = function () {
-	    var isPopConfirm = _this5.state.isPopConfirm;
+	    var isPopConfirm = _this6.state.isPopConfirm;
 	
-	    isPopConfirm ? _this5.setState({ showPop: false }) : _this5.setState({ showModal: false });
+	    isPopConfirm ? _this6.setState({ showPop: false }) : _this6.setState({ showModal: false });
 	  };
 	
 	  this.open = function (event) {
 	    event.stopPropagation();
-	    var _props2 = _this5.props,
+	    var _props2 = _this6.props,
 	        status = _props2.status,
 	        localeList = _props2.localeList;
 	
 	    if (status === 'preview') {
 	      return;
 	    }
-	    _this5.setState({
+	    _this6.setState({
 	      localeList: localeList
 	    });
 	
-	    var isPopConfirm = _this5.state.isPopConfirm;
+	    var isPopConfirm = _this6.state.isPopConfirm;
 	
-	    isPopConfirm ? _this5.setState({ showPop: true }) : _this5.setState({ showModal: true });
+	    isPopConfirm ? _this6.setState({ showPop: true }) : _this6.setState({ showModal: true });
 	  };
 	
 	  this.onOk = function () {
-	    var _state2 = _this5.state,
-	        localeList = _state2.localeList,
-	        locale = _state2.locale;
+	    var _state3 = _this6.state,
+	        localeList = _state3.localeList,
+	        locale = _state3.locale;
+	    // let localeListProp = this.props.localeList;
 	
-	    var localeListProp = _this5.props.localeList;
-	    var inputId = _this5.props.inputId;
+	    var inputId = _this6.props.inputId;
 	
 	    var localeValue = void 0;
 	    var validatedArray = [];
 	    Object.keys(localeList).forEach(function (localeKey) {
 	      validatedArray.push(inputId + "_" + localeKey);
-	      if (localeKey === locale) {
-	        localeValue = localeList[localeKey].value;
-	      }
-	      localeListProp[localeKey] = localeList[localeKey];
+	      // localeListProp[localeKey] = localeList[localeKey]
 	    });
 	
-	    _this5.setState({
-	      localeValue: localeValue
+	    _this6.setState({
+	      localeValue: localeList[locale].value
 	    });
 	
 	    // 如果有form表单，就校验，否则就不校验
-	    if (_this5.props.form) {
+	    if (_this6.props.form) {
 	      var obj = {};
-	      obj[_this5.props.inputId] = localeValue;
-	      _this5.props.form.validateFields(validatedArray, function (err, values) {
+	      obj[_this6.props.inputId] = localeValue;
+	      _this6.props.form.validateFields(validatedArray, function (err, values) {
 	        if (err) {
 	          console.log('validate failed', values);
 	          return;
 	        } else {
-	          _this5.props.form.setFieldsValue(obj);
-	          _this5.props.onOk && _this5.props.onOk(localeList);
-	          _this5.close();
+	          _this6.props.form.setFieldsValue(obj);
+	          _this6.props.onOk && _this6.props.onOk(localeList);
+	          _this6.close();
 	        }
 	      });
 	    } else {
-	      _this5.props.onOk && _this5.props.onOk(localeList);
-	      _this5.close();
+	      _this6.props.onOk && _this6.props.onOk(localeList);
+	      _this6.close();
 	    }
 	  };
 	
 	  this.onCancel = function () {
-	    _this5.close();
+	    _this6.close();
 	  };
 	
 	  this.stringTrim = function (str) {
@@ -46468,7 +46462,7 @@
 	  };
 	
 	  this.checkValidValue = function (rule, value, callback) {
-	    var self = _this5;
+	    var self = _this6;
 	    var _self$state = self.state,
 	        required = _self$state.required,
 	        localeList = _self$state.localeList,
@@ -46490,13 +46484,13 @@
 	  };
 	
 	  this.renderLabelLeft = function (localeKey) {
-	    var _state3 = _this5.state,
-	        localeValue = _state3.localeValue,
-	        locale = _state3.locale,
-	        localeList = _state3.localeList,
-	        status = _state3.status,
-	        modalLocale = _state3.modalLocale,
-	        sysLocale = _state3.sysLocale;
+	    var _state4 = _this6.state,
+	        localeValue = _state4.localeValue,
+	        locale = _state4.locale,
+	        localeList = _state4.localeList,
+	        status = _state4.status,
+	        modalLocale = _state4.modalLocale,
+	        sysLocale = _state4.sysLocale;
 	
 	    if (locale === sysLocale) {
 	      if (localeKey === locale) {
@@ -46531,14 +46525,14 @@
 	  };
 	
 	  this.renderLabelright = function (localeKey) {
-	    var _state4 = _this5.state,
-	        localeValue = _state4.localeValue,
-	        locale = _state4.locale,
-	        localeList = _state4.localeList,
-	        status = _state4.status,
-	        modalLocale = _state4.modalLocale,
-	        sysLocale = _state4.sysLocale,
-	        required = _state4.required;
+	    var _state5 = _this6.state,
+	        localeValue = _state5.localeValue,
+	        locale = _state5.locale,
+	        localeList = _state5.localeList,
+	        status = _state5.status,
+	        modalLocale = _state5.modalLocale,
+	        sysLocale = _state5.sysLocale,
+	        required = _state5.required;
 	
 	    if (required) {
 	      if (locale == sysLocale) {
@@ -46564,7 +46558,7 @@
 	  };
 	
 	  this.forceSyncChange = function (localeList, value) {
-	    var _props3 = _this5.props,
+	    var _props3 = _this6.props,
 	        inputId = _props3.inputId,
 	        form = _props3.form;
 	
@@ -49652,6 +49646,9 @@
 	
 	    FormControl.prototype.render = function render() {
 	        var classes = 'u-form-control';
+	        // const ComponentClass= this.props.formControlTypeOption.componentClass
+	        var ComponentName = this.props.isTextear ? 'textear' : 'input';
+	        // console.log(ComponentName)
 	        if (this.props.className) {
 	            classes = 'u-form-control ' + this.props.className;
 	        }
@@ -57977,7 +57974,12 @@
 	        locale: locale,
 	        status: status,
 	        onChange: this.onChange,
-	        required: required
+	        required: required,
+	        modalLocale: {
+	          'zh_CN': {
+	            title: '哈哈哈'
+	          }
+	        }
 	      }),
 	      _react2['default'].createElement(
 	        _beeButton2['default'],
@@ -58066,6 +58068,7 @@
 	      console.log(localeValue);
 	    };
 	
+	    console.log('+++++++++++++++++++++=');
 	    _this.state = {
 	      sysLocale: "en_US", //默认语种
 	      locale: "zh_CN", //当前语种
@@ -58224,6 +58227,7 @@
 	      ),
 	      '\u540D\u79F0\uFF1A',
 	      _react2['default'].createElement(_index2['default'], {
+	        isTextear: true,
 	        inputId: 'username',
 	        form: this.props.form,
 	        localeList: localeList,
