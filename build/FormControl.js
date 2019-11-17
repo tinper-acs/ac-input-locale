@@ -43,6 +43,9 @@ var FormControl = function (_Component) {
 
     FormControl.prototype.render = function render() {
         var classes = 'u-form-control';
+        // const ComponentClass= this.props.formControlTypeOption.componentClass
+        var ComponentName = this.props.isTextear ? 'textear' : 'input';
+        // console.log(ComponentName)
         if (this.props.className) {
             classes = 'u-form-control ' + this.props.className;
         }
