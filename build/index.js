@@ -14,7 +14,19 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _tinperBee = require('tinper-bee');
+var _beeLabel = require('bee-label');
+
+var _beeLabel2 = _interopRequireDefault(_beeLabel);
+
+var _beeLayout = require('bee-layout');
+
+var _beePopover = require('bee-popover');
+
+var _beePopover2 = _interopRequireDefault(_beePopover);
+
+var _beePopconfirm = require('bee-popconfirm');
+
+var _beePopconfirm2 = _interopRequireDefault(_beePopconfirm);
 
 var _FormControl = require('./FormControl.js');
 
@@ -37,8 +49,57 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+// import { Button,Label,Col , Row,Popover,Popconfirm } from 'tinper-bee';
+
 
 var FormItem = _beeForm2["default"].FormItem;
+
+var modalLocTmp = {
+  'zh_CN': {
+    'title': '多语言设置',
+    'okName': '保存',
+    'cancelName': '取消',
+    'localeFlag': '当前',
+    'defaultFlag': '默认',
+    'placeholder': '请输入...',
+    'errorMsg': '不能为空',
+    'currentLang': '当前语种',
+    'defaultLang': '默认语种'
+  },
+  'en_US': {
+    'title': 'Language Setting',
+    'okName': 'save',
+    'cancelName': 'cancel',
+    'localeFlag': 'current',
+    'defaultFlag': 'default',
+    'placeholder': 'please input...',
+    'errorMsg': 'Required',
+    'currentLang': 'Current language',
+    'defaultLang': 'Default language'
+  },
+  'zh_TW': {
+    'title': '多語言設置',
+    'okName': '保存',
+    'cancelName': '取消',
+    'localeFlag': '當前',
+    'defaultFlag': '默認',
+    'placeholder': '請輸入...',
+    'errorMsg': '不能為空',
+    'currentLang': '當前語種',
+    'defaultLang': '默認語種'
+  },
+  'fr_FR': {
+    'title': 'Programmation Multilingue',
+    'okName': 'conservation',
+    'cancelName': 'supprimer',
+    'localeFlag': 'actuellement',
+    'defaultFlag': 'Par défaut',
+    'placeholder': 'S’il vous plaît, entrez....',
+    'errorMsg': 'Champs obligatoires',
+    'currentLang': 'Langue actuelle',
+    'defaultLang': 'Langue par défaut'
+  }
+};
 
 var propTypes = {
   className: _propTypes2["default"].string,
@@ -69,7 +130,7 @@ var defaultProps = {
 var getContent = function getContent(localeList) {
   return Object.keys(localeList).map(function (localeKey) {
     return _react2["default"].createElement(
-      _tinperBee.Row,
+      _beeLayout.Row,
       { key: 'preview' + localeKey, className: 'input-locale-text' },
       _react2["default"].createElement(
         'div',
@@ -96,80 +157,24 @@ var AcInputLocale = function (_Component) {
 
     _initialiseProps.call(_this);
 
-    var locale = props.locale,
-        localeList = props.localeList,
-        status = props.status,
-        modalLocale = props.modalLocale,
+    var localeList = props.localeList,
+        locale = props.locale,
         sysLocale = props.sysLocale,
+        status = props.status,
         required = props.required,
         isPopConfirm = props.isPopConfirm;
 
-    var localeValue = '';
-    if (!locale) {
-      locale = sysLocale || 'zh_CN';
-    }
-    Object.keys(localeList).forEach(function (localeKey) {
-      if (localeKey === locale) {
-        localeValue = localeList[localeKey].value;
-      }
-    });
-    var modalLocaleTmp = _extends({}, {
-      'zh_CN': {
-        'title': '多语言设置',
-        'okName': '保存',
-        'cancelName': '取消',
-        'localeFlag': '当前',
-        'defaultFlag': '默认',
-        'placeholder': '请输入...',
-        'errorMsg': '不能为空',
-        'currentLang': '当前语种',
-        'defaultLang': '默认语种'
-      },
-      'en_US': {
-        'title': 'Language Setting',
-        'okName': 'save',
-        'cancelName': 'cancel',
-        'localeFlag': 'current',
-        'defaultFlag': 'default',
-        'placeholder': 'please input...',
-        'errorMsg': 'Required',
-        'currentLang': 'Current language',
-        'defaultLang': 'Default language'
-      },
-      'zh_TW': {
-        'title': '多語言設置',
-        'okName': '保存',
-        'cancelName': '取消',
-        'localeFlag': '當前',
-        'defaultFlag': '默認',
-        'placeholder': '請輸入...',
-        'errorMsg': '不能為空',
-        'currentLang': '當前語種',
-        'defaultLang': '默認語種'
-      },
-      'fr_FR': {
-        'title': 'Programmation Multilingue',
-        'okName': 'conservation',
-        'cancelName': 'supprimer',
-        'localeFlag': 'actuellement',
-        'defaultFlag': 'Par défaut',
-        'placeholder': 'S’il vous plaît, entrez....',
-        'errorMsg': 'Champs obligatoires',
-        'currentLang': 'Langue actuelle',
-        'defaultLang': 'Langue par défaut'
-      }
-    }, modalLocale);
     _this.state = {
       localeList: localeList,
-      localeValue: localeValue,
-      sysLocale: sysLocale,
+      localeValue: '',
+      sysLocale: sysLocale || window.navigator.language.replace('-', '_') || 'zh_CN',
       locale: locale,
       status: status,
       required: required,
       showModal: false,
       showPop: false,
       isPopConfirm: isPopConfirm,
-      modalLocale: modalLocaleTmp
+      modalLocale: {}
     };
     _this.close = _this.close.bind(_this);
     _this.open = _this.open.bind(_this);
@@ -178,45 +183,51 @@ var AcInputLocale = function (_Component) {
     return _this;
   }
 
+  // 需要优化
+
+
+  AcInputLocale.prototype.componentWillMount = function componentWillMount() {
+    var _this2 = this;
+
+    var _state = this.state,
+        locale = _state.locale,
+        sysLocale = _state.sysLocale,
+        localeList = _state.localeList;
+
+    var langType = locale ? locale : sysLocale;
+    var modalLocTmpKey = Object.keys(modalLocTmp);
+    var modalLocale = {};
+    var modalLocaleProps = void 0;
+    modalLocTmpKey.forEach(function (langType) {
+      modalLocaleProps = _this2.props.modalLocale && _this2.props.modalLocale[langType] ? _this2.props.modalLocale[langType] : {};
+      modalLocale[langType] = _extends({}, modalLocTmp[langType], modalLocaleProps);
+    });
+    this.setState({
+      localeValue: localeList[langType] ? localeList[langType].value : '',
+      modalLocale: modalLocale
+    });
+  };
+
   AcInputLocale.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
     // 语种列表改变，localeValue也要改变
     // 这里的判断是 对象，判断的是对象引用地址是否一样
-    if (this.props.localeList !== nextProps.localeList) {
-      var localeValue = '';
-      var locale = nextProps.locale,
-          localeList = nextProps.localeList;
+    var locale = nextProps.locale,
+        localeList = nextProps.localeList,
+        sysLocale = nextProps.sysLocale;
 
-      Object.keys(localeList).forEach(function (localeKey) {
-        if (localeKey === locale) {
-          localeValue = localeList[localeKey].value;
-        }
-      });
+    var langType = locale ? locale : sysLocale;
+    if (this.props.localeList !== nextProps.localeList) {
       this.setState({
         localeList: localeList,
-        localeValue: localeValue,
+        localeValue: localeList[langType].value,
         locale: locale
       });
     }
-
-    // 只改变语种，不改变语种列表
-    if (nextProps.locale !== this.props.locale && nextProps.localeList === this.props.localeList) {
-      var _locale = nextProps.locale,
-          sysLocale = nextProps.sysLocale;
-
-
-      if (!_locale) {
-        _locale = sysLocale || 'zh_CN';
-      }
-
-      var _localeValue = '';
-      Object.keys(nextProps.localeList).forEach(function (localeKey) {
-        if (localeKey === _locale) {
-          _localeValue = nextProps.localeList[localeKey].value;
-        }
-      });
+    // 只改变语种，不改变语种列表 ----?????
+    if (locale !== this.props.locale && localeList === this.props.localeList) {
       this.setState({
-        locale: _locale,
-        localeValue: _localeValue
+        locale: langType,
+        localeValue: localeList[langType].value
       });
     }
     // 改变状态
@@ -243,7 +254,7 @@ var AcInputLocale = function (_Component) {
         localeValue || defaultValue
       ),
       this.props.showIcon ? _react2["default"].createElement(
-        _tinperBee.Popover,
+        _beePopover2["default"],
         {
           placement: 'right',
           content: getContent(localeList),
@@ -256,47 +267,6 @@ var AcInputLocale = function (_Component) {
   };
 
   AcInputLocale.prototype.getLocaleNoFormElement = function getLocaleNoFormElement(localeList, modalLocale, locale) {
-    var _this2 = this;
-
-    return Object.keys(localeList).map(function (localeKey) {
-      return _react2["default"].createElement(
-        'div',
-        { className: 'edit-panel edit-panel-all', key: localeKey },
-        _react2["default"].createElement(
-          FormItem,
-          null,
-          _react2["default"].createElement(
-            'div',
-            { className: 'u-form-item-label' },
-            _react2["default"].createElement(
-              _tinperBee.Label,
-              { title: localeList[localeKey].label },
-              _this2.isShowNoneLeftLable ? _this2.renderLabelLeft(localeKey) : null,
-              localeList[localeKey].label,
-              _this2.renderLabelright(localeKey)
-            )
-          ),
-          _react2["default"].createElement(
-            'div',
-            { style: { 'display': 'inline-block', 'width': 'calc(100% - 130px)' } },
-            _react2["default"].createElement(_FormControl2["default"], {
-              placeholder: modalLocale[locale].placeholder,
-              onChange: function onChange(v) {
-                localeList = JSON.parse(JSON.stringify(localeList));
-                localeList[localeKey].value = v;
-                _this2.setState({
-                  localeList: localeList
-                });
-              },
-              value: localeList[localeKey].value
-            })
-          )
-        )
-      );
-    });
-  };
-
-  AcInputLocale.prototype.getLocaleFormElement = function getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError) {
     var _this3 = this;
 
     return Object.keys(localeList).map(function (localeKey) {
@@ -310,11 +280,52 @@ var AcInputLocale = function (_Component) {
             'div',
             { className: 'u-form-item-label' },
             _react2["default"].createElement(
-              _tinperBee.Label,
+              _beeLabel2["default"],
               { title: localeList[localeKey].label },
               _this3.isShowNoneLeftLable ? _this3.renderLabelLeft(localeKey) : null,
               localeList[localeKey].label,
               _this3.renderLabelright(localeKey)
+            )
+          ),
+          _react2["default"].createElement(
+            'div',
+            { style: { 'display': 'inline-block', 'width': 'calc(100% - 130px)' } },
+            _react2["default"].createElement(_FormControl2["default"], {
+              placeholder: modalLocale[locale].placeholder,
+              onChange: function onChange(v) {
+                localeList = JSON.parse(JSON.stringify(localeList));
+                localeList[localeKey].value = v;
+                _this3.setState({
+                  localeList: localeList
+                });
+              },
+              value: localeList[localeKey].value
+            })
+          )
+        )
+      );
+    });
+  };
+
+  AcInputLocale.prototype.getLocaleFormElement = function getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError) {
+    var _this4 = this;
+
+    return Object.keys(localeList).map(function (localeKey) {
+      return _react2["default"].createElement(
+        'div',
+        { className: 'edit-panel edit-panel-all', key: localeKey },
+        _react2["default"].createElement(
+          FormItem,
+          null,
+          _react2["default"].createElement(
+            'div',
+            { className: 'u-form-item-label' },
+            _react2["default"].createElement(
+              _beeLabel2["default"],
+              { title: localeList[localeKey].label },
+              _this4.isShowNoneLeftLable ? _this4.renderLabelLeft(localeKey) : null,
+              localeList[localeKey].label,
+              _this4.renderLabelright(localeKey)
             )
           ),
           _react2["default"].createElement(
@@ -325,7 +336,7 @@ var AcInputLocale = function (_Component) {
               null,
               _react2["default"].createElement(_FormControl2["default"], _extends({
                 placeholder: modalLocale[locale].placeholder
-              }, getFieldProps(_this3.props.inputId + "_" + localeKey, {
+              }, getFieldProps(_this4.props.inputId + "_" + localeKey, {
                 validateTrigger: 'onBlur',
                 initialValue: localeList[localeKey].value,
                 rules: [{
@@ -334,7 +345,7 @@ var AcInputLocale = function (_Component) {
                 onChange: function onChange(v) {
                   localeList = JSON.parse(JSON.stringify(localeList));
                   localeList[localeKey].value = v;
-                  _this3.setState({
+                  _this4.setState({
                     localeList: localeList
                   });
                 } }), {
@@ -342,11 +353,11 @@ var AcInputLocale = function (_Component) {
                   e.stopPropagation();
                 }
               })),
-              _this3.props.showIcon ? _react2["default"].createElement('div', { className: 'input-icon', onClick: _this3.open }) : '',
-              getFieldError(_this3.props.inputId + "_" + localeKey) ? _react2["default"].createElement(
+              _this4.props.showIcon ? _react2["default"].createElement('div', { className: 'input-icon', onClick: _this4.open }) : '',
+              getFieldError(_this4.props.inputId + "_" + localeKey) ? _react2["default"].createElement(
                 'span',
                 { className: 'error uf uf-exc-t' },
-                getFieldError(_this3.props.inputId + "_" + localeKey)
+                getFieldError(_this4.props.inputId + "_" + localeKey)
               ) : ''
             )
           )
@@ -356,7 +367,7 @@ var AcInputLocale = function (_Component) {
   };
 
   AcInputLocale.prototype.render = function render() {
-    var _this4 = this;
+    var _this5 = this;
 
     var self = this;
     var _props = this.props,
@@ -366,15 +377,15 @@ var AcInputLocale = function (_Component) {
         backdrop = _props.backdrop,
         disabled = _props.disabled,
         forceSync = _props.forceSync;
-    var _state = this.state,
-        localeValue = _state.localeValue,
-        locale = _state.locale,
-        localeList = _state.localeList,
-        status = _state.status,
-        modalLocale = _state.modalLocale,
-        sysLocale = _state.sysLocale,
-        required = _state.required,
-        isPopConfirm = _state.isPopConfirm;
+    var _state2 = this.state,
+        localeValue = _state2.localeValue,
+        locale = _state2.locale,
+        localeList = _state2.localeList,
+        status = _state2.status,
+        modalLocale = _state2.modalLocale,
+        sysLocale = _state2.sysLocale,
+        required = _state2.required,
+        isPopConfirm = _state2.isPopConfirm;
 
     var defaultValue = void 0;
     if (localeList && localeList[sysLocale] && localeList[sysLocale].value) {
@@ -429,7 +440,7 @@ var AcInputLocale = function (_Component) {
                 });
                 if (forceSync) localeList = self.forceSyncChange(localeList, v);
                 _onChange && _onChange(localeList, v);
-                _this4.setState({
+                _this5.setState({
                   localeValue: v,
                   localeList: localeList
                 });
@@ -438,11 +449,11 @@ var AcInputLocale = function (_Component) {
                 e.stopPropagation();
               },
               ref: function ref(input) {
-                _this4.textInput = input;
+                _this5.textInput = input;
               }
             })),
             _react2["default"].createElement(
-              _tinperBee.Popconfirm,
+              _beePopconfirm2["default"],
               {
                 onClick: disabled ? function () {} : this.open,
                 trigger: 'click',
@@ -495,7 +506,7 @@ var AcInputLocale = function (_Component) {
               });
               if (forceSync) localeList = self.forceSyncChange(localeList, v);
               _onChange && _onChange(localeList, v);
-              _this4.setState({
+              _this5.setState({
                 localeValue: v,
                 localeList: localeList
               });
@@ -504,7 +515,7 @@ var AcInputLocale = function (_Component) {
               e.stopPropagation();
             },
             ref: function ref(input) {
-              _this4.textInput = input;
+              _this5.textInput = input;
             }
           })),
           this.props.showIcon ? _react2["default"].createElement('div', { className: 'uf uf-globe input-icon', onClick: disabled ? function () {} : this.open }) : '',
@@ -549,7 +560,7 @@ var AcInputLocale = function (_Component) {
                 });
                 _onChange && _onChange(localeList, v);
                 if (forceSync) localeList = self.forceSyncChange(localeList, v);
-                _this4.setState({
+                _this5.setState({
                   localeValue: v,
                   localeList: localeList
                 });
@@ -558,11 +569,11 @@ var AcInputLocale = function (_Component) {
                 e.stopPropagation();
               },
               ref: function ref(input) {
-                _this4.textInput = input;
+                _this5.textInput = input;
               }
             })),
             _react2["default"].createElement(
-              _tinperBee.Popconfirm,
+              _beePopconfirm2["default"],
               {
                 trigger: 'click',
                 rootClose: true,
@@ -600,7 +611,7 @@ var AcInputLocale = function (_Component) {
               });
               _onChange && _onChange(localeList, v);
               if (forceSync) localeList = self.forceSyncChange(localeList, v);
-              _this4.setState({
+              _this5.setState({
                 localeValue: v,
                 localeList: localeList
               });
@@ -609,7 +620,7 @@ var AcInputLocale = function (_Component) {
               e.stopPropagation();
             },
             ref: function ref(input) {
-              _this4.textInput = input;
+              _this5.textInput = input;
             }
           })),
           this.props.showIcon ? _react2["default"].createElement('div', { className: 'uf uf-globe input-icon', onClick: this.open }) : ''
@@ -636,76 +647,73 @@ var AcInputLocale = function (_Component) {
 }(_react.Component);
 
 var _initialiseProps = function _initialiseProps() {
-  var _this5 = this;
+  var _this6 = this;
 
   this.close = function () {
-    var isPopConfirm = _this5.state.isPopConfirm;
+    var isPopConfirm = _this6.state.isPopConfirm;
 
-    isPopConfirm ? _this5.setState({ showPop: false }) : _this5.setState({ showModal: false });
+    isPopConfirm ? _this6.setState({ showPop: false }) : _this6.setState({ showModal: false });
   };
 
   this.open = function (event) {
     event.stopPropagation();
-    var _props2 = _this5.props,
+    var _props2 = _this6.props,
         status = _props2.status,
         localeList = _props2.localeList;
 
     if (status === 'preview') {
       return;
     }
-    _this5.setState({
+    _this6.setState({
       localeList: localeList
     });
 
-    var isPopConfirm = _this5.state.isPopConfirm;
+    var isPopConfirm = _this6.state.isPopConfirm;
 
-    isPopConfirm ? _this5.setState({ showPop: true }) : _this5.setState({ showModal: true });
+    isPopConfirm ? _this6.setState({ showPop: true }) : _this6.setState({ showModal: true });
   };
 
   this.onOk = function () {
-    var _state2 = _this5.state,
-        localeList = _state2.localeList,
-        locale = _state2.locale;
+    var _state3 = _this6.state,
+        localeList = _state3.localeList,
+        locale = _state3.locale;
+    // let localeListProp = this.props.localeList;
 
-    var localeListProp = _this5.props.localeList;
-    var inputId = _this5.props.inputId;
+    var inputId = _this6.props.inputId;
 
     var localeValue = void 0;
     var validatedArray = [];
     Object.keys(localeList).forEach(function (localeKey) {
       validatedArray.push(inputId + "_" + localeKey);
-      if (localeKey === locale) {
-        localeValue = localeList[localeKey].value;
-      }
-      localeListProp[localeKey] = localeList[localeKey];
+      // localeListProp[localeKey] = localeList[localeKey]
     });
 
-    _this5.setState({
-      localeValue: localeValue
+    _this6.setState({
+      localeValue: localeList[locale].value
     });
 
     // 如果有form表单，就校验，否则就不校验
-    if (_this5.props.form) {
+    if (_this6.props.form) {
       var obj = {};
-      obj[_this5.props.inputId] = localeValue;
-      _this5.props.form.validateFields(validatedArray, function (err, values) {
+      obj[_this6.props.inputId] = localeValue;
+      _this6.props.form.validateFields(validatedArray, function (err, values) {
         if (err) {
           console.log('validate failed', values);
           return;
         } else {
-          _this5.props.form.setFieldsValue(obj);
-          _this5.props.onOk && _this5.props.onOk(localeList);
-          _this5.close();
+          _this6.props.form.setFieldsValue(obj);
+          _this6.props.onOk && _this6.props.onOk(localeList);
+          _this6.close();
         }
       });
     } else {
-      _this5.props.onOk && _this5.props.onOk(localeList);
-      _this5.close();
+      _this6.props.onOk && _this6.props.onOk(localeList);
+      _this6.close();
     }
   };
 
   this.onCancel = function () {
-    _this5.close();
+    _this6.close();
   };
 
   this.stringTrim = function (str) {
@@ -713,7 +721,7 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.checkValidValue = function (rule, value, callback) {
-    var self = _this5;
+    var self = _this6;
     var _self$state = self.state,
         required = _self$state.required,
         localeList = _self$state.localeList,
@@ -735,13 +743,13 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.renderLabelLeft = function (localeKey) {
-    var _state3 = _this5.state,
-        localeValue = _state3.localeValue,
-        locale = _state3.locale,
-        localeList = _state3.localeList,
-        status = _state3.status,
-        modalLocale = _state3.modalLocale,
-        sysLocale = _state3.sysLocale;
+    var _state4 = _this6.state,
+        localeValue = _state4.localeValue,
+        locale = _state4.locale,
+        localeList = _state4.localeList,
+        status = _state4.status,
+        modalLocale = _state4.modalLocale,
+        sysLocale = _state4.sysLocale;
 
     if (locale === sysLocale) {
       if (localeKey === locale) {
@@ -776,14 +784,14 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.renderLabelright = function (localeKey) {
-    var _state4 = _this5.state,
-        localeValue = _state4.localeValue,
-        locale = _state4.locale,
-        localeList = _state4.localeList,
-        status = _state4.status,
-        modalLocale = _state4.modalLocale,
-        sysLocale = _state4.sysLocale,
-        required = _state4.required;
+    var _state5 = _this6.state,
+        localeValue = _state5.localeValue,
+        locale = _state5.locale,
+        localeList = _state5.localeList,
+        status = _state5.status,
+        modalLocale = _state5.modalLocale,
+        sysLocale = _state5.sysLocale,
+        required = _state5.required;
 
     if (required) {
       if (locale == sysLocale) {
@@ -809,7 +817,7 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.forceSyncChange = function (localeList, value) {
-    var _props3 = _this5.props,
+    var _props3 = _this6.props,
         inputId = _props3.inputId,
         form = _props3.form;
 

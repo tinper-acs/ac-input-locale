@@ -12,6 +12,7 @@ import Form from 'bee-form';
 class Demo6 extends Component {
     constructor(props){
         super(props)
+        console.log('+++++++++++++++++++++=')
         this.state={
             sysLocale:"en_US",  //默认语种
             locale:"zh_CN",     //当前语种
@@ -149,6 +150,7 @@ class Demo6 extends Component {
                 </div>
                 名称：
                 <AcInputLocale
+                  isTextear={true}
                   inputId={'username'}
                   form={this.props.form}
                   localeList={localeList}

@@ -105,7 +105,7 @@ import Button from 'bee-button';
 
     render () {
         let {localeList,sysLocale,locale,status,localeJson,required} = this.state;
-        console.log(localeList,sysLocale,locale,status,localeJson)
+        // console.log(localeList,sysLocale,locale,status,localeJson)
         // let modalLocale = {
         //   'fr_FR':{
         //     'title':'Multilingual établir12',

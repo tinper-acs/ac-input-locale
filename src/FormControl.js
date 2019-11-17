@@ -19,6 +19,9 @@ class FormControl extends Component {
     }
     render () {
         let classes = 'u-form-control';
+        // const ComponentClass= this.props.formControlTypeOption.componentClass
+        const ComponentName = this.props.isTextear ? 'textear' : 'input'
+        // console.log(ComponentName)
         if(this.props.className){
             classes = 'u-form-control '+this.props.className;
         }

@@ -12,7 +12,13 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _tinperBee = require('tinper-bee');
+var _beeButton = require('bee-button');
+
+var _beeButton2 = _interopRequireDefault(_beeButton);
+
+var _beeModal = require('bee-modal');
+
+var _beeModal2 = _interopRequireDefault(_beeModal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -23,6 +29,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+// import { Button, Label, Col, Row,FormControl,Modal } from 'tinper-bee';
+
 
 var propTypes = {
   onOk: _propTypes2["default"].func, //确定按钮钩子函数
@@ -106,7 +114,7 @@ var ModalWrap = function (_Component) {
         close = _state.close;
 
     return _react2["default"].createElement(
-      _tinperBee.Modal,
+      _beeModal2["default"],
       {
         show: showModal,
         width: '600',
@@ -116,29 +124,29 @@ var ModalWrap = function (_Component) {
         enforceFocus: false
       },
       _react2["default"].createElement(
-        _tinperBee.Modal.Header,
+        _beeModal2["default"].Header,
         { closeButton: true },
         _react2["default"].createElement(
-          _tinperBee.Modal.Title,
+          _beeModal2["default"].Title,
           { className: 'modal-title' },
           title
         )
       ),
       _react2["default"].createElement(
-        _tinperBee.Modal.Body,
+        _beeModal2["default"].Body,
         null,
         this.props.children
       ),
       _react2["default"].createElement(
-        _tinperBee.Modal.Footer,
+        _beeModal2["default"].Footer,
         null,
         _react2["default"].createElement(
-          _tinperBee.Button,
+          _beeButton2["default"],
           { bordered: true, className: 'cancel-qx', onClick: onCancel },
           cancelName
         ),
         _react2["default"].createElement(
-          _tinperBee.Button,
+          _beeButton2["default"],
           { colors: 'primary', onClick: onOk },
           okName
         )
