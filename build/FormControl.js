@@ -42,9 +42,9 @@ var FormControl = function (_Component) {
     }
 
     FormControl.prototype.render = function render() {
-        var classes = 'u-form-control';
+        var classes = 'wui-input';
         if (this.props.className) {
-            classes = 'u-form-control ' + this.props.className;
+            classes = 'wui-input ' + this.props.className;
         }
         return _react2["default"].createElement('input', _extends({}, this.props, { className: classes, onChange: this.onChange }));
     };

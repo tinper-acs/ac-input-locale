@@ -1,11 +1,11 @@
 import  React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Label, Col, Row,FormControl,Modal } from 'tinper-bee';
+import { Button, Modal } from '@tinper/next-ui';
 
 const propTypes = {
   onOk: PropTypes.func,//确定按钮钩子函数
   onCancel: PropTypes.func,//取消按钮钩子函数
-  backdrop: PropTypes.bool,  //是否弹出遮罩层/遮罩层点击是否触发关闭
+  mask: PropTypes.bool,  //是否弹出遮罩层/遮罩层点击是否触发关闭
   title: PropTypes.string, // modal标题
   okName: PropTypes.string, // modal确认按钮中文字内容
   cancelName: PropTypes.string, // modal取消按钮中文字内容
@@ -15,7 +15,7 @@ const propTypes = {
 
 const defaultProps = {
   classnames:'',
-  backdrop: true,
+  mask: true,
 }
 
 class ModalWrap extends Component {
@@ -90,11 +90,11 @@ class ModalWrap extends Component {
     } = this.state
     return (
       <Modal
-        show = {showModal}
+        visible = {showModal}
         width = '600'
-        backdrop={backdrop}
+        mask={backdrop}
         className="ac-input-locale-modal"
-        onHide = {
+        onCancel = {
           close
         }
         enforceFocus={ false }

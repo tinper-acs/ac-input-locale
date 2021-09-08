@@ -1,11 +1,9 @@
 
 import  React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button,Label,Col , Row,Popover,Popconfirm } from 'tinper-bee';
+import { Row, Popover, Popconfirm, Form } from '@tinper/next-ui';
 import FormControl from './FormControl.js';
 import ModalWrap from './modal.js'
-
-import Form from 'bee-form';
 
 const FormItem = Form.FormItem;
 
@@ -317,8 +315,8 @@ class AcInputLocale extends Component {
       return Object.keys(localeList).map((localeKey)=> {
         return (<div className='edit-panel edit-panel-all' key={localeKey}>
           <FormItem>
-            <div className="u-form-item-label">
-              <Label title={localeList[localeKey].label}>
+            <div className="wui-form-item-label">
+              <label title={localeList[localeKey].label}>
                 {
                   this.isShowNoneLeftLable ? this.renderLabelLeft(localeKey) : null
                 }
@@ -326,7 +324,7 @@ class AcInputLocale extends Component {
                 {
                    this.renderLabelright(localeKey)
                 }
-              </Label>
+              </label>
             </div>
             <div style={{'display':'inline-block','width':'calc(100% - 130px)'}}>
               <FormControl
@@ -366,8 +364,8 @@ class AcInputLocale extends Component {
       return Object.keys(localeList).map((localeKey)=> {
         return (<div className='edit-panel edit-panel-all' key={localeKey}>
           <FormItem>
-            <div className="u-form-item-label">
-              <Label title={localeList[localeKey].label}>
+            <div className="wui-form-item-label">
+              <label title={localeList[localeKey].label}>
                 {
                   this.isShowNoneLeftLable ? this.renderLabelLeft(localeKey) : null
                 }
@@ -375,7 +373,7 @@ class AcInputLocale extends Component {
                 {
                   this.renderLabelright(localeKey)
                 }
-              </Label>
+              </label>
             </div>
             <div style={{'display':'inline-block','width':'calc(100% - 130px)'}}>
               <div>
@@ -490,15 +488,16 @@ class AcInputLocale extends Component {
                     <Popconfirm
                       onClick = {disabled?()=>{}: this.open } 
                       trigger="click"
-                      rootClose
+                      maskClosable
                       placement="right"
                       secondPlacement="bottom"
-                      className="ac-input-locale-popconfirm"
+                      overlayClassName="ac-input-locale-popconfirm"
                       onClose={this.onOk}
                       onCancel={this.close}
                       show={this.state.showPop}
                       // onClick={this.open}
                       onRootClose={this.close}
+                      icon={""}
                       content={this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)}
                     >
                       {
@@ -618,16 +617,17 @@ class AcInputLocale extends Component {
                     />
                     <Popconfirm
                       trigger="click"
-                      rootClose
+                      maskClosable
                       placement="right"
                       defaultOverlayShown={false}
                       secondPlacement="bottom"
-                      className="ac-input-locale-popconfirm"
+                      overlayClassName="ac-input-locale-popconfirm"
                       onClose={this.onOk}
                       onCancel={this.close}
                       show={this.state.showPop}
                       onClick={this.open}
                       onRootClose={this.close}
+                      icon={""}
                       content={this.getLocaleNoFormElement(localeList, modalLocale, locale)}
                     >
                       <div className="input-pop-icon">

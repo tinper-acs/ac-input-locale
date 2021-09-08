@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Con, Row, Col } from 'bee-layout';
+// import { Con, Row, Col } from 'bee-layout';
+// import Drawer from 'bee-drawer';
+// import Clipboard from 'bee-clipboard';
 import { Panel } from 'bee-panel';
-import Drawer from 'bee-drawer';
-import Clipboard from 'bee-clipboard'; 
+import { Row, Col, Drawer, Clipboard } from '@tinper/next-ui';
 
 
 
@@ -36,7 +37,7 @@ class Demo extends Component {
             </div>
         );
         return (
-            <Col md={12} id={title.trim()} className='component-demo'>
+            <Col md={24} id={title.trim()} className='component-demo'>
             <Panel header={header}>
                 {example}
             </Panel>

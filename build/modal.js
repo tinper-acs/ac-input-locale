@@ -12,7 +12,7 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _tinperBee = require('tinper-bee');
+var _nextUi = require('@tinper/next-ui');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -27,7 +27,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var propTypes = {
   onOk: _propTypes2["default"].func, //确定按钮钩子函数
   onCancel: _propTypes2["default"].func, //取消按钮钩子函数
-  backdrop: _propTypes2["default"].bool, //是否弹出遮罩层/遮罩层点击是否触发关闭
+  mask: _propTypes2["default"].bool, //是否弹出遮罩层/遮罩层点击是否触发关闭
   title: _propTypes2["default"].string, // modal标题
   okName: _propTypes2["default"].string, // modal确认按钮中文字内容
   cancelName: _propTypes2["default"].string, // modal取消按钮中文字内容
@@ -37,7 +37,7 @@ var propTypes = {
 
 var defaultProps = {
   classnames: '',
-  backdrop: true
+  mask: true
 };
 
 var ModalWrap = function (_Component) {
@@ -106,39 +106,39 @@ var ModalWrap = function (_Component) {
         close = _state.close;
 
     return _react2["default"].createElement(
-      _tinperBee.Modal,
+      _nextUi.Modal,
       {
-        show: showModal,
+        visible: showModal,
         width: '600',
-        backdrop: backdrop,
+        mask: backdrop,
         className: 'ac-input-locale-modal',
-        onHide: close,
+        onCancel: close,
         enforceFocus: false
       },
       _react2["default"].createElement(
-        _tinperBee.Modal.Header,
+        _nextUi.Modal.Header,
         { closeButton: true },
         _react2["default"].createElement(
-          _tinperBee.Modal.Title,
+          _nextUi.Modal.Title,
           { className: 'modal-title' },
           title
         )
       ),
       _react2["default"].createElement(
-        _tinperBee.Modal.Body,
+        _nextUi.Modal.Body,
         null,
         this.props.children
       ),
       _react2["default"].createElement(
-        _tinperBee.Modal.Footer,
+        _nextUi.Modal.Footer,
         null,
         _react2["default"].createElement(
-          _tinperBee.Button,
+          _nextUi.Button,
           { bordered: true, className: 'cancel-qx', onClick: onCancel },
           cancelName
         ),
         _react2["default"].createElement(
-          _tinperBee.Button,
+          _nextUi.Button,
           { colors: 'primary', onClick: onOk },
           okName
         )

@@ -1,3 +1,5 @@
+@import "../node_modules/@tinper/next-ui/dist/tinper-next.css";
+$prefix: wui;
 .ac-input-locale{
     position: relative;
     min-width: 100px;
@@ -25,16 +27,16 @@
       line-height: 32px;
       height: 32px;
     }
-    .u-form-control[disabled] + .uf-globe{
+    .#{$prefix}-input[disabled] + .uf-globe{
         cursor: not-allowed;
     }
-    .u-popover-content{
+    .#{$prefix}-popover-content{
       padding: 16px 30px;
       background:rgba(252,252,252,1);
       border-radius:3px;
       border:1px solid rgba(223,225,227,1);
     }
-    .u-row{
+    .#{$prefix}-row{
       padding-bottom: 7px;
     }
     .input-icon{
@@ -78,7 +80,7 @@
   
   
   
-  .ac-input-locale-popconfirm.u-popconfirm{
+  .ac-input-locale-popconfirm.#{$prefix}-popconfirm{
     min-width: 600px;
     width: 600px;
   }
@@ -93,10 +95,10 @@
           background-color: #EBECF0;
           border-color: rgb(165, 173, 186);
       }
-      .u-modal-header{
+      .#{$prefix}-modal-header{
           padding:16px;
       }
-    .u-popconfirm-confirm{
+    .#{$prefix}-popconfirm-confirm{
       text-align: right;
       padding-right: 30px;
     }
@@ -106,12 +108,12 @@
       color: #f53c32;
       display: inline-block;
     }
-    .u-modal-content .modal-title{
+    .#{$prefix}-modal-content .modal-title{
       font-size:14px;
       font-weight:normal;
       color:rgba(71,77,84,1);
     }
-    .u-modal-body{
+    .#{$prefix}-modal-body{
       background: #F7F9FB;
     }
   
@@ -120,11 +122,12 @@
         padding-right: 0;
       }
       
-      .u-form-item {
+      .#{$prefix}-form-item {
+          display: block;
           min-width: 100%;
           min-height: 58px;
   
-          .u-form-item-label{
+          .#{$prefix}-form-item-label{
               display: inline-block;
               float: left;
               width: 130px;
@@ -137,14 +140,14 @@
               display: inline-block;
               font-size: 12px;
           }
-          .u-label {
+          .#{$prefix}-label {
               display: inline-block;
           }
-          .u-label.time {
+          .#{$prefix}-label.time {
               position: relative;
               bottom: 10px;
           }
-          .u-label+* {
+          .#{$prefix}-label+* {
               min-width: 200px;
               display: inline-block;
           }
@@ -155,16 +158,16 @@
               color: red;
           }
           .datepicker-input-group {
-              .u-input-group-btn {
+              .#{$prefix}-input-group-btn {
                   .uf-calendar {
                       padding: 0;
                   }
               }
           }
-          .u-switch {
+          .#{$prefix}-switch {
               min-width: auto;
           }
-          .u-select {
+          .#{$prefix}-select {
               width: auto;
           }
           .calendar-picker {
@@ -175,12 +178,12 @@
                   width: 100%;
               }
           }
-          .u-form-control{
+          .#{$prefix}-input{
               width: 100%
           }
-          .u-form-control-close {
+          .#{$prefix}-input-close {
               width: auto;
-              .u-form-control {
+              .#{$prefix}-input {
                   width: 100%
               }
           }
@@ -191,12 +194,12 @@
       }
     }
     .edit-panel-all {
-      .u-form-item {
+      .#{$prefix}-form-item {
           padding: 0;
-          .u-form-control{
+          .#{$prefix}-input{
               width: 100%
           }
-          .u-label {
+          .#{$prefix}-label {
               width: 100%;
               text-align: right;
               font-size: 12px;
@@ -210,13 +213,13 @@
               color: #212121;
           }
           @media (max-width: 992px) {
-            .u-label {
+            .#{$prefix}-label {
               text-align: left;
             }
           }
           
           @media (max-width: 992px) {
-            .u-form-control {
+            .#{$prefix}-input {
               width: 100%;
             }
           }
@@ -238,21 +241,22 @@
   
   
   .ac-input-locale-popconfirm{
-      .u-form-item-label{
+      .#{$prefix}-form-item-label{
           width: 130px;
           display: inline-block;
           float: left;
       }
     
-    .u-popconfirm-content{
+    .#{$prefix}-popover-inner{
       padding: 30px 30px 0;
     }
-    .u-popconfirm-confirm{
+    .#{$prefix}-popover-buttons{
       text-align: right;
-      padding-right: 30px;
-      .u-button{
-        width: 72px;
-        height: 32px;
+      //padding-right: 30px;
+      padding-bottom: 10px;
+      .#{$prefix}-button{
+        width: 50px;
+        height: 28px;
         margin-right: 0;
         margin-left: 8px;
       }
@@ -263,7 +267,7 @@
       color: #f53c32;
       display: inline-block;
     }
-    .u-modal-content .modal-title{
+    .#{$prefix}-modal-content .modal-title{
       font-size:19px;
       font-weight:400;
       color:rgba(71,77,84,1);
@@ -276,7 +280,8 @@
         padding-right: 0;
       }
   
-      .u-form-item {
+      .#{$prefix}-form-item {
+          display: block;
           min-width: 100%;
           margin-bottom: 10px;
           min-height: 58px;
@@ -288,16 +293,16 @@
               display: inline-block;
               font-size: 12px;
           }
-          .u-label {
+          .#{$prefix}-label {
               min-width: 100px;
               display: inline-block;
               padding: 0;
           }
-          .u-label.time {
+          .#{$prefix}-label.time {
               position: relative;
               bottom: 10px;
           }
-          .u-label+* {
+          .#{$prefix}-label+* {
               min-width: 200px;
               display: inline-block;
           }
@@ -308,16 +313,16 @@
               color: red;
           }
           .datepicker-input-group {
-              .u-input-group-btn {
+              .#{$prefix}-input-group-btn {
                   .uf-calendar {
                       padding: 0;
                   }
               }
           }
-          .u-switch {
+          .#{$prefix}-switch {
               min-width: auto;
           }
-          .u-select {
+          .#{$prefix}-select {
               width: auto;
           }
           .calendar-picker {
@@ -328,9 +333,9 @@
                   width: 100%;
               }
           }
-          .u-form-control-close {
+          .#{$prefix}-input-close {
               width: auto;
-              .u-form-control {
+              .#{$prefix}-input {
                   width: 100%
               }
           }
@@ -342,7 +347,7 @@
     }
     .edit-panel-center {
       text-align: center;
-      .u-form-item {
+      .#{$prefix}-form-item {
           min-width: auto;
           display: inline-block;
           .error {
@@ -352,9 +357,9 @@
     }
   
     .edit-panel-all {
-      .u-form-item {
+      .#{$prefix}-form-item {
           padding: 0;
-          .u-label {
+          .#{$prefix}-label {
               width: 100%;
               text-align: right;
               font-size: 12px;
@@ -363,15 +368,15 @@
               padding: 0;
           }
           @media (max-width: 992px) {
-            .u-label {
+            .#{$prefix}-label {
               text-align: left;
             }
           }
-          .u-form-control {
+          .#{$prefix}-input {
               width: 100%;
           }
           @media (max-width: 992px) {
-            .u-form-control {
+            .#{$prefix}-input {
               width: 100%;
             }
           }

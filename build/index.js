@@ -14,7 +14,7 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _tinperBee = require('tinper-bee');
+var _nextUi = require('@tinper/next-ui');
 
 var _FormControl = require('./FormControl.js');
 
@@ -23,10 +23,6 @@ var _FormControl2 = _interopRequireDefault(_FormControl);
 var _modal = require('./modal.js');
 
 var _modal2 = _interopRequireDefault(_modal);
-
-var _beeForm = require('bee-form');
-
-var _beeForm2 = _interopRequireDefault(_beeForm);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -38,7 +34,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 
-var FormItem = _beeForm2["default"].FormItem;
+var FormItem = _nextUi.Form.FormItem;
 
 var propTypes = {
   className: _propTypes2["default"].string,
@@ -69,7 +65,7 @@ var defaultProps = {
 var getContent = function getContent(localeList) {
   return Object.keys(localeList).map(function (localeKey) {
     return _react2["default"].createElement(
-      _tinperBee.Row,
+      _nextUi.Row,
       { key: 'preview' + localeKey, className: 'input-locale-text' },
       _react2["default"].createElement(
         'div',
@@ -243,7 +239,7 @@ var AcInputLocale = function (_Component) {
         localeValue || defaultValue
       ),
       this.props.showIcon ? _react2["default"].createElement(
-        _tinperBee.Popover,
+        _nextUi.Popover,
         {
           placement: 'right',
           content: getContent(localeList),
@@ -267,9 +263,9 @@ var AcInputLocale = function (_Component) {
           null,
           _react2["default"].createElement(
             'div',
-            { className: 'u-form-item-label' },
+            { className: 'wui-form-item-label' },
             _react2["default"].createElement(
-              _tinperBee.Label,
+              'label',
               { title: localeList[localeKey].label },
               _this2.isShowNoneLeftLable ? _this2.renderLabelLeft(localeKey) : null,
               localeList[localeKey].label,
@@ -308,9 +304,9 @@ var AcInputLocale = function (_Component) {
           null,
           _react2["default"].createElement(
             'div',
-            { className: 'u-form-item-label' },
+            { className: 'wui-form-item-label' },
             _react2["default"].createElement(
-              _tinperBee.Label,
+              'label',
               { title: localeList[localeKey].label },
               _this3.isShowNoneLeftLable ? _this3.renderLabelLeft(localeKey) : null,
               localeList[localeKey].label,
@@ -442,11 +438,11 @@ var AcInputLocale = function (_Component) {
               }
             })),
             _react2["default"].createElement(
-              _tinperBee.Popconfirm,
+              _nextUi.Popconfirm,
               {
                 onClick: disabled ? function () {} : this.open,
                 trigger: 'click',
-                rootClose: true,
+                maskClosable: true,
                 placement: 'right',
                 secondPlacement: 'bottom',
                 className: 'ac-input-locale-popconfirm',
@@ -562,10 +558,10 @@ var AcInputLocale = function (_Component) {
               }
             })),
             _react2["default"].createElement(
-              _tinperBee.Popconfirm,
+              _nextUi.Popconfirm,
               {
                 trigger: 'click',
-                rootClose: true,
+                maskClosable: true,
                 placement: 'right',
                 defaultOverlayShown: false,
                 secondPlacement: 'bottom',

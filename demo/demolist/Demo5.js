@@ -8,8 +8,7 @@
 
 import React, { Component } from 'react';
 import AcInputLocale from '../../src/index.js';
-import Button from 'bee-button';
-import Form from 'bee-form';
+import { Button, Form } from '@tinper/next-ui';
  class Demo5 extends Component {
 
     constructor(props){

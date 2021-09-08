@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 import AcInputLocale from '../../src/index.js';
-import Button from 'bee-button';
+import { Button } from '@tinper/next-ui';
 
  class Demo1 extends Component {
     constructor(props){

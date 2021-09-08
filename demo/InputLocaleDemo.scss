@@ -20,9 +20,13 @@
     display: flex;
     margin: 10px;
     margin-bottom: 30px;
+    align-items: center;
 }
 
 .btn>button:nth-child(2){
     margin-left: 10px;
     margin-right: 10px;
+}
+.btn>button:nth-child(3){
+  margin-right: 10px;
 }
