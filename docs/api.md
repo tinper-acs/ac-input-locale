@@ -11,11 +11,11 @@ $ ynpm install ac-input-locale --save-dev
 
 引入
 
-import AcInputLocale from 'ac-input-locale';
+import AcInputLocale from 'ac-input-locale/build/index';
 
 样式引入
 
-import 'ac-input-locale/dist/index.css';
+import 'ac-input-locale/build/InputLocale.css';
 ```
 
 ## 代码演示

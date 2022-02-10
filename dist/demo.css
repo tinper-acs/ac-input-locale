@@ -1,4 +1,3 @@
-@import url(../node_modules/@tinper/next-ui/dist/tinper-next.css);
 .ac-input-locale {
   position: relative;
   min-width: 100px;
@@ -297,7 +296,7 @@
 
 .demoPadding {
   padding: 10px;
-  width: 300px; }
+  width: 360px; }
   .demoPadding .u-button {
     width: 100px;
     margin-right: 10px;

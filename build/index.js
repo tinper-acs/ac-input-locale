@@ -445,12 +445,13 @@ var AcInputLocale = function (_Component) {
                 maskClosable: true,
                 placement: 'right',
                 secondPlacement: 'bottom',
-                className: 'ac-input-locale-popconfirm',
+                overlayClassName: 'ac-input-locale-popconfirm',
                 onClose: this.onOk,
                 onCancel: this.close,
                 show: this.state.showPop
                 // onClick={this.open}
                 , onRootClose: this.close,
+                icon: "",
                 content: this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)
               },
               this.props.showIcon ? _react2["default"].createElement('div', { className: 'input-pop-icon uf uf-globe' }) : _react2["default"].createElement('span', null)
@@ -565,12 +566,13 @@ var AcInputLocale = function (_Component) {
                 placement: 'right',
                 defaultOverlayShown: false,
                 secondPlacement: 'bottom',
-                className: 'ac-input-locale-popconfirm',
+                overlayClassName: 'ac-input-locale-popconfirm',
                 onClose: this.onOk,
                 onCancel: this.close,
                 show: this.state.showPop,
                 onClick: this.open,
                 onRootClose: this.close,
+                icon: "",
                 content: this.getLocaleNoFormElement(localeList, modalLocale, locale)
               },
               _react2["default"].createElement('div', { className: 'input-pop-icon' })
