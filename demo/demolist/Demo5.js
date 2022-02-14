@@ -108,6 +108,16 @@ import { Button, Form } from '@tinper/next-ui';
       console.log(localeValue)
     }
 
+    blur = (e) => {
+      console.log(e)
+      console.log('blur')
+    }
+
+   focus = (e) => {
+     console.log(e)
+     console.log('focus')
+   }
+
     save(e) {
       e.preventDefault();
       this.props.form.validateFields((err, values) => {
@@ -155,6 +165,8 @@ import { Button, Form } from '@tinper/next-ui';
                   status={status}
                   onChange={this.onChange}
                   required={required}
+                  onBlur={this.blur}
+                  onFocus={this.focus}
                 >
                 </AcInputLocale>
                 <Button onClick={this.save}>保存</Button>

@@ -418,7 +418,7 @@ class AcInputLocale extends Component {
     }
     render() {
       const self = this;
-      const { className, onChange, isTextarea, backdrop, disabled,forceSync } = this.props
+      const { className, onChange, isTextarea, backdrop, disabled,forceSync, onBlur, ...other } = this.props
       let { localeValue, locale, localeList, status, modalLocale, sysLocale, required, isPopConfirm } = this.state
       let defaultValue;
       if(localeList && localeList[sysLocale] && localeList[sysLocale].value) {
@@ -450,6 +450,7 @@ class AcInputLocale extends Component {
                 status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : (
                   <div>
                     <FormControl
+                      {...other}
                       className="input-text"
                       disabled={disabled}
                       {...formControlTypeOption}
@@ -464,6 +465,9 @@ class AcInputLocale extends Component {
                           }
                         },
                         initialValue: localeValue,
+                        onBlur: (v) => {
+                          onBlur && onBlur(v);
+                        },
                         onChange: (v) => {
                           Object.keys(localeList).forEach((localeKey)=>{
                             if(localeKey === locale){
@@ -501,7 +505,7 @@ class AcInputLocale extends Component {
                       content={this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)}
                     >
                       {
-                        this.props.showIcon?<div className="input-pop-icon uf uf-globe"></div>:<span></span>
+                        this.props.showIcon?<div className="input-pop-icon uf uf-globe" onMouseDown={(e) => {e.preventDefault();}}></div>:<span></span>
                       }
                     </Popconfirm>
                     {
@@ -521,6 +525,7 @@ class AcInputLocale extends Component {
               status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : (
                 <div>
                   <FormControl
+                    {...other}
                     className="input-text"
                     disabled={disabled}
                     {...formControlTypeOption}
@@ -535,6 +540,9 @@ class AcInputLocale extends Component {
                         }
                       },
                       initialValue: localeValue,
+                      onBlur: (v) => {
+                        onBlur && onBlur(v);
+                      },
                       onChange: (v) => {
                         Object.keys(localeList).forEach((localeKey)=>{
                           if(localeKey === locale){
@@ -557,7 +565,7 @@ class AcInputLocale extends Component {
                     ref={(input) => {this.textInput = input}}
                   />
                   {
-                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = {disabled?()=>{}: this.open } />:''
+                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = {disabled?()=>{}: this.open } onMouseDown={(e) => {e.preventDefault();}} />:''
                   }
                   
                   {
@@ -592,6 +600,7 @@ class AcInputLocale extends Component {
                 status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : (
                   <div>
                     <FormControl
+                      {...other}
                       className="input-text"
                       value={localeValue}
                       {...formControlTypeOption}
@@ -630,7 +639,7 @@ class AcInputLocale extends Component {
                       icon={""}
                       content={this.getLocaleNoFormElement(localeList, modalLocale, locale)}
                     >
-                      <div className="input-pop-icon">
+                      <div className="input-pop-icon" onMouseDown={(e) => {e.preventDefault();}}>
                       </div>
                     </Popconfirm>
                   </div>
@@ -645,6 +654,7 @@ class AcInputLocale extends Component {
               status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : (
                 <div>
                   <FormControl
+                    {...other}
                     className="input-text"
                     value={localeValue}
                     {...formControlTypeOption}
@@ -669,7 +679,7 @@ class AcInputLocale extends Component {
                     ref={(input) => {this.textInput = input}}
                   />
                   {
-                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = { this.open } />:''
+                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = { this.open } onMouseDown={(e) => {e.preventDefault();}} />:''
                   }
                 </div>
               )
