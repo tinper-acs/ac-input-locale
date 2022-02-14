@@ -466,7 +466,7 @@ class AcInputLocale extends Component {
                         },
                         initialValue: localeValue,
                         onBlur: (v) => {
-                          onBlur && onBlur(v);
+                          onBlur && onBlur(v, localeValue);
                         },
                         onChange: (v) => {
                           Object.keys(localeList).forEach((localeKey)=>{
@@ -541,7 +541,7 @@ class AcInputLocale extends Component {
                       },
                       initialValue: localeValue,
                       onBlur: (v) => {
-                        onBlur && onBlur(v);
+                        onBlur && onBlur(v, localeValue);
                       },
                       onChange: (v) => {
                         Object.keys(localeList).forEach((localeKey)=>{
@@ -624,7 +624,7 @@ class AcInputLocale extends Component {
                       }
                       onBlur={
                         (e) => {
-                          onBlur && onBlur(e);
+                          onBlur && onBlur(e, localeValue);
                         }
                       }
                       ref={(input) => {this.textInput = input}}
@@ -683,7 +683,7 @@ class AcInputLocale extends Component {
                     }
                     onBlur={
                       (e) => {
-                        onBlur && onBlur(e);
+                        onBlur && onBlur(e, localeValue);
                       }
                     }
                     ref={(input) => {this.textInput = input}}

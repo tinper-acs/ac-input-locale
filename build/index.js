@@ -424,7 +424,7 @@ var AcInputLocale = function (_Component) {
               },
               initialValue: localeValue,
               onBlur: function onBlur(v) {
-                _onBlur && _onBlur(v);
+                _onBlur && _onBlur(v, localeValue);
               },
               onChange: function onChange(v) {
                 Object.keys(localeList).forEach(function (localeKey) {
@@ -496,7 +496,7 @@ var AcInputLocale = function (_Component) {
             },
             initialValue: localeValue,
             onBlur: function onBlur(v) {
-              _onBlur && _onBlur(v);
+              _onBlur && _onBlur(v, localeValue);
             },
             onChange: function onChange(v) {
               Object.keys(localeList).forEach(function (localeKey) {
@@ -571,7 +571,7 @@ var AcInputLocale = function (_Component) {
                 e.stopPropagation();
               },
               onBlur: function onBlur(e) {
-                _onBlur && _onBlur(e);
+                _onBlur && _onBlur(e, localeValue);
               },
               ref: function ref(input) {
                 _this4.textInput = input;
@@ -628,7 +628,7 @@ var AcInputLocale = function (_Component) {
               e.stopPropagation();
             },
             onBlur: function onBlur(e) {
-              _onBlur && _onBlur(e);
+              _onBlur && _onBlur(e, localeValue);
             },
             ref: function ref(input) {
               _this4.textInput = input;

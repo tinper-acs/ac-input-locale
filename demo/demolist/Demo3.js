@@ -67,8 +67,9 @@ import { Button } from '@tinper/next-ui';
       console.log(localeValue)
     }
 
-   onBlur = (e) => {
+   onBlur = (e, v) => {
      console.log(e)
+     console.log(v)
      console.log('onBlur')
    }
 
