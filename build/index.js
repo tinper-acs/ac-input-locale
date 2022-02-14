@@ -225,6 +225,14 @@ var AcInputLocale = function (_Component) {
     }
   };
 
+  AcInputLocale.prototype.componentDidMount = function componentDidMount() {
+    document.addEventListener('click', this.onDocumentClick, false);
+  };
+
+  AcInputLocale.prototype.componentWillUnmount = function componentWillUnmount() {
+    document.removeEventListener('click', this.onDocumentClick, false);
+  };
+
   //校验处理
 
 
@@ -365,7 +373,7 @@ var AcInputLocale = function (_Component) {
         backdrop = _props.backdrop,
         disabled = _props.disabled,
         forceSync = _props.forceSync,
-        _onBlur = _props.onBlur,
+        onBlur = _props.onBlur,
         other = _objectWithoutProperties(_props, ['className', 'onChange', 'isTextarea', 'backdrop', 'disabled', 'forceSync', 'onBlur']);
 
     var _state = this.state,
@@ -424,7 +432,7 @@ var AcInputLocale = function (_Component) {
               },
               initialValue: localeValue,
               onBlur: function onBlur(v) {
-                _onBlur && _onBlur(v, localeValue);
+                _this4.blur(v, localeValue);
               },
               onChange: function onChange(v) {
                 Object.keys(localeList).forEach(function (localeKey) {
@@ -463,7 +471,7 @@ var AcInputLocale = function (_Component) {
                 icon: "",
                 content: this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)
               },
-              this.props.showIcon ? _react2["default"].createElement('div', { className: 'input-pop-icon uf uf-globe', onMouseDown: function onMouseDown(e) {
+              this.props.showIcon ? _react2["default"].createElement('div', { className: 'input-pop-icon uf uf-globe input-icon', onMouseDown: function onMouseDown(e) {
                   e.preventDefault();
                 } }) : _react2["default"].createElement('span', null)
             ),
@@ -496,7 +504,7 @@ var AcInputLocale = function (_Component) {
             },
             initialValue: localeValue,
             onBlur: function onBlur(v) {
-              _onBlur && _onBlur(v, localeValue);
+              _this4.blur(v, localeValue);
             },
             onChange: function onChange(v) {
               Object.keys(localeList).forEach(function (localeKey) {
@@ -571,7 +579,7 @@ var AcInputLocale = function (_Component) {
                 e.stopPropagation();
               },
               onBlur: function onBlur(e) {
-                _onBlur && _onBlur(e, localeValue);
+                _this4.blur(e, localeValue);
               },
               ref: function ref(input) {
                 _this4.textInput = input;
@@ -594,7 +602,7 @@ var AcInputLocale = function (_Component) {
                 icon: "",
                 content: this.getLocaleNoFormElement(localeList, modalLocale, locale)
               },
-              _react2["default"].createElement('div', { className: 'input-pop-icon', onMouseDown: function onMouseDown(e) {
+              _react2["default"].createElement('div', { className: 'input-pop-icon input-icon', onMouseDown: function onMouseDown(e) {
                   e.preventDefault();
                 } })
             )
@@ -628,7 +636,7 @@ var AcInputLocale = function (_Component) {
               e.stopPropagation();
             },
             onBlur: function onBlur(e) {
-              _onBlur && _onBlur(e, localeValue);
+              _this4.blur(e, localeValue);
             },
             ref: function ref(input) {
               _this4.textInput = input;
@@ -662,6 +670,14 @@ var AcInputLocale = function (_Component) {
 var _initialiseProps = function _initialiseProps() {
   var _this5 = this;
 
+  this.onDocumentClick = function (e) {
+    try {
+      _this5.clickDom = e.target;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   this.close = function () {
     var isPopConfirm = _this5.state.isPopConfirm;
 
@@ -670,6 +686,7 @@ var _initialiseProps = function _initialiseProps() {
 
   this.open = function (event) {
     event.stopPropagation();
+    _this5.clickDom = event.target;
     var _props2 = _this5.props,
         status = _props2.status,
         localeList = _props2.localeList;
@@ -684,6 +701,15 @@ var _initialiseProps = function _initialiseProps() {
     var isPopConfirm = _this5.state.isPopConfirm;
 
     isPopConfirm ? _this5.setState({ showPop: true }) : _this5.setState({ showModal: true });
+  };
+
+  this.blur = function (e, v) {
+    var onBlur = _this5.props.onBlur;
+
+    if (_this5.clickDom.className && _this5.clickDom.className.indexOf('input-icon') !== -1) {
+      return;
+    }
+    onBlur && onBlur(e, v);
   };
 
   this.onOk = function () {

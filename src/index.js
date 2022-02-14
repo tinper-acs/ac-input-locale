@@ -172,6 +172,22 @@ class AcInputLocale extends Component {
       }
     }
 
+    componentDidMount() {
+      document.addEventListener('click', this.onDocumentClick, false);
+    }
+
+    componentWillUnmount() {
+      document.removeEventListener('click', this.onDocumentClick, false);
+    }
+
+    onDocumentClick = e => {
+      try {
+        this.clickDom = e.target;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     close = () => {
       const { isPopConfirm } = this.state
       isPopConfirm ? this.setState({ showPop: false }) : this.setState({ showModal: false });
@@ -179,6 +195,7 @@ class AcInputLocale extends Component {
 
     open = (event) => {
       event.stopPropagation();
+      this.clickDom = event.target;
       let { status, localeList } = this.props;
       if(status === 'preview'){
         return
@@ -189,6 +206,14 @@ class AcInputLocale extends Component {
 
       const { isPopConfirm } = this.state
       isPopConfirm ? this.setState({ showPop: true }) : this.setState({ showModal: true });
+    }
+
+    blur = (e, v) => {
+      const { onBlur } = this.props;
+      if (this.clickDom.className && this.clickDom.className.indexOf('input-icon') !== -1) {
+        return;
+      }
+      onBlur && onBlur(e, v);
     }
 
     onOk = () => {
@@ -466,7 +491,7 @@ class AcInputLocale extends Component {
                         },
                         initialValue: localeValue,
                         onBlur: (v) => {
-                          onBlur && onBlur(v, localeValue);
+                          this.blur(v, localeValue);
                         },
                         onChange: (v) => {
                           Object.keys(localeList).forEach((localeKey)=>{
@@ -505,7 +530,7 @@ class AcInputLocale extends Component {
                       content={this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)}
                     >
                       {
-                        this.props.showIcon?<div className="input-pop-icon uf uf-globe" onMouseDown={(e) => {e.preventDefault();}}></div>:<span></span>
+                        this.props.showIcon?<div className="input-pop-icon uf uf-globe input-icon" onMouseDown={(e) => {e.preventDefault();}}></div>:<span></span>
                       }
                     </Popconfirm>
                     {
@@ -541,7 +566,7 @@ class AcInputLocale extends Component {
                       },
                       initialValue: localeValue,
                       onBlur: (v) => {
-                        onBlur && onBlur(v, localeValue);
+                        this.blur(v, localeValue);
                       },
                       onChange: (v) => {
                         Object.keys(localeList).forEach((localeKey)=>{
@@ -624,7 +649,7 @@ class AcInputLocale extends Component {
                       }
                       onBlur={
                         (e) => {
-                          onBlur && onBlur(e, localeValue);
+                          this.blur(e, localeValue);
                         }
                       }
                       ref={(input) => {this.textInput = input}}
@@ -644,7 +669,7 @@ class AcInputLocale extends Component {
                       icon={""}
                       content={this.getLocaleNoFormElement(localeList, modalLocale, locale)}
                     >
-                      <div className="input-pop-icon" onMouseDown={(e) => {e.preventDefault();}}>
+                      <div className="input-pop-icon input-icon" onMouseDown={(e) => {e.preventDefault();}}>
                       </div>
                     </Popconfirm>
                   </div>
@@ -683,7 +708,7 @@ class AcInputLocale extends Component {
                     }
                     onBlur={
                       (e) => {
-                        onBlur && onBlur(e, localeValue);
+                        this.blur(e, localeValue);
                       }
                     }
                     ref={(input) => {this.textInput = input}}
