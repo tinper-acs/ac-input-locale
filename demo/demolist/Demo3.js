@@ -67,6 +67,11 @@ import { Button } from '@tinper/next-ui';
       console.log(localeValue)
     }
 
+   onBlur = (e) => {
+     console.log(e)
+     console.log('onBlur')
+   }
+
     render () {
         let {localeList,sysLocale,locale,status,localeJson,backdrop} = this.state;
         // let modalLocale = {
@@ -93,7 +98,7 @@ import { Button } from '@tinper/next-ui';
                   <br/>
                   当前语种：{locale}
                 </div>
-                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} backdrop={backdrop} onChange={this.onChange}></AcInputLocale>
+                名称：<AcInputLocale localeList={localeList} sysLocale={sysLocale} onOk={this.onOk} locale={locale} status={status} backdrop={backdrop} onChange={this.onChange} onBlur={this.onBlur}></AcInputLocale>
             </div>
         )
     }

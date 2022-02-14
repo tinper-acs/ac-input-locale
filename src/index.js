@@ -622,6 +622,11 @@ class AcInputLocale extends Component {
                           e.stopPropagation()
                         }
                       }
+                      onBlur={
+                        (e) => {
+                          onBlur && onBlur(e);
+                        }
+                      }
                       ref={(input) => {this.textInput = input}}
                     />
                     <Popconfirm
@@ -674,6 +679,11 @@ class AcInputLocale extends Component {
                     onClick={
                       (e) => {
                         e.stopPropagation()
+                      }
+                    }
+                    onBlur={
+                      (e) => {
+                        onBlur && onBlur(e);
                       }
                     }
                     ref={(input) => {this.textInput = input}}
