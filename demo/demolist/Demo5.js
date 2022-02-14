@@ -108,8 +108,9 @@ import { Button, Form } from '@tinper/next-ui';
       console.log(localeValue)
     }
 
-    blur = (e) => {
+    blur = (e,v) => {
       console.log(e)
+      console.log(v)
       console.log('blur')
     }
 
