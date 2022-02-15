@@ -216,6 +216,14 @@ class AcInputLocale extends Component {
       onBlur && onBlur(e, v);
     }
 
+  handleKeyDown = e => {
+    const { onKeyDown, onPressEnter } = this.props;
+    if (e.keyCode === 13) {
+      onPressEnter && onPressEnter(e);
+    }
+    onKeyDown && onKeyDown(e);
+  };
+
     onOk = () => {
       const { localeList, locale } = this.state
       let localeListProp = this.props.localeList;
@@ -512,6 +520,7 @@ class AcInputLocale extends Component {
                           e.stopPropagation()
                         }
                       }
+                      onKeyDown={this.handleKeyDown}
                       ref={(input) => {this.textInput = input}}
                     />
                     <Popconfirm
@@ -587,6 +596,7 @@ class AcInputLocale extends Component {
                         e.stopPropagation()
                       }
                     }
+                    onKeyDown={this.handleKeyDown}
                     ref={(input) => {this.textInput = input}}
                   />
                   {
@@ -652,6 +662,7 @@ class AcInputLocale extends Component {
                           this.blur(e, localeValue);
                         }
                       }
+                      onKeyDown={this.handleKeyDown}
                       ref={(input) => {this.textInput = input}}
                     />
                     <Popconfirm
@@ -711,6 +722,7 @@ class AcInputLocale extends Component {
                         this.blur(e, localeValue);
                       }
                     }
+                    onKeyDown={this.handleKeyDown}
                     ref={(input) => {this.textInput = input}}
                   />
                   {

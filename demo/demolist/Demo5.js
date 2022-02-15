@@ -119,6 +119,16 @@ import { Button, Form } from '@tinper/next-ui';
      console.log('focus')
    }
 
+   onPressEnter = e => {
+     console.log(e)
+     console.log('onPressEnter')
+   }
+
+   onKeyDown = e => {
+     console.log(e)
+     console.log('onKeyDown')
+   }
+
     save(e) {
       e.preventDefault();
       this.props.form.validateFields((err, values) => {
@@ -168,6 +178,8 @@ import { Button, Form } from '@tinper/next-ui';
                   required={required}
                   onBlur={this.blur}
                   onFocus={this.focus}
+                  onPressEnter={this.onPressEnter}
+                  onKeyDown={this.onKeyDown}
                 >
                 </AcInputLocale>
                 <Button onClick={this.save}>保存</Button>
