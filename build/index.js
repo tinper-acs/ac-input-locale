@@ -450,6 +450,7 @@ var AcInputLocale = function (_Component) {
               onClick: function onClick(e) {
                 e.stopPropagation();
               },
+              onKeyDown: this.handleKeyDown,
               ref: function ref(input) {
                 _this4.textInput = input;
               }
@@ -522,6 +523,7 @@ var AcInputLocale = function (_Component) {
             onClick: function onClick(e) {
               e.stopPropagation();
             },
+            onKeyDown: this.handleKeyDown,
             ref: function ref(input) {
               _this4.textInput = input;
             }
@@ -581,6 +583,7 @@ var AcInputLocale = function (_Component) {
               onBlur: function onBlur(e) {
                 _this4.blur(e, localeValue);
               },
+              onKeyDown: this.handleKeyDown,
               ref: function ref(input) {
                 _this4.textInput = input;
               }
@@ -638,6 +641,7 @@ var AcInputLocale = function (_Component) {
             onBlur: function onBlur(e) {
               _this4.blur(e, localeValue);
             },
+            onKeyDown: this.handleKeyDown,
             ref: function ref(input) {
               _this4.textInput = input;
             }
@@ -710,6 +714,17 @@ var _initialiseProps = function _initialiseProps() {
       return;
     }
     onBlur && onBlur(e, v);
+  };
+
+  this.handleKeyDown = function (e) {
+    var _props3 = _this5.props,
+        onKeyDown = _props3.onKeyDown,
+        onPressEnter = _props3.onPressEnter;
+
+    if (e.keyCode === 13) {
+      onPressEnter && onPressEnter(e);
+    }
+    onKeyDown && onKeyDown(e);
   };
 
   this.onOk = function () {
@@ -859,9 +874,9 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.forceSyncChange = function (localeList, value) {
-    var _props3 = _this5.props,
-        inputId = _props3.inputId,
-        form = _props3.form;
+    var _props4 = _this5.props,
+        inputId = _props4.inputId,
+        form = _props4.form;
 
     Object.keys(localeList).map(function (item) {
       localeList[item].value = value;
