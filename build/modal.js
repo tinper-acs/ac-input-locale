@@ -113,6 +113,7 @@ var ModalWrap = function (_Component) {
         mask: backdrop,
         className: 'ac-input-locale-modal',
         onCancel: close,
+        destroyOnClose: false,
         enforceFocus: false
       },
       _react2["default"].createElement(

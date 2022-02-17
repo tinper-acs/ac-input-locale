@@ -395,6 +395,9 @@ class AcInputLocale extends Component {
     }
     getLocaleFormElement (localeList, modalLocale, locale, getFieldProps, getFieldError) {
       return Object.keys(localeList).map((localeKey)=> {
+        const props = localeList[localeKey].props || {};
+        const rulesArr = localeList[localeKey].rules || [];
+        const validateTrigger = localeList[localeKey].validateTrigger || 'onBlur';
         return (<div className='edit-panel edit-panel-all' key={localeKey}>
           <FormItem>
             <div className="wui-form-item-label">
@@ -411,15 +414,19 @@ class AcInputLocale extends Component {
             <div style={{'display':'inline-block','width':'calc(100% - 130px)'}}>
               <div>
                 <FormControl
+                  {...props}
                   placeholder={modalLocale[locale].placeholder}
                   {...getFieldProps(this.props.inputId + "_" +localeKey, {
-                    validateTrigger: 'onBlur',
+                    validateTrigger: validateTrigger,
                     initialValue: localeList[localeKey].value,
                     rules: [{
                       required: localeList[localeKey].required, message: localeList[localeKey].errorMessage,
-                    }],
+                    }, ...rulesArr],
+                    onBlur: (v) => {
+                      props.onBlur && props.onBlur(v);
+                    },
                     onChange:(v)=>{
-                      localeList = JSON.parse(JSON.stringify(localeList));
+                      //localeList = JSON.parse(JSON.stringify(localeList));
                       localeList[localeKey].value=v
                       this.setState({
                         localeList

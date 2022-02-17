@@ -30,6 +30,8 @@ function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaul
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -306,6 +308,9 @@ var AcInputLocale = function (_Component) {
     var _this3 = this;
 
     return Object.keys(localeList).map(function (localeKey) {
+      var props = localeList[localeKey].props || {};
+      var rulesArr = localeList[localeKey].rules || [];
+      var validateTrigger = localeList[localeKey].validateTrigger || 'onBlur';
       return _react2["default"].createElement(
         'div',
         { className: 'edit-panel edit-panel-all', key: localeKey },
@@ -329,16 +334,19 @@ var AcInputLocale = function (_Component) {
             _react2["default"].createElement(
               'div',
               null,
-              _react2["default"].createElement(_FormControl2["default"], _extends({
+              _react2["default"].createElement(_FormControl2["default"], _extends({}, props, {
                 placeholder: modalLocale[locale].placeholder
               }, getFieldProps(_this3.props.inputId + "_" + localeKey, {
-                validateTrigger: 'onBlur',
+                validateTrigger: validateTrigger,
                 initialValue: localeList[localeKey].value,
                 rules: [{
                   required: localeList[localeKey].required, message: localeList[localeKey].errorMessage
-                }],
+                }].concat(_toConsumableArray(rulesArr)),
+                onBlur: function onBlur(v) {
+                  props.onBlur && props.onBlur(v);
+                },
                 onChange: function onChange(v) {
-                  localeList = JSON.parse(JSON.stringify(localeList));
+                  //localeList = JSON.parse(JSON.stringify(localeList));
                   localeList[localeKey].value = v;
                   _this3.setState({
                     localeList: localeList

@@ -97,6 +97,7 @@ class ModalWrap extends Component {
         onCancel = {
           close
         }
+        destroyOnClose={false}
         enforceFocus={ false }
       >
         <Modal.Header closeButton={true}>
