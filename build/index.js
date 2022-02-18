@@ -718,7 +718,7 @@ var _initialiseProps = function _initialiseProps() {
   this.blur = function (e, v) {
     var onBlur = _this5.props.onBlur;
 
-    if (_this5.clickDom.className && _this5.clickDom.className.indexOf('input-icon') !== -1) {
+    if (_this5.clickDom && _this5.clickDom.className && _this5.clickDom.className.indexOf('input-icon') !== -1) {
       return;
     }
     onBlur && onBlur(e, v);

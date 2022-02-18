@@ -210,7 +210,7 @@ class AcInputLocale extends Component {
 
     blur = (e, v) => {
       const { onBlur } = this.props;
-      if (this.clickDom.className && this.clickDom.className.indexOf('input-icon') !== -1) {
+      if (this.clickDom && this.clickDom.className && this.clickDom.className.indexOf('input-icon') !== -1) {
         return;
       }
       onBlur && onBlur(e, v);
