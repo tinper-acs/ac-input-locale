@@ -352,6 +352,7 @@ var AcInputLocale = function (_Component) {
                     localeList: localeList
                   });
                 } }), {
+                value: localeList[localeKey].value,
                 onClick: function onClick(e) {
                   e.stopPropagation();
                 }
@@ -473,7 +474,7 @@ var AcInputLocale = function (_Component) {
                 secondPlacement: 'bottom',
                 overlayClassName: 'ac-input-locale-popconfirm',
                 onClose: this.onOk,
-                onCancel: this.close,
+                onCancel: this.onCancel,
                 show: this.state.showPop
                 // onClick={this.open}
                 , onRootClose: this.close,
@@ -606,7 +607,7 @@ var AcInputLocale = function (_Component) {
                 secondPlacement: 'bottom',
                 overlayClassName: 'ac-input-locale-popconfirm',
                 onClose: this.onOk,
-                onCancel: this.close,
+                onCancel: this.onCancel,
                 show: this.state.showPop,
                 onClick: this.open,
                 onRootClose: this.close,
@@ -778,6 +779,9 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.onCancel = function () {
+    var onCancel = _this5.props.onCancel;
+
+    onCancel && onCancel();
     _this5.close();
   };
 

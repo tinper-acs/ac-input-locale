@@ -131,6 +131,10 @@ import { Button, Form } from '@tinper/next-ui';
      console.log('onKeyDown')
    }
 
+   onCancel = () => {
+     console.log('onCancel')
+   }
+
     save(e) {
       e.preventDefault();
       this.props.form.validateFields((err, values) => {
@@ -182,6 +186,7 @@ import { Button, Form } from '@tinper/next-ui';
                   onFocus={this.focus}
                   onPressEnter={this.onPressEnter}
                   onKeyDown={this.onKeyDown}
+                  onCancel={this.onCancel}
                 >
                 </AcInputLocale>
                 <Button onClick={this.save}>保存</Button>

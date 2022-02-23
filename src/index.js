@@ -216,13 +216,13 @@ class AcInputLocale extends Component {
       onBlur && onBlur(e, v);
     }
 
-  handleKeyDown = e => {
-    const { onKeyDown, onPressEnter } = this.props;
-    if (e.keyCode === 13) {
-      onPressEnter && onPressEnter(e);
-    }
-    onKeyDown && onKeyDown(e);
-  };
+    handleKeyDown = e => {
+      const { onKeyDown, onPressEnter } = this.props;
+      if (e.keyCode === 13) {
+        onPressEnter && onPressEnter(e);
+      }
+      onKeyDown && onKeyDown(e);
+    };
 
     onOk = () => {
       const { localeList, locale } = this.state
@@ -263,6 +263,8 @@ class AcInputLocale extends Component {
     }
 
     onCancel = () => {
+      let { onCancel } = this.props;
+      onCancel && onCancel();
       this.close()
     }
 
@@ -433,6 +435,7 @@ class AcInputLocale extends Component {
                       })
                     }}
                   ) }
+                  value={localeList[localeKey].value}
                   onClick={
                     (e) => {
                       e.stopPropagation()
@@ -538,7 +541,7 @@ class AcInputLocale extends Component {
                       secondPlacement="bottom"
                       overlayClassName="ac-input-locale-popconfirm"
                       onClose={this.onOk}
-                      onCancel={this.close}
+                      onCancel={this.onCancel}
                       show={this.state.showPop}
                       // onClick={this.open}
                       onRootClose={this.close}
@@ -680,7 +683,7 @@ class AcInputLocale extends Component {
                       secondPlacement="bottom"
                       overlayClassName="ac-input-locale-popconfirm"
                       onClose={this.onOk}
-                      onCancel={this.close}
+                      onCancel={this.onCancel}
                       show={this.state.showPop}
                       onClick={this.open}
                       onRootClose={this.close}
