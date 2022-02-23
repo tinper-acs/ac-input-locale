@@ -352,7 +352,6 @@ var AcInputLocale = function (_Component) {
                     localeList: localeList
                   });
                 } }), {
-                value: localeList[localeKey].value,
                 onClick: function onClick(e) {
                   e.stopPropagation();
                 }
