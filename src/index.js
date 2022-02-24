@@ -230,12 +230,16 @@ class AcInputLocale extends Component {
       let { inputId } = this.props;
       let localeValue;
       let validatedArray = [];
+      // console.log('onOk',localeList)
       Object.keys(localeList).forEach((localeKey) => {
         validatedArray.push(inputId + "_"+ localeKey);
         if(localeKey === locale) {
           localeValue = localeList[localeKey].value
         }
+        const { rules = [], props = {} } = localeListProp[localeKey];
         localeListProp[localeKey] = localeList[localeKey]
+        localeListProp[localeKey].rules = rules
+        localeListProp[localeKey].props = props
       })
 
       this.setState({
@@ -396,9 +400,12 @@ class AcInputLocale extends Component {
       return localeList;
     }
     getLocaleFormElement (localeList, modalLocale, locale, getFieldProps, getFieldError) {
+      const { localeList:propsLocaleList } = this.props
+      // console.log('getLocaleFormElement-localeList',localeList)
+      // console.log('getLocaleFormElement-propsLocaleList',propsLocaleList)
       return Object.keys(localeList).map((localeKey)=> {
-        const props = localeList[localeKey].props || {};
-        const rulesArr = localeList[localeKey].rules || [];
+        const props = propsLocaleList[localeKey].props || {};
+        const rulesArr = propsLocaleList[localeKey].rules || [];
         const validateTrigger = localeList[localeKey].validateTrigger || 'onBlur';
         return (<div className='edit-panel edit-panel-all' key={localeKey}>
           <FormItem>
@@ -428,13 +435,16 @@ class AcInputLocale extends Component {
                       props.onBlur && props.onBlur(v);
                     },
                     onChange:(v)=>{
-                      //localeList = JSON.parse(JSON.stringify(localeList));
+                      localeList = JSON.parse(JSON.stringify(localeList));
                       localeList[localeKey].value=v
+                      // console.log('onChange-propsLocaleList',propsLocaleList)
+                      // console.log('onChange-localeList',localeList)
                       this.setState({
                         localeList
                       })
                     }}
                   ) }
+                  value={localeList[localeKey].value}
                   onClick={
                     (e) => {
                       e.stopPropagation()

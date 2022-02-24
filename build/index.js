@@ -307,9 +307,13 @@ var AcInputLocale = function (_Component) {
   AcInputLocale.prototype.getLocaleFormElement = function getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError) {
     var _this3 = this;
 
+    var propsLocaleList = this.props.localeList;
+    // console.log('getLocaleFormElement-localeList',localeList)
+    // console.log('getLocaleFormElement-propsLocaleList',propsLocaleList)
+
     return Object.keys(localeList).map(function (localeKey) {
-      var props = localeList[localeKey].props || {};
-      var rulesArr = localeList[localeKey].rules || [];
+      var props = propsLocaleList[localeKey].props || {};
+      var rulesArr = propsLocaleList[localeKey].rules || [];
       var validateTrigger = localeList[localeKey].validateTrigger || 'onBlur';
       return _react2["default"].createElement(
         'div',
@@ -346,12 +350,15 @@ var AcInputLocale = function (_Component) {
                   props.onBlur && props.onBlur(v);
                 },
                 onChange: function onChange(v) {
-                  //localeList = JSON.parse(JSON.stringify(localeList));
+                  localeList = JSON.parse(JSON.stringify(localeList));
                   localeList[localeKey].value = v;
+                  // console.log('onChange-propsLocaleList',propsLocaleList)
+                  // console.log('onChange-localeList',localeList)
                   _this3.setState({
                     localeList: localeList
                   });
                 } }), {
+                value: localeList[localeKey].value,
                 onClick: function onClick(e) {
                   e.stopPropagation();
                 }
@@ -745,12 +752,21 @@ var _initialiseProps = function _initialiseProps() {
 
     var localeValue = void 0;
     var validatedArray = [];
+    // console.log('onOk',localeList)
     Object.keys(localeList).forEach(function (localeKey) {
       validatedArray.push(inputId + "_" + localeKey);
       if (localeKey === locale) {
         localeValue = localeList[localeKey].value;
       }
+      var _localeListProp$local = localeListProp[localeKey],
+          _localeListProp$local2 = _localeListProp$local.rules,
+          rules = _localeListProp$local2 === undefined ? [] : _localeListProp$local2,
+          _localeListProp$local3 = _localeListProp$local.props,
+          props = _localeListProp$local3 === undefined ? {} : _localeListProp$local3;
+
       localeListProp[localeKey] = localeList[localeKey];
+      localeListProp[localeKey].rules = rules;
+      localeListProp[localeKey].props = props;
     });
 
     _this5.setState({
