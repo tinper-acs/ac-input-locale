@@ -346,8 +346,8 @@ var AcInputLocale = function (_Component) {
                 rules: [{
                   required: localeList[localeKey].required, message: localeList[localeKey].errorMessage
                 }].concat(_toConsumableArray(rulesArr)),
-                onBlur: function onBlur(v) {
-                  props.onBlur && props.onBlur(v);
+                onBlur: function onBlur(e) {
+                  props.onBlur && props.onBlur(e, localeList[localeKey].value);
                 },
                 onChange: function onChange(v) {
                   localeList = JSON.parse(JSON.stringify(localeList));

@@ -431,8 +431,8 @@ class AcInputLocale extends Component {
                     rules: [{
                       required: localeList[localeKey].required, message: localeList[localeKey].errorMessage,
                     }, ...rulesArr],
-                    onBlur: (v) => {
-                      props.onBlur && props.onBlur(v);
+                    onBlur: (e) => {
+                      props.onBlur && props.onBlur(e, localeList[localeKey].value);
                     },
                     onChange:(v)=>{
                       localeList = JSON.parse(JSON.stringify(localeList));
