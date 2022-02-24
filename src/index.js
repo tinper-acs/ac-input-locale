@@ -407,6 +407,10 @@ class AcInputLocale extends Component {
         const props = propsLocaleList[localeKey].props || {};
         const rulesArr = propsLocaleList[localeKey].rules || [];
         const validateTrigger = localeList[localeKey].validateTrigger || 'onBlur';
+        const onBlurObj = {}
+        if (validateTrigger === 'onChange') {
+          onBlurObj.onBlur = (e) => { props.onBlur && props.onBlur(e, localeList[localeKey].value)}
+        }
         return (<div className='edit-panel edit-panel-all' key={localeKey}>
           <FormItem>
             <div className="wui-form-item-label">
@@ -444,17 +448,13 @@ class AcInputLocale extends Component {
                       })
                     }}
                   ) }
-                  onBlur = {
-                    (e) => {
-                      props.onBlur && props.onBlur(e, localeList[localeKey].value);
-                    }
-                  }
                   // value={localeList[localeKey].value}
                   onClick={
                     (e) => {
                       e.stopPropagation()
                     }
                   }
+                  {...onBlurObj}
                 />
                 {
                   this.props.showIcon? <div className="input-icon" onClick = { this.open } ></div>:''

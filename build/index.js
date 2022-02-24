@@ -315,6 +315,12 @@ var AcInputLocale = function (_Component) {
       var props = propsLocaleList[localeKey].props || {};
       var rulesArr = propsLocaleList[localeKey].rules || [];
       var validateTrigger = localeList[localeKey].validateTrigger || 'onBlur';
+      var onBlurObj = {};
+      if (validateTrigger === 'onChange') {
+        onBlurObj.onBlur = function (e) {
+          props.onBlur && props.onBlur(e, localeList[localeKey].value);
+        };
+      }
       return _react2["default"].createElement(
         'div',
         { className: 'edit-panel edit-panel-all', key: localeKey },
@@ -358,14 +364,11 @@ var AcInputLocale = function (_Component) {
                     localeList: localeList
                   });
                 } }), {
-                onBlur: function onBlur(e) {
-                  props.onBlur && props.onBlur(e, localeList[localeKey].value);
-                }
                 // value={localeList[localeKey].value}
-                , onClick: function onClick(e) {
+                onClick: function onClick(e) {
                   e.stopPropagation();
                 }
-              })),
+              }, onBlurObj)),
               _this3.props.showIcon ? _react2["default"].createElement('div', { className: 'input-icon', onClick: _this3.open }) : '',
               getFieldError(_this3.props.inputId + "_" + localeKey) ? _react2["default"].createElement(
                 'span',
