@@ -444,7 +444,7 @@ class AcInputLocale extends Component {
                       })
                     }}
                   ) }
-                  value={localeList[localeKey].value}
+                  // value={localeList[localeKey].value}
                   onClick={
                     (e) => {
                       e.stopPropagation()
