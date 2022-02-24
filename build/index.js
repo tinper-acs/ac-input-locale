@@ -358,8 +358,11 @@ var AcInputLocale = function (_Component) {
                     localeList: localeList
                   });
                 } }), {
+                onBlur: function onBlur(e) {
+                  props.onBlur && props.onBlur(e, localeList[localeKey].value);
+                }
                 // value={localeList[localeKey].value}
-                onClick: function onClick(e) {
+                , onClick: function onClick(e) {
                   e.stopPropagation();
                 }
               })),

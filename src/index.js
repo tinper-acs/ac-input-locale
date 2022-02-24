@@ -444,6 +444,11 @@ class AcInputLocale extends Component {
                       })
                     }}
                   ) }
+                  onBlur = {
+                    (e) => {
+                      props.onBlur && props.onBlur(e, localeList[localeKey].value);
+                    }
+                  }
                   // value={localeList[localeKey].value}
                   onClick={
                     (e) => {
