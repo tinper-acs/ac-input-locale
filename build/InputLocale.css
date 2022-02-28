@@ -170,7 +170,8 @@
     .ac-input-locale-modal .edit-panel-all .wui-form-item .wui-input {
       width: 100%; } }
   .ac-input-locale-modal .edit-panel-all .wui-form-item .error {
-    margin-left: 0; }
+    margin-left: 0;
+    padding-left: 0; }
 
 .ac-input-locale-modal .label-default {
   font-weight: 400;
@@ -285,7 +286,8 @@
     .ac-input-locale-popconfirm .edit-panel-all .wui-form-item .wui-input {
       width: 100%; } }
   .ac-input-locale-popconfirm .edit-panel-all .wui-form-item .error {
-    margin-left: 0; }
+    margin-left: 0;
+    padding-left: 0; }
 
 .ac-input-locale-popconfirm .label-default {
   font-weight: 400;

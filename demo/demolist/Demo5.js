@@ -60,8 +60,8 @@ import { Button, Form } from '@tinper/next-ui';
       this.setState({
         localeList:{
           "zh_CN":{"label":"简体中文","value":"tttt",props:{maxLength: 10,onBlur: (e,v) => {console.log(e,v)}},rules:[{pattern: /^[\u4e00-\u9fa5]+$/, message: '简体中文格式错误'}],validateTrigger:'onChange' },
-          "en_US":{"label":"英文","value":"",props:{maxLength: 10, onBlur: (e,v) => {console.log(e,v)}},rules:[{pattern: /^[a-zA-Z0-9]+$/, message: '英文格式错误'}] },
-          "zh_TW":{"label":"繁体中文","value":"",props:{maxLength: 10,onBlur: (e,v) => {console.log(e,v)}},rules:[{pattern: /^[\u4e00-\u9fa5]+$/, message: '繁体中文格式错误'}],validateTrigger:'onChange'},
+          "en_US":{"label":"英文","value":"",props:{maxLength: 10, onBlur: (e,v) => {console.log(e,v)}},rules:[{pattern: /^[a-zA-Z0-9]+$/, message: '英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误'}] },
+          "zh_TW":{"label":"繁体中文","value":"",props:{maxLength: 10,onBlur: (e,v) => {console.log(e,v)}},rules:[{pattern: /^[\u4e00-\u9fa5]+$/, message: '繁体中文格式错误繁体中文格式错误繁体中文格式错误繁体中文格式错误繁体中文格式错误繁体中文格式错误'}],validateTrigger:'onChange'},
         }
         //   {
         //     "zh_CN":{"label":"简体中文","value":"","errorMsg":"不能为空"},
@@ -90,7 +90,7 @@ import { Button, Form } from '@tinper/next-ui';
     }
 
     onOk=(localeList)=>{
-      console.log(localeList)
+      console.log('oK',localeList)
     }
 
     onClick = (key)=>{
