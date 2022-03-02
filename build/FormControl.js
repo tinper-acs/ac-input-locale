@@ -14,6 +14,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -42,11 +44,15 @@ var FormControl = function (_Component) {
     }
 
     FormControl.prototype.render = function render() {
+        var _props = this.props,
+            required = _props.required,
+            other = _objectWithoutProperties(_props, ['required']);
+
         var classes = 'wui-input';
         if (this.props.className) {
             classes = 'wui-input ' + this.props.className;
         }
-        return _react2["default"].createElement('input', _extends({}, this.props, { className: classes, onChange: this.onChange }));
+        return _react2["default"].createElement('input', _extends({}, other, { className: classes, onChange: this.onChange }));
     };
 
     return FormControl;

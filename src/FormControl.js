@@ -18,12 +18,13 @@ class FormControl extends Component {
         this.props.onChange(e.target.value)
     }
     render () {
+        const { required, ...other} = this.props;
         let classes = 'wui-input';
         if(this.props.className){
             classes = 'wui-input '+this.props.className;
         }
         return (
-            <input {...this.props} className={classes} onChange={this.onChange} />
+            <input {...other} className={classes} onChange={this.onChange} />
         )
     }
 }
