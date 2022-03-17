@@ -90,20 +90,18 @@
   font-weight: normal;
   color: #474d54; }
 
-.ac-input-locale-modal .wui-modal-body {
-  background: #F7F9FB; }
-
 .ac-input-locale-modal .edit-panel .padding-right-0 {
   padding-right: 0; }
 
 .ac-input-locale-modal .edit-panel .wui-form-item {
   display: block;
-  min-width: 100%;
-  min-height: 58px; }
+  min-width: 100%; }
   .ac-input-locale-modal .edit-panel .wui-form-item .wui-form-item-label {
     display: inline-block;
     float: left;
     width: 130px; }
+    .ac-input-locale-modal .edit-panel .wui-form-item .wui-form-item-label > label:after {
+      content: ''; }
   .ac-input-locale-modal .edit-panel .wui-form-item .error {
     margin-left: 100px;
     color: #f53c32;

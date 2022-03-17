@@ -113,7 +113,7 @@ $prefix: wui;
       color:rgba(71,77,84,1);
     }
     .#{$prefix}-modal-body{
-      background: #F7F9FB;
+      // background: #F7F9FB;
     }
   
     .edit-panel {
@@ -124,12 +124,16 @@ $prefix: wui;
       .#{$prefix}-form-item {
           display: block;
           min-width: 100%;
-          min-height: 58px;
+          // min-height: 58px;
   
           .#{$prefix}-form-item-label{
               display: inline-block;
               float: left;
               width: 130px;
+
+              &>label:after{
+                content: '';
+              }
           }
           .error {
               margin-left: 100px;
@@ -235,6 +239,7 @@ $prefix: wui;
       line-height:20px;
       padding-right:5px;
     }
+
   }
   
   

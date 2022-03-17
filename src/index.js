@@ -359,13 +359,13 @@ class AcInputLocale extends Component {
                 {
                   this.isShowNoneLeftLable ? this.renderLabelLeft(localeKey) : null
                 }
-                {localeList[localeKey].label}
                 {
                    this.renderLabelright(localeKey)
                 }
+                {localeList[localeKey].label}
               </label>
             </div>
-            <div style={{'display':'inline-block','width':'calc(100% - 130px)'}}>
+            <div style={{'display':'inline-block','width':'calc(100% - 230px)'}}>
               <FormControl
                 placeholder={modalLocale[locale].placeholder}
                 onChange={(v)=>{
@@ -418,13 +418,13 @@ class AcInputLocale extends Component {
                 {
                   this.isShowNoneLeftLable ? this.renderLabelLeft(localeKey) : null
                 }
-                {localeList[localeKey].label}
                 {
                   this.renderLabelright(localeKey)
                 }
+                {localeList[localeKey].label}
               </label>
             </div>
-            <div style={{'display':'inline-block','width':'calc(100% - 130px)'}}>
+            <div style={{'display':'inline-block','width':'calc(100% - 230px)'}}>
               <div>
                 <FormControl
                   {...props}

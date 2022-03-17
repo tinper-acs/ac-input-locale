@@ -280,13 +280,13 @@ var AcInputLocale = function (_Component) {
               'label',
               { title: localeList[localeKey].label },
               _this2.isShowNoneLeftLable ? _this2.renderLabelLeft(localeKey) : null,
-              localeList[localeKey].label,
-              _this2.renderLabelright(localeKey)
+              _this2.renderLabelright(localeKey),
+              localeList[localeKey].label
             )
           ),
           _react2["default"].createElement(
             'div',
-            { style: { 'display': 'inline-block', 'width': 'calc(100% - 130px)' } },
+            { style: { 'display': 'inline-block', 'width': 'calc(100% - 230px)' } },
             _react2["default"].createElement(_FormControl2["default"], {
               placeholder: modalLocale[locale].placeholder,
               onChange: function onChange(v) {
@@ -334,13 +334,13 @@ var AcInputLocale = function (_Component) {
               'label',
               { title: localeList[localeKey].label },
               _this3.isShowNoneLeftLable ? _this3.renderLabelLeft(localeKey) : null,
-              localeList[localeKey].label,
-              _this3.renderLabelright(localeKey)
+              _this3.renderLabelright(localeKey),
+              localeList[localeKey].label
             )
           ),
           _react2["default"].createElement(
             'div',
-            { style: { 'display': 'inline-block', 'width': 'calc(100% - 130px)' } },
+            { style: { 'display': 'inline-block', 'width': 'calc(100% - 230px)' } },
             _react2["default"].createElement(
               'div',
               null,
