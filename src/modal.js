@@ -28,7 +28,8 @@ class ModalWrap extends Component {
       cancelName: props.cancelName,
       backdrop: props.backdrop,
       onOk: props.onOk,
-      onCancel: props.onCancel
+      onCancel: props.onCancel,
+      modalProps:props.modalProps
     }
   }
 
@@ -86,10 +87,12 @@ class ModalWrap extends Component {
       onOk,
       onCancel,
       showModal,
-      close
+      close,
+      modalProps
     } = this.state
     return (
       <Modal
+        {...modalProps}
         visible = {showModal}
         width = '600'
         mask={backdrop}

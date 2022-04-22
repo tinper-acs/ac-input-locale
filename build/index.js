@@ -53,7 +53,8 @@ var propTypes = {
   backdrop: _propTypes2["default"].bool, //是否弹出遮罩层/遮罩层点击是否触发关闭
   required: _propTypes2["default"].bool, // 是否要求当前语种和系统语种必填
   isPopConfirm: _propTypes2["default"].bool, // 录入时是否是popconfirm,还是modal的样式
-  showIcon: _propTypes2["default"].bool
+  showIcon: _propTypes2["default"].bool,
+  modalProps: _propTypes2["default"].object
 };
 
 var defaultProps = {
@@ -395,7 +396,8 @@ var AcInputLocale = function (_Component) {
         disabled = _props.disabled,
         forceSync = _props.forceSync,
         onBlur = _props.onBlur,
-        other = _objectWithoutProperties(_props, ['className', 'onChange', 'isTextarea', 'backdrop', 'disabled', 'forceSync', 'onBlur']);
+        modalProps = _props.modalProps,
+        other = _objectWithoutProperties(_props, ['className', 'onChange', 'isTextarea', 'backdrop', 'disabled', 'forceSync', 'onBlur', 'modalProps']);
 
     var _state = this.state,
         localeValue = _state.localeValue,
@@ -568,7 +570,8 @@ var AcInputLocale = function (_Component) {
             onCancel: this.onCancel,
             okName: modalLocale[locale].okName,
             cancelName: modalLocale[locale].cancelName,
-            close: this.close
+            close: this.close,
+            modalProps: modalProps
           },
           this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)
         )
@@ -681,7 +684,8 @@ var AcInputLocale = function (_Component) {
             onCancel: this.onCancel,
             okName: modalLocale[locale].okName,
             cancelName: modalLocale[locale].cancelName,
-            close: this.close
+            close: this.close,
+            modalProps: modalProps
           },
           this.getLocaleNoFormElement(localeList, modalLocale, locale)
         )
@@ -696,6 +700,7 @@ var _initialiseProps = function _initialiseProps() {
   var _this5 = this;
 
   this.onDocumentClick = function (e) {
+    e.stopPropagation();
     try {
       _this5.clickDom = e.target;
     } catch (error) {

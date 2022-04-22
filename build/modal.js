@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -55,7 +57,8 @@ var ModalWrap = function (_Component) {
       cancelName: props.cancelName,
       backdrop: props.backdrop,
       onOk: props.onOk,
-      onCancel: props.onCancel
+      onCancel: props.onCancel,
+      modalProps: props.modalProps
     };
     return _this;
   }
@@ -103,11 +106,12 @@ var ModalWrap = function (_Component) {
         onOk = _state.onOk,
         onCancel = _state.onCancel,
         showModal = _state.showModal,
-        close = _state.close;
+        close = _state.close,
+        modalProps = _state.modalProps;
 
     return _react2["default"].createElement(
       _nextUi.Modal,
-      {
+      _extends({}, modalProps, {
         visible: showModal,
         width: '600',
         mask: backdrop,
@@ -115,7 +119,7 @@ var ModalWrap = function (_Component) {
         onCancel: close,
         destroyOnClose: true,
         enforceFocus: false
-      },
+      }),
       _react2["default"].createElement(
         _nextUi.Modal.Header,
         { closeButton: true },

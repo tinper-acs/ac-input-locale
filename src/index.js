@@ -20,7 +20,8 @@ const propTypes = {
     backdrop: PropTypes.bool,  //是否弹出遮罩层/遮罩层点击是否触发关闭
     required: PropTypes.bool, // 是否要求当前语种和系统语种必填
     isPopConfirm: PropTypes.bool, // 录入时是否是popconfirm,还是modal的样式
-    showIcon:PropTypes.bool
+    showIcon:PropTypes.bool,
+    modalProps:PropTypes.object,
 }
 
 const defaultProps = {
@@ -181,6 +182,7 @@ class AcInputLocale extends Component {
     }
 
     onDocumentClick = e => {
+      e.stopPropagation();
       try {
         this.clickDom = e.target;
       } catch (error) {
@@ -475,7 +477,7 @@ class AcInputLocale extends Component {
     }
     render() {
       const self = this;
-      const { className, onChange, isTextarea, backdrop, disabled,forceSync, onBlur, ...other } = this.props
+      const { className, onChange, isTextarea, backdrop, disabled,forceSync, onBlur, modalProps, ...other } = this.props
       let { localeValue, locale, localeList, status, modalLocale, sysLocale, required, isPopConfirm } = this.state
       let defaultValue;
       if(localeList && localeList[sysLocale] && localeList[sysLocale].value) {
@@ -644,6 +646,7 @@ class AcInputLocale extends Component {
               okName={modalLocale[locale].okName}
               cancelName={modalLocale[locale].cancelName}
               close={this.close}
+              modalProps={modalProps}
             >
               {
                 this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)
@@ -764,6 +767,7 @@ class AcInputLocale extends Component {
               okName={modalLocale[locale].okName}
               cancelName={modalLocale[locale].cancelName}
               close={this.close}
+              modalProps={modalProps}
             >
               {
                 this.getLocaleNoFormElement(localeList, modalLocale, locale)

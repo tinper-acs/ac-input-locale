@@ -158,7 +158,7 @@ import { Button, Form } from '@tinper/next-ui';
         //   }
         // }
         return (
-            <div className="demoPadding">
+            <div className="demoPadding demo5">
                 <div className="btn">
                   <Button onClick={()=>{this.onClick("zh_CN")}} colors={locale=='zh_CN'?'success':null}>[简体中文]</Button>
                   <Button onClick={()=>{this.onClick("en_US")}} colors={locale=='en_US'?'success':null}>[英文]</Button>
@@ -187,6 +187,11 @@ import { Button, Form } from '@tinper/next-ui';
                   onPressEnter={this.onPressEnter}
                   onKeyDown={this.onKeyDown}
                   onCancel={this.onCancel}
+                  modalProps={
+                      {
+                          getPopupContainer: () => { return document.querySelector('.demo5')}
+                      }
+                  }
                 >
                 </AcInputLocale>
                 <Button onClick={this.save}>保存</Button>
