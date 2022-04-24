@@ -228,13 +228,22 @@ var AcInputLocale = function (_Component) {
     }
   };
 
-  AcInputLocale.prototype.componentDidMount = function componentDidMount() {
-    document.addEventListener('click', this.onDocumentClick, false);
-  };
+  // componentDidMount() {
+  //   document.addEventListener('click', this.onDocumentClick, false);
+  // }
+  //
+  // componentWillUnmount() {
+  //   document.removeEventListener('click', this.onDocumentClick, false);
+  // }
 
-  AcInputLocale.prototype.componentWillUnmount = function componentWillUnmount() {
-    document.removeEventListener('click', this.onDocumentClick, false);
-  };
+  // onDocumentClick = e => {
+  //   e.stopPropagation();
+  //   try {
+  //     this.clickDom = e.target;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   //校验处理
 
@@ -699,15 +708,6 @@ var AcInputLocale = function (_Component) {
 var _initialiseProps = function _initialiseProps() {
   var _this5 = this;
 
-  this.onDocumentClick = function (e) {
-    e.stopPropagation();
-    try {
-      _this5.clickDom = e.target;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   this.close = function () {
     var isPopConfirm = _this5.state.isPopConfirm;
 
@@ -737,6 +737,7 @@ var _initialiseProps = function _initialiseProps() {
     var onBlur = _this5.props.onBlur;
 
     if (_this5.clickDom && _this5.clickDom.className && _this5.clickDom.className.indexOf('input-icon') !== -1) {
+      _this5.clickDom = null;
       return;
     }
     onBlur && onBlur(e, v);

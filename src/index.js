@@ -173,22 +173,22 @@ class AcInputLocale extends Component {
       }
     }
 
-    componentDidMount() {
-      document.addEventListener('click', this.onDocumentClick, false);
-    }
+    // componentDidMount() {
+    //   document.addEventListener('click', this.onDocumentClick, false);
+    // }
+    //
+    // componentWillUnmount() {
+    //   document.removeEventListener('click', this.onDocumentClick, false);
+    // }
 
-    componentWillUnmount() {
-      document.removeEventListener('click', this.onDocumentClick, false);
-    }
-
-    onDocumentClick = e => {
-      e.stopPropagation();
-      try {
-        this.clickDom = e.target;
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    // onDocumentClick = e => {
+    //   e.stopPropagation();
+    //   try {
+    //     this.clickDom = e.target;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
 
     close = () => {
       const { isPopConfirm } = this.state
@@ -213,6 +213,7 @@ class AcInputLocale extends Component {
     blur = (e, v) => {
       const { onBlur } = this.props;
       if (this.clickDom && this.clickDom.className && this.clickDom.className.indexOf('input-icon') !== -1) {
+        this.clickDom = null;
         return;
       }
       onBlur && onBlur(e, v);
