@@ -159,6 +159,12 @@ class Demo6 extends Component {
                   required={required}
                   isPopConfirm={true}
                   isShowNoneLeftLable={true}
+                  fieldid={'pop'}
+                  popConfirmProps={
+                    {
+                        fieldid: 'pop_fieldid'
+                    }
+                }
                 >
                 </AcInputLocale>
                 <Button onClick={this.save}>保存</Button>

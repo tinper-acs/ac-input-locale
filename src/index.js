@@ -22,6 +22,7 @@ const propTypes = {
     isPopConfirm: PropTypes.bool, // 录入时是否是popconfirm,还是modal的样式
     showIcon:PropTypes.bool,
     modalProps:PropTypes.object,
+    popConfirmProps:PropTypes.object,
 }
 
 const defaultProps = {
@@ -478,7 +479,7 @@ class AcInputLocale extends Component {
     }
     render() {
       const self = this;
-      const { className, onChange, isTextarea, backdrop, disabled,forceSync, onBlur, modalProps, ...other } = this.props
+      const { className, onChange, isTextarea, backdrop, disabled,forceSync, onBlur, modalProps, popConfirmProps, ...other } = this.props
       let { localeValue, locale, localeList, status, modalLocale, sysLocale, required, isPopConfirm } = this.state
       let defaultValue;
       if(localeList && localeList[sysLocale] && localeList[sysLocale].value) {
@@ -487,6 +488,8 @@ class AcInputLocale extends Component {
       let formControlTypeOption = {}
       isTextarea ? formControlTypeOption = { componentClass: 'textarea' } : null
       let getFieldProps, getFieldError
+
+      let fieldidIcon = this.props.fieldid ? `${this.props.fieldid}_ac_input_locale_icon` : undefined;
 
       if (this.props.form) {
         // model弹窗校验数据加工
@@ -551,6 +554,7 @@ class AcInputLocale extends Component {
                       ref={(input) => {this.textInput = input}}
                     />
                     <Popconfirm
+                      {...popConfirmProps}
                       onClick = {disabled?()=>{}: this.open } 
                       trigger="click"
                       maskClosable
@@ -566,7 +570,7 @@ class AcInputLocale extends Component {
                       content={this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)}
                     >
                       {
-                        this.props.showIcon?<div className="input-pop-icon uf uf-globe input-icon" onMouseDown={(e) => {e.preventDefault();}}></div>:<span></span>
+                        this.props.showIcon?<div className="input-pop-icon uf uf-globe input-icon" onMouseDown={(e) => {e.preventDefault();}} fieldid={fieldidIcon}></div>:<span></span>
                       }
                     </Popconfirm>
                     {
@@ -627,7 +631,7 @@ class AcInputLocale extends Component {
                     ref={(input) => {this.textInput = input}}
                   />
                   {
-                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = {disabled?()=>{}: this.open } onMouseDown={(e) => {e.preventDefault();}} />:''
+                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = {disabled?()=>{}: this.open } onMouseDown={(e) => {e.preventDefault();}} fieldid={fieldidIcon} />:''
                   }
                   
                   {
@@ -694,6 +698,7 @@ class AcInputLocale extends Component {
                       ref={(input) => {this.textInput = input}}
                     />
                     <Popconfirm
+                      {...popConfirmProps}
                       trigger="click"
                       maskClosable
                       placement="right"
@@ -708,7 +713,7 @@ class AcInputLocale extends Component {
                       icon={""}
                       content={this.getLocaleNoFormElement(localeList, modalLocale, locale)}
                     >
-                      <div className="input-pop-icon input-icon" onMouseDown={(e) => {e.preventDefault();}}>
+                      <div className="input-pop-icon input-icon" onMouseDown={(e) => {e.preventDefault();}} fieldid={fieldidIcon}>
                       </div>
                     </Popconfirm>
                   </div>
@@ -754,7 +759,7 @@ class AcInputLocale extends Component {
                     ref={(input) => {this.textInput = input}}
                   />
                   {
-                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = { this.open } onMouseDown={(e) => {e.preventDefault();}} />:''
+                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = { this.open } onMouseDown={(e) => {e.preventDefault();}} fieldid={fieldidIcon} />:''
                   }
                 </div>
               )

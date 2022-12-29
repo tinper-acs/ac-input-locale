@@ -50,6 +50,14 @@ var ModalWrap = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
+    _this.getFieldid = function (name) {
+      var modalProps = _this.state.modalProps;
+
+      var modalFieldid = modalProps && modalProps.fieldid;
+      var fieldidName = modalFieldid ? '' + modalFieldid + name : undefined;
+      return fieldidName;
+    };
+
     _this.state = {
       showModal: props.showModal,
       title: props.title,
@@ -71,7 +79,8 @@ var ModalWrap = function (_Component) {
         onOk = nextProps.onOk,
         onCancel = nextProps.onCancel,
         showModal = nextProps.showModal,
-        close = nextProps.close;
+        close = nextProps.close,
+        modalProps = nextProps.modalProps;
     var _props = this.props,
         title1 = _props.title1,
         okName1 = _props.okName1,
@@ -80,10 +89,11 @@ var ModalWrap = function (_Component) {
         onOk1 = _props.onOk1,
         onCancel1 = _props.onCancel1,
         showModal1 = _props.showModal1,
-        close1 = _props.close1;
+        close1 = _props.close1,
+        modalProps1 = _props.modalProps1;
 
 
-    if (title !== title1 || okName !== okName1 || cancelName !== cancelName1 || backdrop !== backdrop1 || onOk !== onOk1 || onCancel !== onCancel1 || showModal !== showModal1 || close !== close1) {
+    if (title !== title1 || okName !== okName1 || cancelName !== cancelName1 || backdrop !== backdrop1 || onOk !== onOk1 || onCancel !== onCancel1 || showModal !== showModal1 || modalProps !== modalProps1 || close !== close1) {
       this.setState({
         title: title,
         okName: okName,
@@ -122,29 +132,29 @@ var ModalWrap = function (_Component) {
       }),
       _react2["default"].createElement(
         _nextUi.Modal.Header,
-        { closeButton: true },
+        { closeButton: true, fieldid: this.getFieldid('_modal_header') },
         _react2["default"].createElement(
           _nextUi.Modal.Title,
-          { className: 'modal-title' },
+          { className: 'modal-title', fieldid: this.getFieldid('_modal_title') },
           title
         )
       ),
       _react2["default"].createElement(
         _nextUi.Modal.Body,
-        null,
+        { fieldid: this.getFieldid('_modal_body') },
         this.props.children
       ),
       _react2["default"].createElement(
         _nextUi.Modal.Footer,
-        null,
+        { fieldid: this.getFieldid('_modal_footer') },
         _react2["default"].createElement(
           _nextUi.Button,
-          { bordered: true, className: 'cancel-qx', onClick: onCancel },
+          { bordered: true, className: 'cancel-qx', onClick: onCancel, fieldid: this.getFieldid('_modal_footer_cancel') },
           cancelName
         ),
         _react2["default"].createElement(
           _nextUi.Button,
-          { colors: 'primary', onClick: onOk },
+          { colors: 'primary', onClick: onOk, fieldid: this.getFieldid('_modal_footer_ok') },
           okName
         )
       )

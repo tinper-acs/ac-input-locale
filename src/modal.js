@@ -42,7 +42,8 @@ class ModalWrap extends Component {
       onOk,
       onCancel,
       showModal,
-      close
+      close,
+      modalProps
     } = nextProps
 
     const {
@@ -53,7 +54,8 @@ class ModalWrap extends Component {
       onOk1,
       onCancel1,
       showModal1,
-      close1
+      close1,
+      modalProps1
     } = this.props
 
     if (title !== title1
@@ -63,6 +65,7 @@ class ModalWrap extends Component {
       || onOk !== onOk1
       || onCancel !== onCancel1
       || showModal !== showModal1
+      || modalProps !== modalProps1
       || close !== close1) {
         this.setState({
           title,
@@ -76,6 +79,13 @@ class ModalWrap extends Component {
         })
       }
 
+  }
+
+  getFieldid = (name) => {
+    const {modalProps} = this.state;
+    const modalFieldid = modalProps && modalProps.fieldid;
+    const fieldidName = modalFieldid ? `${modalFieldid}${name}` : undefined
+    return fieldidName;
   }
 
   render() {
@@ -103,18 +113,18 @@ class ModalWrap extends Component {
         destroyOnClose={true}
         enforceFocus={ false }
       >
-        <Modal.Header closeButton={true}>
-          <Modal.Title className="modal-title">{title}</Modal.Title>
+        <Modal.Header closeButton={true} fieldid={this.getFieldid('_modal_header')}>
+          <Modal.Title className="modal-title" fieldid={this.getFieldid('_modal_title')}>{title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body fieldid={this.getFieldid('_modal_body')}>
           {
             this.props.children
           }
         </Modal.Body>
 
-        <Modal.Footer>
-          <Button bordered className="cancel-qx" onClick={onCancel}>{cancelName}</Button>
-          <Button colors="primary" onClick={onOk}>{okName}</Button>
+        <Modal.Footer fieldid={this.getFieldid('_modal_footer')}>
+          <Button bordered className="cancel-qx" onClick={onCancel} fieldid={this.getFieldid('_modal_footer_cancel')}>{cancelName}</Button>
+          <Button colors="primary" onClick={onOk} fieldid={this.getFieldid('_modal_footer_ok')}>{okName}</Button>
         </Modal.Footer>
       </Modal>
     )

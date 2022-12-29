@@ -59,9 +59,9 @@ import { Button, Form } from '@tinper/next-ui';
     componentDidMount() {
       this.setState({
         localeList:{
-          "zh_CN":{"label":"简体中文","value":"椰子",props:{maxLength: 10,onBlur: (e,v) => {console.log(e,v)}},rules:[{pattern: /^[\u4e00-\u9fa5]+$/, message: '简体中文格式错误'}],validateTrigger:'onChange' },
+          "zh_CN":{"label":"简体中文","value":"椰子",props:{maxLength: 10,onBlur: (e,v) => {console.log(e,v)}},rules:[{pattern: /^[\u4e00-\u9fa5]+$/, message: '简体中文格式错误'}, {required: true, message: '请输入内容'}],validateTrigger:'onChange' },
           "en_US":{"label":"英文","value":"",props:{maxLength: 10, onBlur: (e,v) => {console.log(e,v)}},rules:[{pattern: /^[a-zA-Z0-9]+$/, message: '英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误英文格式错误'}] },
-          "zh_TW":{"label":"繁体中文","value":"",props:{maxLength: 10,onBlur: (e,v) => {console.log(e,v)}},rules:[{pattern: /^[\u4e00-\u9fa5]+$/, message: '繁体中文格式错误繁体中文格式错误繁体中文格式错误繁体中文格式错误繁体中文格式错误繁体中文格式错误'}],validateTrigger:'onChange'},
+          "zh_TW":{"label":"繁体中文","value":"",props:{maxLength: 10,onBlur: (e,v) => {console.log(e,v)}, fieldid: 'ac-input-tw'},rules:[{pattern: /^[\u4e00-\u9fa5]+$/, message: '繁体中文格式错误繁体中文格式错误繁体中文格式错误繁体中文格式错误繁体中文格式错误繁体中文格式错误'}],validateTrigger:'onChange'},
         }
         //   {
         //     "zh_CN":{"label":"简体中文","value":"","errorMsg":"不能为空"},
@@ -187,9 +187,11 @@ import { Button, Form } from '@tinper/next-ui';
                   onPressEnter={this.onPressEnter}
                   onKeyDown={this.onKeyDown}
                   onCancel={this.onCancel}
+                  fieldid = {'ac-input'}
                   modalProps={
                       {
-                          getPopupContainer: () => { return document.querySelector('.demo5')}
+                          getPopupContainer: () => { return document.querySelector('.demo5')},
+                          fieldid: 'modal_fieldid'
                       }
                   }
                 >

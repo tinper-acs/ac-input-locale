@@ -24,7 +24,7 @@ import 'ac-input-locale/build/InputLocale.css';
 ## API 
 
 |参数|说明|类型|返回值|是否必填|
-|:--|:---:|:--:|---:|---:|
+|---|---|---|---|---|
 |className|容器样式|string| --- | 否 |
 |disabled|是否可用|string| --- | 否 |
 |onOk|点击确定的钩子函数|fun|object | 否 |
@@ -38,6 +38,8 @@ import 'ac-input-locale/build/InputLocale.css';
 |inputId|input的唯一值|string| -- | 和 form相关联 |
 |form|this.props.form| object | -- | 和 inputId 相关联 |
 |showIcon|是否显示图标，默认true。注意"此属性为专属属性，不建议使用"| bool | -- | 否 |
+|modalProps|设置modal属性| object | -- | 否 |
+|popConfirmProps|设置popConfirm属性| object | -- | 否 |
 
 ## 注意事项
 

@@ -54,7 +54,8 @@ var propTypes = {
   required: _propTypes2["default"].bool, // 是否要求当前语种和系统语种必填
   isPopConfirm: _propTypes2["default"].bool, // 录入时是否是popconfirm,还是modal的样式
   showIcon: _propTypes2["default"].bool,
-  modalProps: _propTypes2["default"].object
+  modalProps: _propTypes2["default"].object,
+  popConfirmProps: _propTypes2["default"].object
 };
 
 var defaultProps = {
@@ -406,7 +407,8 @@ var AcInputLocale = function (_Component) {
         forceSync = _props.forceSync,
         onBlur = _props.onBlur,
         modalProps = _props.modalProps,
-        other = _objectWithoutProperties(_props, ['className', 'onChange', 'isTextarea', 'backdrop', 'disabled', 'forceSync', 'onBlur', 'modalProps']);
+        popConfirmProps = _props.popConfirmProps,
+        other = _objectWithoutProperties(_props, ['className', 'onChange', 'isTextarea', 'backdrop', 'disabled', 'forceSync', 'onBlur', 'modalProps', 'popConfirmProps']);
 
     var _state = this.state,
         localeValue = _state.localeValue,
@@ -426,6 +428,8 @@ var AcInputLocale = function (_Component) {
     isTextarea ? formControlTypeOption = { componentClass: 'textarea' } : null;
     var getFieldProps = void 0,
         getFieldError = void 0;
+
+    var fieldidIcon = this.props.fieldid ? this.props.fieldid + '_ac_input_locale_icon' : undefined;
 
     if (this.props.form) {
       // model弹窗校验数据加工
@@ -489,7 +493,7 @@ var AcInputLocale = function (_Component) {
             })),
             _react2["default"].createElement(
               _nextUi.Popconfirm,
-              {
+              _extends({}, popConfirmProps, {
                 onClick: disabled ? function () {} : this.open,
                 trigger: 'click',
                 maskClosable: true,
@@ -503,10 +507,10 @@ var AcInputLocale = function (_Component) {
                 , onRootClose: this.close,
                 icon: "",
                 content: this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)
-              },
+              }),
               this.props.showIcon ? _react2["default"].createElement('div', { className: 'input-pop-icon uf uf-globe input-icon', onMouseDown: function onMouseDown(e) {
                   e.preventDefault();
-                } }) : _react2["default"].createElement('span', null)
+                }, fieldid: fieldidIcon }) : _react2["default"].createElement('span', null)
             ),
             getFieldError(this.props.inputId) ? _react2["default"].createElement(
               'span',
@@ -562,7 +566,7 @@ var AcInputLocale = function (_Component) {
           })),
           this.props.showIcon ? _react2["default"].createElement('div', { className: 'uf uf-globe input-icon', onClick: disabled ? function () {} : this.open, onMouseDown: function onMouseDown(e) {
               e.preventDefault();
-            } }) : '',
+            }, fieldid: fieldidIcon }) : '',
           getFieldError(this.props.inputId) ? _react2["default"].createElement(
             'span',
             { className: 'error uf uf-exc-t' },
@@ -623,7 +627,7 @@ var AcInputLocale = function (_Component) {
             })),
             _react2["default"].createElement(
               _nextUi.Popconfirm,
-              {
+              _extends({}, popConfirmProps, {
                 trigger: 'click',
                 maskClosable: true,
                 placement: 'right',
@@ -637,10 +641,10 @@ var AcInputLocale = function (_Component) {
                 onRootClose: this.close,
                 icon: "",
                 content: this.getLocaleNoFormElement(localeList, modalLocale, locale)
-              },
+              }),
               _react2["default"].createElement('div', { className: 'input-pop-icon input-icon', onMouseDown: function onMouseDown(e) {
                   e.preventDefault();
-                } })
+                }, fieldid: fieldidIcon })
             )
           )
         );
@@ -681,7 +685,7 @@ var AcInputLocale = function (_Component) {
           })),
           this.props.showIcon ? _react2["default"].createElement('div', { className: 'uf uf-globe input-icon', onClick: this.open, onMouseDown: function onMouseDown(e) {
               e.preventDefault();
-            } }) : ''
+            }, fieldid: fieldidIcon }) : ''
         ),
         _react2["default"].createElement(
           _modal2["default"],
