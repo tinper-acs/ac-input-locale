@@ -1,5 +1,5 @@
 $prefix: wui;
-.ac-input-locale{
+.ac-input-locale-cls{
     position: relative;
     min-width: 100px;
     min-height: 32px;
@@ -84,7 +84,7 @@ $prefix: wui;
     width: 600px;
   }
   
-  .ac-input-locale-modal,{
+  .ac-input-locale-modal-cls{
       .cancel-qx{
           margin-right: 8px;
           background: #fff
@@ -94,9 +94,9 @@ $prefix: wui;
           background-color: #EBECF0;
           border-color: rgb(165, 173, 186);
       }
-      .#{$prefix}-modal-header{
-          padding:16px;
-      }
+      // .#{$prefix}-modal-header{
+      //     padding:16px;
+      // }
     .#{$prefix}-popconfirm-confirm{
       text-align: right;
       padding-right: 30px;
@@ -107,14 +107,14 @@ $prefix: wui;
       color: #f53c32;
       display: inline-block;
     }
-    .#{$prefix}-modal-content .modal-title{
-      font-size:14px;
-      font-weight:normal;
-      color:rgba(71,77,84,1);
-    }
-    .#{$prefix}-modal-body{
-      // background: #F7F9FB;
-    }
+    // .#{$prefix}-modal-content .modal-title{
+    //   font-size:14px;
+    //   font-weight:normal;
+    //   color:rgba(71,77,84,1);
+    // }
+    // .#{$prefix}-modal-body{
+    //   // background: #F7F9FB;
+    // }
   
     .edit-panel {
       .padding-right-0{
@@ -143,17 +143,17 @@ $prefix: wui;
               display: inline-block;
               font-size: 12px;
           }
-          .#{$prefix}-label {
-              display: inline-block;
-          }
-          .#{$prefix}-label.time {
-              position: relative;
-              bottom: 10px;
-          }
-          .#{$prefix}-label+* {
-              min-width: 200px;
-              display: inline-block;
-          }
+          // .#{$prefix}-label {
+          //     display: inline-block;
+          // }
+          // .#{$prefix}-label.time {
+          //     position: relative;
+          //     bottom: 10px;
+          // }
+          // .#{$prefix}-label+* {
+          //     min-width: 200px;
+          //     display: inline-block;
+          // }
           .mast {
               width: 5px;
               min-width: auto;
@@ -181,14 +181,14 @@ $prefix: wui;
                   width: 100%;
               }
           }
-          .#{$prefix}-input{
-              width: 100%
-          }
+          // .#{$prefix}-input{
+          //     width: 100%
+          // }
           .#{$prefix}-input-close {
               width: auto;
-              .#{$prefix}-input {
-                  width: 100%
-              }
+              // .#{$prefix}-input {
+              //     width: 100%
+              // }
           }
       }
       .search-panel-btn {
@@ -199,33 +199,33 @@ $prefix: wui;
     .edit-panel-all {
       .#{$prefix}-form-item {
           padding: 0;
-          .#{$prefix}-input{
-              width: 100%
-          }
-          .#{$prefix}-label {
-              width: 100%;
-              text-align: right;
-              font-size: 12px;
-              height: 32px;
-              line-height: 32px;
-              padding: 0;
-              display: inline-block;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-              color: #212121;
-          }
-          @media (max-width: 992px) {
-            .#{$prefix}-label {
-              text-align: left;
-            }
-          }
+          // .#{$prefix}-input{
+          //     width: 100%
+          // }
+          // .#{$prefix}-label {
+          //     width: 100%;
+          //     text-align: right;
+          //     font-size: 12px;
+          //     height: 32px;
+          //     line-height: 32px;
+          //     padding: 0;
+          //     display: inline-block;
+          //     overflow: hidden;
+          //     text-overflow: ellipsis;
+          //     white-space: nowrap;
+          //     color: #212121;
+          // }
+          // @media (max-width: 992px) {
+          //   .#{$prefix}-label {
+          //     text-align: left;
+          //   }
+          // }
           
-          @media (max-width: 992px) {
-            .#{$prefix}-input {
-              width: 100%;
-            }
-          }
+          // @media (max-width: 992px) {
+          //   .#{$prefix}-input {
+          //     width: 100%;
+          //   }
+          // }
           .error {
               margin-left: 0;
               padding-left: 0;

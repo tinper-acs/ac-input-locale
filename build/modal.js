@@ -125,7 +125,7 @@ var ModalWrap = function (_Component) {
         visible: showModal,
         width: '600',
         mask: backdrop,
-        className: 'ac-input-locale-modal',
+        className: 'ac-input-locale-modal ac-input-locale-modal-cls',
         onCancel: close,
         destroyOnClose: true,
         enforceFocus: false

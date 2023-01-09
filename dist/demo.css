@@ -1,33 +1,33 @@
-.ac-input-locale {
+.ac-input-locale-cls {
   position: relative;
   min-width: 100px;
   min-height: 32px;
   line-height: 32px; }
-  .ac-input-locale .uf.uf-globe {
+  .ac-input-locale-cls .uf.uf-globe {
     font-size: 20px; }
-  .ac-input-locale .input-pop-icon {
+  .ac-input-locale-cls .input-pop-icon {
     cursor: pointer;
     position: absolute;
     top: 0;
     right: 10px; }
-  .ac-input-locale .error {
+  .ac-input-locale-cls .error {
     padding-left: 10px;
     color: red; }
-  .ac-input-locale .popconfirm {
+  .ac-input-locale-cls .popconfirm {
     width: auto; }
-  .ac-input-locale .input-text {
+  .ac-input-locale-cls .input-text {
     line-height: 32px;
     height: 32px; }
-  .ac-input-locale .wui-input[disabled] + .uf-globe {
+  .ac-input-locale-cls .wui-input[disabled] + .uf-globe {
     cursor: not-allowed; }
-  .ac-input-locale .wui-popover-content {
+  .ac-input-locale-cls .wui-popover-content {
     padding: 16px 30px;
     background: #fcfcfc;
     border-radius: 3px;
     border: 1px solid #dfe1e3; }
-  .ac-input-locale .wui-row {
+  .ac-input-locale-cls .wui-row {
     padding-bottom: 7px; }
-  .ac-input-locale .input-icon {
+  .ac-input-locale-cls .input-icon {
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -63,115 +63,75 @@
   min-width: 600px;
   width: 600px; }
 
-.ac-input-locale-modal .cancel-qx {
+.ac-input-locale-modal-cls .cancel-qx {
   margin-right: 8px;
   background: #fff; }
 
-.ac-input-locale-modal .cancel-qx:hover {
+.ac-input-locale-modal-cls .cancel-qx:hover {
   color: #212121;
   background-color: #EBECF0;
   border-color: #a5adba; }
 
-.ac-input-locale-modal .wui-modal-header {
-  padding: 16px; }
-
-.ac-input-locale-modal .wui-popconfirm-confirm {
+.ac-input-locale-modal-cls .wui-popconfirm-confirm {
   text-align: right;
   padding-right: 30px; }
 
-.ac-input-locale-modal .require-star {
+.ac-input-locale-modal-cls .require-star {
   width: 16px;
   margin-right: 8px;
   color: #f53c32;
   display: inline-block; }
 
-.ac-input-locale-modal .wui-modal-content .modal-title {
-  font-size: 14px;
-  font-weight: normal;
-  color: #474d54; }
-
-.ac-input-locale-modal .edit-panel .padding-right-0 {
+.ac-input-locale-modal-cls .edit-panel .padding-right-0 {
   padding-right: 0; }
 
-.ac-input-locale-modal .edit-panel .wui-form-item {
+.ac-input-locale-modal-cls .edit-panel .wui-form-item {
   display: block;
   min-width: 100%; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .wui-form-item-label {
+  .ac-input-locale-modal-cls .edit-panel .wui-form-item .wui-form-item-label {
     display: inline-block;
     float: left;
     width: 130px; }
-    .ac-input-locale-modal .edit-panel .wui-form-item .wui-form-item-label > label:after {
+    .ac-input-locale-modal-cls .edit-panel .wui-form-item .wui-form-item-label > label:after {
       content: ''; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .error {
+  .ac-input-locale-modal-cls .edit-panel .wui-form-item .error {
     margin-left: 100px;
     color: #f53c32;
     display: block;
     padding-top: 0;
     display: inline-block;
     font-size: 12px; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .wui-label {
-    display: inline-block; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .wui-label.time {
-    position: relative;
-    bottom: 10px; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .wui-label + * {
-    min-width: 200px;
-    display: inline-block; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .mast {
+  .ac-input-locale-modal-cls .edit-panel .wui-form-item .mast {
     width: 5px;
     min-width: auto;
     margin-right: 5px;
     color: red; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .datepicker-input-group .wui-input-group-btn .uf-calendar {
+  .ac-input-locale-modal-cls .edit-panel .wui-form-item .datepicker-input-group .wui-input-group-btn .uf-calendar {
     padding: 0; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .wui-switch {
+  .ac-input-locale-modal-cls .edit-panel .wui-form-item .wui-switch {
     min-width: auto; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .wui-select {
+  .ac-input-locale-modal-cls .edit-panel .wui-form-item .wui-select {
     width: auto; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .calendar-picker {
+  .ac-input-locale-modal-cls .edit-panel .wui-form-item .calendar-picker {
     display: inline-block;
     min-width: 200px;
     width: auto; }
-    .ac-input-locale-modal .edit-panel .wui-form-item .calendar-picker input {
+    .ac-input-locale-modal-cls .edit-panel .wui-form-item .calendar-picker input {
       width: 100%; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .wui-input {
-    width: 100%; }
-  .ac-input-locale-modal .edit-panel .wui-form-item .wui-input-close {
+  .ac-input-locale-modal-cls .edit-panel .wui-form-item .wui-input-close {
     width: auto; }
-    .ac-input-locale-modal .edit-panel .wui-form-item .wui-input-close .wui-input {
-      width: 100%; }
 
-.ac-input-locale-modal .edit-panel .search-panel-btn {
+.ac-input-locale-modal-cls .edit-panel .search-panel-btn {
   text-align: right;
   padding: 10px 0; }
 
-.ac-input-locale-modal .edit-panel-all .wui-form-item {
+.ac-input-locale-modal-cls .edit-panel-all .wui-form-item {
   padding: 0; }
-  .ac-input-locale-modal .edit-panel-all .wui-form-item .wui-input {
-    width: 100%; }
-  .ac-input-locale-modal .edit-panel-all .wui-form-item .wui-label {
-    width: 100%;
-    text-align: right;
-    font-size: 12px;
-    height: 32px;
-    line-height: 32px;
-    padding: 0;
-    display: inline-block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #212121; }
-  @media (max-width: 992px) {
-    .ac-input-locale-modal .edit-panel-all .wui-form-item .wui-label {
-      text-align: left; } }
-  @media (max-width: 992px) {
-    .ac-input-locale-modal .edit-panel-all .wui-form-item .wui-input {
-      width: 100%; } }
-  .ac-input-locale-modal .edit-panel-all .wui-form-item .error {
+  .ac-input-locale-modal-cls .edit-panel-all .wui-form-item .error {
     margin-left: 0;
     padding-left: 0; }
 
-.ac-input-locale-modal .label-default {
+.ac-input-locale-modal-cls .label-default {
   font-weight: 400;
   font-size: 14px;
   color: #e14c46;

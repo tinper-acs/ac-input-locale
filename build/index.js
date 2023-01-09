@@ -449,7 +449,7 @@ var AcInputLocale = function (_Component) {
       if (isPopConfirm) {
         return _react2["default"].createElement(
           'div',
-          { className: 'ac-input-locale ' + (className ? className : null) },
+          { className: 'ac-input-locale ac-input-locale-cls ' + (className ? className : null) },
           status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : _react2["default"].createElement(
             'div',
             null,
@@ -522,7 +522,7 @@ var AcInputLocale = function (_Component) {
       }
       return _react2["default"].createElement(
         'div',
-        { className: 'ac-input-locale ' + (className ? className : null) },
+        { className: 'ac-input-locale ac-input-locale-cls ' + (className ? className : null) },
         status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : _react2["default"].createElement(
           'div',
           null,
@@ -593,7 +593,7 @@ var AcInputLocale = function (_Component) {
       if (isPopConfirm) {
         return _react2["default"].createElement(
           'div',
-          { className: 'ac-input-locale ' + (className ? className : null) },
+          { className: 'ac-input-locale ac-input-locale-cls ' + (className ? className : null) },
           status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : _react2["default"].createElement(
             'div',
             null,
@@ -651,7 +651,7 @@ var AcInputLocale = function (_Component) {
       }
       return _react2["default"].createElement(
         'div',
-        { className: 'ac-input-locale ' + (className ? className : null) },
+        { className: 'ac-input-locale ac-input-locale-cls ' + (className ? className : null) },
         status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : _react2["default"].createElement(
           'div',
           null,

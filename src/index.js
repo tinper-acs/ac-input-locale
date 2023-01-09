@@ -508,7 +508,7 @@ class AcInputLocale extends Component {
 
         if (isPopConfirm) {
           return (
-            <div className={`ac-input-locale ${className ? className : null}`} >
+            <div className={`ac-input-locale ac-input-locale-cls ${className ? className : null}`} >
               {
                 status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : (
                   <div>
@@ -585,7 +585,7 @@ class AcInputLocale extends Component {
           )
         }
         return (
-          <div className={`ac-input-locale ${className ? className : null}`} >
+          <div className={`ac-input-locale ac-input-locale-cls ${className ? className : null}`} >
             {
               status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : (
                 <div>
@@ -662,7 +662,7 @@ class AcInputLocale extends Component {
       } else {
         if (isPopConfirm) {
           return (
-            <div className={`ac-input-locale ${className ? className : null}`} >
+            <div className={`ac-input-locale ac-input-locale-cls ${className ? className : null}`} >
               {
                 status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : (
                   <div>
@@ -723,7 +723,7 @@ class AcInputLocale extends Component {
           )
         }
         return (
-          <div className={`ac-input-locale ${className ? className : null}`} >
+          <div className={`ac-input-locale ac-input-locale-cls ${className ? className : null}`} >
             {
               status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : (
                 <div>
