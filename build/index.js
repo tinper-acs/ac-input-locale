@@ -274,7 +274,7 @@ var AcInputLocale = function (_Component) {
     );
   };
 
-  AcInputLocale.prototype.getLocaleNoFormElement = function getLocaleNoFormElement(localeList, modalLocale, locale) {
+  AcInputLocale.prototype.getLocaleNoFormElement = function getLocaleNoFormElement(localeList, modalLocale, locale, formControlTypeOption) {
     var _this2 = this;
 
     return Object.keys(localeList).map(function (localeKey) {
@@ -298,7 +298,7 @@ var AcInputLocale = function (_Component) {
           _react2["default"].createElement(
             'div',
             { style: { 'display': 'inline-block', 'width': 'calc(100% - 230px)' } },
-            _react2["default"].createElement(_FormControl2["default"], {
+            _react2["default"].createElement(_FormControl2["default"], _extends({}, formControlTypeOption, {
               placeholder: modalLocale[locale].placeholder,
               onChange: function onChange(v) {
                 localeList = JSON.parse(JSON.stringify(localeList));
@@ -308,14 +308,14 @@ var AcInputLocale = function (_Component) {
                 });
               },
               value: localeList[localeKey].value
-            })
+            }))
           )
         )
       );
     });
   };
 
-  AcInputLocale.prototype.getLocaleFormElement = function getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError) {
+  AcInputLocale.prototype.getLocaleFormElement = function getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError, formControlTypeOption) {
     var _this3 = this;
 
     var propsLocaleList = this.props.localeList;
@@ -355,7 +355,7 @@ var AcInputLocale = function (_Component) {
             _react2["default"].createElement(
               'div',
               null,
-              _react2["default"].createElement(_FormControl2["default"], _extends({}, props, {
+              _react2["default"].createElement(_FormControl2["default"], _extends({}, props, formControlTypeOption, {
                 placeholder: modalLocale[locale].placeholder
               }, getFieldProps(_this3.props.inputId + "_" + localeKey, {
                 validateTrigger: validateTrigger,
@@ -408,7 +408,9 @@ var AcInputLocale = function (_Component) {
         onBlur = _props.onBlur,
         modalProps = _props.modalProps,
         popConfirmProps = _props.popConfirmProps,
-        other = _objectWithoutProperties(_props, ['className', 'onChange', 'isTextarea', 'backdrop', 'disabled', 'forceSync', 'onBlur', 'modalProps', 'popConfirmProps']);
+        _props$rows = _props.rows,
+        rows = _props$rows === undefined ? 3 : _props$rows,
+        other = _objectWithoutProperties(_props, ['className', 'onChange', 'isTextarea', 'backdrop', 'disabled', 'forceSync', 'onBlur', 'modalProps', 'popConfirmProps', 'rows']);
 
     var _state = this.state,
         localeValue = _state.localeValue,
@@ -425,9 +427,11 @@ var AcInputLocale = function (_Component) {
       defaultValue = localeList[sysLocale].value;
     }
     var formControlTypeOption = {};
-    isTextarea ? formControlTypeOption = { componentClass: 'textarea' } : null;
+    isTextarea ? formControlTypeOption = { componentClass: 'textarea', rows: rows } : null;
     var getFieldProps = void 0,
         getFieldError = void 0;
+
+    var textareaWrapper = isTextarea ? 'ac-input-textarea-wrapper-cls' : undefined;
 
     var fieldidIcon = this.props.fieldid ? this.props.fieldid + '_ac_input_locale_icon' : undefined;
 
@@ -526,47 +530,51 @@ var AcInputLocale = function (_Component) {
         status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : _react2["default"].createElement(
           'div',
           null,
-          _react2["default"].createElement(_FormControl2["default"], _extends({}, other, {
-            className: 'input-text',
-            disabled: disabled
-          }, formControlTypeOption, getFieldProps(this.props.inputId, {
-            validateTrigger: 'onBlur',
-            rules: [{
-              validator: this.checkValidValue
-            }],
-            getValueProps: function getValueProps(value) {
-              return {
-                value: localeValue
-              };
-            },
-            initialValue: localeValue,
-            onBlur: function onBlur(v) {
-              _this4.blur(v, localeValue);
-            },
-            onChange: function onChange(v) {
-              Object.keys(localeList).forEach(function (localeKey) {
-                if (localeKey === locale) {
-                  localeList[localeKey].value = v;
-                }
-              });
-              if (forceSync) localeList = self.forceSyncChange(localeList, v);
-              _onChange && _onChange(localeList, v);
-              _this4.setState({
-                localeValue: v,
-                localeList: localeList
-              });
-            } }), {
-            onClick: function onClick(e) {
-              e.stopPropagation();
-            },
-            onKeyDown: this.handleKeyDown,
-            ref: function ref(input) {
-              _this4.textInput = input;
-            }
-          })),
-          this.props.showIcon ? _react2["default"].createElement('div', { className: 'uf uf-globe input-icon', onClick: disabled ? function () {} : this.open, onMouseDown: function onMouseDown(e) {
-              e.preventDefault();
-            }, fieldid: fieldidIcon }) : '',
+          _react2["default"].createElement(
+            'div',
+            { 'class': textareaWrapper },
+            _react2["default"].createElement(_FormControl2["default"], _extends({}, other, {
+              className: 'input-text',
+              disabled: disabled
+            }, formControlTypeOption, getFieldProps(this.props.inputId, {
+              validateTrigger: 'onBlur',
+              rules: [{
+                validator: this.checkValidValue
+              }],
+              getValueProps: function getValueProps(value) {
+                return {
+                  value: localeValue
+                };
+              },
+              initialValue: localeValue,
+              onBlur: function onBlur(v) {
+                _this4.blur(v, localeValue);
+              },
+              onChange: function onChange(v) {
+                Object.keys(localeList).forEach(function (localeKey) {
+                  if (localeKey === locale) {
+                    localeList[localeKey].value = v;
+                  }
+                });
+                if (forceSync) localeList = self.forceSyncChange(localeList, v);
+                _onChange && _onChange(localeList, v);
+                _this4.setState({
+                  localeValue: v,
+                  localeList: localeList
+                });
+              } }), {
+              onClick: function onClick(e) {
+                e.stopPropagation();
+              },
+              onKeyDown: this.handleKeyDown,
+              ref: function ref(input) {
+                _this4.textInput = input;
+              }
+            })),
+            this.props.showIcon ? _react2["default"].createElement('div', { className: 'uf uf-globe input-icon', onClick: disabled ? function () {} : this.open, onMouseDown: function onMouseDown(e) {
+                e.preventDefault();
+              }, fieldid: fieldidIcon }) : ''
+          ),
           getFieldError(this.props.inputId) ? _react2["default"].createElement(
             'span',
             { className: 'error uf uf-exc-t' },
@@ -586,7 +594,7 @@ var AcInputLocale = function (_Component) {
             close: this.close,
             modalProps: modalProps
           },
-          this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)
+          this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError, formControlTypeOption)
         )
       );
     } else {
@@ -654,7 +662,7 @@ var AcInputLocale = function (_Component) {
         { className: 'ac-input-locale ac-input-locale-cls ' + (className ? className : null) },
         status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : _react2["default"].createElement(
           'div',
-          null,
+          { className: textareaWrapper },
           _react2["default"].createElement(_FormControl2["default"], _extends({}, other, {
             className: 'input-text',
             value: localeValue
@@ -700,7 +708,7 @@ var AcInputLocale = function (_Component) {
             close: this.close,
             modalProps: modalProps
           },
-          this.getLocaleNoFormElement(localeList, modalLocale, locale)
+          this.getLocaleNoFormElement(localeList, modalLocale, locale, formControlTypeOption)
         )
       );
     }

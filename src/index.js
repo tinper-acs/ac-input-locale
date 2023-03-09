@@ -354,7 +354,7 @@ class AcInputLocale extends Component {
       )
     }
 
-    getLocaleNoFormElement(localeList, modalLocale, locale) {
+    getLocaleNoFormElement(localeList, modalLocale, locale, formControlTypeOption) {
       return Object.keys(localeList).map((localeKey)=> {
         return (<div className='edit-panel edit-panel-all' key={localeKey}>
           <FormItem>
@@ -371,6 +371,7 @@ class AcInputLocale extends Component {
             </div>
             <div style={{'display':'inline-block','width':'calc(100% - 230px)'}}>
               <FormControl
+                {...formControlTypeOption}
                 placeholder={modalLocale[locale].placeholder}
                 onChange={(v)=>{
                   localeList = JSON.parse(JSON.stringify(localeList));
@@ -403,7 +404,7 @@ class AcInputLocale extends Component {
       })
       return localeList;
     }
-    getLocaleFormElement (localeList, modalLocale, locale, getFieldProps, getFieldError) {
+    getLocaleFormElement (localeList, modalLocale, locale, getFieldProps, getFieldError, formControlTypeOption) {
       const { localeList:propsLocaleList } = this.props
       // console.log('getLocaleFormElement-localeList',localeList)
       // console.log('getLocaleFormElement-propsLocaleList',propsLocaleList)
@@ -432,6 +433,7 @@ class AcInputLocale extends Component {
               <div>
                 <FormControl
                   {...props}
+                  {...formControlTypeOption}
                   placeholder={modalLocale[locale].placeholder}
                   {...getFieldProps(this.props.inputId + "_" +localeKey, {
                     validateTrigger: validateTrigger,
@@ -479,15 +481,17 @@ class AcInputLocale extends Component {
     }
     render() {
       const self = this;
-      const { className, onChange, isTextarea, backdrop, disabled,forceSync, onBlur, modalProps, popConfirmProps, ...other } = this.props
+      const { className, onChange, isTextarea, backdrop, disabled,forceSync, onBlur, modalProps, popConfirmProps, rows = 3, ...other } = this.props
       let { localeValue, locale, localeList, status, modalLocale, sysLocale, required, isPopConfirm } = this.state
       let defaultValue;
       if(localeList && localeList[sysLocale] && localeList[sysLocale].value) {
         defaultValue = localeList[sysLocale].value;
       }
       let formControlTypeOption = {}
-      isTextarea ? formControlTypeOption = { componentClass: 'textarea' } : null
+      isTextarea ? formControlTypeOption = { componentClass: 'textarea', rows } : null
       let getFieldProps, getFieldError
+
+      let textareaWrapper = isTextarea ? 'ac-input-textarea-wrapper-cls' : undefined
 
       let fieldidIcon = this.props.fieldid ? `${this.props.fieldid}_ac_input_locale_icon` : undefined;
 
@@ -589,50 +593,52 @@ class AcInputLocale extends Component {
             {
               status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : (
                 <div>
-                  <FormControl
-                    {...other}
-                    className="input-text"
-                    disabled={disabled}
-                    {...formControlTypeOption}
-                    {...getFieldProps(this.props.inputId, {
-                      validateTrigger: 'onBlur',
-                      rules: [{
-                        validator: this.checkValidValue
-                      }],
-                      getValueProps: (value) =>{
-                        return {
-                          value: localeValue
-                        }
-                      },
-                      initialValue: localeValue,
-                      onBlur: (v) => {
-                        this.blur(v, localeValue);
-                      },
-                      onChange: (v) => {
-                        Object.keys(localeList).forEach((localeKey)=>{
-                          if(localeKey === locale){
-                            localeList[localeKey].value=v
+                  <div class={textareaWrapper}>
+                    <FormControl
+                      {...other}
+                      className="input-text"
+                      disabled={disabled}
+                      {...formControlTypeOption}
+                      {...getFieldProps(this.props.inputId, {
+                        validateTrigger: 'onBlur',
+                        rules: [{
+                          validator: this.checkValidValue
+                        }],
+                        getValueProps: (value) =>{
+                          return {
+                            value: localeValue
                           }
-                        })
-                        if(forceSync)localeList = self.forceSyncChange(localeList,v);
-                        onChange && onChange(localeList,v)
-                        this.setState({
-                          localeValue:v,
-                          localeList
-                        })
-                      }}
-                    ) }
-                    onClick={
-                      (e) => {
-                        e.stopPropagation()
+                        },
+                        initialValue: localeValue,
+                        onBlur: (v) => {
+                          this.blur(v, localeValue);
+                        },
+                        onChange: (v) => {
+                          Object.keys(localeList).forEach((localeKey)=>{
+                            if(localeKey === locale){
+                              localeList[localeKey].value=v
+                            }
+                          })
+                          if(forceSync)localeList = self.forceSyncChange(localeList,v);
+                          onChange && onChange(localeList,v)
+                          this.setState({
+                            localeValue:v,
+                            localeList
+                          })
+                        }}
+                      ) }
+                      onClick={
+                        (e) => {
+                          e.stopPropagation()
+                        }
                       }
+                      onKeyDown={this.handleKeyDown}
+                      ref={(input) => {this.textInput = input}}
+                    />
+                    {
+                      this.props.showIcon?<div className="uf uf-globe input-icon" onClick = {disabled?()=>{}: this.open } onMouseDown={(e) => {e.preventDefault();}} fieldid={fieldidIcon} />:''
                     }
-                    onKeyDown={this.handleKeyDown}
-                    ref={(input) => {this.textInput = input}}
-                  />
-                  {
-                    this.props.showIcon?<div className="uf uf-globe input-icon" onClick = {disabled?()=>{}: this.open } onMouseDown={(e) => {e.preventDefault();}} fieldid={fieldidIcon} />:''
-                  }
+                  </div>
                   
                   {
                     getFieldError(this.props.inputId)?<span className='error uf uf-exc-t'>
@@ -654,7 +660,7 @@ class AcInputLocale extends Component {
               modalProps={modalProps}
             >
               {
-                this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError)
+                this.getLocaleFormElement(localeList, modalLocale, locale, getFieldProps, getFieldError, formControlTypeOption)
               }
             </ModalWrap>
           </div>
@@ -726,7 +732,7 @@ class AcInputLocale extends Component {
           <div className={`ac-input-locale ac-input-locale-cls ${className ? className : null}`} >
             {
               status === 'preview' ? this.getPreviewElement(localeValue, defaultValue, localeList) : (
-                <div>
+                <div className={textareaWrapper}>
                   <FormControl
                     {...other}
                     className="input-text"
@@ -776,7 +782,7 @@ class AcInputLocale extends Component {
               modalProps={modalProps}
             >
               {
-                this.getLocaleNoFormElement(localeList, modalLocale, locale)
+                this.getLocaleNoFormElement(localeList, modalLocale, locale, formControlTypeOption)
               }
             </ModalWrap>
           </div>

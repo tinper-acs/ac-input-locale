@@ -50,6 +50,15 @@ $prefix: wui;
     .input-icon:hover{
       // background: url("./assets/images/language_hover.png") no-repeat center;
     }
+
+    .ac-input-textarea-wrapper-cls {
+      position: relative;
+
+      .input-icon {
+        top: unset;
+        bottom: 10px;
+      }
+    }
   }
   
   .input-locale-text{
@@ -397,6 +406,32 @@ $prefix: wui;
       color:rgba(225,76,70,1);
       line-height:20px;
       padding-right:5px;
+    }
+  }
+
+  .ac-input-textarea-wrapper-cls, .ac-input-locale-modal-cls {
+    .ac-input-locale-textarea-cls {
+      height: unset;
+      resize: none;
+      line-height: 20px;
+      min-height: unset;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-track,
+      &::-webkit-scrollbar-track-piece {
+        background-color: #fff;
+        border-radius: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #cdd9e6;
+        border-radius: 4px;
+      }
+      &::-webkit-scrollbar-button,
+      &::-webkit-scrollbar-corner {
+        display: none;
+      }
     }
   }
   

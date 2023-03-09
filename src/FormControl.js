@@ -18,10 +18,16 @@ class FormControl extends Component {
         this.props.onChange(e.target.value)
     }
     render () {
-        const { required, ...other} = this.props;
+        const { required, componentClass, rows, ...other} = this.props;
         let classes = 'wui-input';
         if(this.props.className){
             classes = 'wui-input '+this.props.className;
+        }
+        if (componentClass && componentClass === 'textarea') {
+            classes += ' ac-input-locale-textarea-cls';
+            return (
+                <textarea {...other} className={classes} onChange={this.onChange} rows={rows} />
+            )
         }
         return (
             <input {...other} className={classes} onChange={this.onChange} />

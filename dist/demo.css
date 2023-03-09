@@ -34,6 +34,11 @@
     right: 10px;
     font-size: 20px;
     background-size: 100%; }
+  .ac-input-locale-cls .ac-input-textarea-wrapper-cls {
+    position: relative; }
+    .ac-input-locale-cls .ac-input-textarea-wrapper-cls .input-icon {
+      top: unset;
+      bottom: 10px; }
 
 .input-locale-text {
   padding: 4px 0;
@@ -253,6 +258,22 @@
   color: #e14c46;
   line-height: 20px;
   padding-right: 5px; }
+
+.ac-input-textarea-wrapper-cls .ac-input-locale-textarea-cls, .ac-input-locale-modal-cls .ac-input-locale-textarea-cls {
+  height: unset;
+  resize: none;
+  line-height: 20px;
+  min-height: unset; }
+  .ac-input-textarea-wrapper-cls .ac-input-locale-textarea-cls::-webkit-scrollbar, .ac-input-locale-modal-cls .ac-input-locale-textarea-cls::-webkit-scrollbar {
+    width: 5px; }
+  .ac-input-textarea-wrapper-cls .ac-input-locale-textarea-cls::-webkit-scrollbar-track, .ac-input-textarea-wrapper-cls .ac-input-locale-textarea-cls::-webkit-scrollbar-track-piece, .ac-input-locale-modal-cls .ac-input-locale-textarea-cls::-webkit-scrollbar-track, .ac-input-locale-modal-cls .ac-input-locale-textarea-cls::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+    border-radius: 4px; }
+  .ac-input-textarea-wrapper-cls .ac-input-locale-textarea-cls::-webkit-scrollbar-thumb, .ac-input-locale-modal-cls .ac-input-locale-textarea-cls::-webkit-scrollbar-thumb {
+    background-color: #cdd9e6;
+    border-radius: 4px; }
+  .ac-input-textarea-wrapper-cls .ac-input-locale-textarea-cls::-webkit-scrollbar-button, .ac-input-textarea-wrapper-cls .ac-input-locale-textarea-cls::-webkit-scrollbar-corner, .ac-input-locale-modal-cls .ac-input-locale-textarea-cls::-webkit-scrollbar-button, .ac-input-locale-modal-cls .ac-input-locale-textarea-cls::-webkit-scrollbar-corner {
+    display: none; }
 
 .demoPadding {
   padding: 10px;

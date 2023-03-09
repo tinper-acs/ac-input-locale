@@ -46,11 +46,17 @@ var FormControl = function (_Component) {
     FormControl.prototype.render = function render() {
         var _props = this.props,
             required = _props.required,
-            other = _objectWithoutProperties(_props, ['required']);
+            componentClass = _props.componentClass,
+            rows = _props.rows,
+            other = _objectWithoutProperties(_props, ['required', 'componentClass', 'rows']);
 
         var classes = 'wui-input';
         if (this.props.className) {
             classes = 'wui-input ' + this.props.className;
+        }
+        if (componentClass && componentClass === 'textarea') {
+            classes += ' ac-input-locale-textarea-cls';
+            return _react2["default"].createElement('textarea', _extends({}, other, { className: classes, onChange: this.onChange, rows: rows }));
         }
         return _react2["default"].createElement('input', _extends({}, other, { className: classes, onChange: this.onChange }));
     };
