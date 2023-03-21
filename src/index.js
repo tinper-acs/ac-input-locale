@@ -1,13 +1,11 @@
 
 import  React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button,Label,Col , Row,Popover,Popconfirm } from 'tinper-bee';
+import { Form, Row,Popover,Popconfirm } from '@tinper/next-ui';
 import FormControl from './FormControl.js';
 import ModalWrap from './modal.js'
 
-import Form from 'bee-form';
-
-const FormItem = Form.FormItem;
+const FormItem = Form.Item;
 
 const propTypes = {
     className: PropTypes.string,
@@ -315,19 +313,13 @@ class AcInputLocale extends Component {
 
     getLocaleNoFormElement(localeList, modalLocale, locale) {
       return Object.keys(localeList).map((localeKey)=> {
+        let label = <React.Fragment>
+          {this.isShowNoneLeftLable ? this.renderLabelLeft(localeKey) : null}
+          {localeList[localeKey].label}
+          {this.renderLabelright(localeKey)}
+        </React.Fragment>
         return (<div className='edit-panel edit-panel-all' key={localeKey}>
-          <FormItem>
-            <div className="u-form-item-label">
-              <Label title={localeList[localeKey].label}>
-                {
-                  this.isShowNoneLeftLable ? this.renderLabelLeft(localeKey) : null
-                }
-                {localeList[localeKey].label}
-                {
-                   this.renderLabelright(localeKey)
-                }
-              </Label>
-            </div>
+          <FormItem label={label}>
             <div style={{'display':'inline-block','width':'calc(100% - 130px)'}}>
               <FormControl
                 placeholder={modalLocale[locale].placeholder}
@@ -364,19 +356,13 @@ class AcInputLocale extends Component {
     }
     getLocaleFormElement (localeList, modalLocale, locale, getFieldProps, getFieldError) {
       return Object.keys(localeList).map((localeKey)=> {
+        let label = <React.Fragment>
+          {this.isShowNoneLeftLable ? this.renderLabelLeft(localeKey) : null}
+          {localeList[localeKey].label}
+          {this.renderLabelright(localeKey)}
+        </React.Fragment>
         return (<div className='edit-panel edit-panel-all' key={localeKey}>
-          <FormItem>
-            <div className="u-form-item-label">
-              <Label title={localeList[localeKey].label}>
-                {
-                  this.isShowNoneLeftLable ? this.renderLabelLeft(localeKey) : null
-                }
-                {localeList[localeKey].label}
-                {
-                  this.renderLabelright(localeKey)
-                }
-              </Label>
-            </div>
+          <FormItem label={label}>
             <div style={{'display':'inline-block','width':'calc(100% - 130px)'}}>
               <div>
                 <FormControl

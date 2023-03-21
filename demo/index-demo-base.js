@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Con, Row, Col } from 'bee-layout';
-import { Panel } from 'bee-panel';
-import Drawer from 'bee-drawer';
-import Clipboard from 'bee-clipboard'; 
+import { Row, Col, Collapse, Drawer, Clipboard } from '@tinper/next-ui';
 
+const {Panel} = Collapse
 
 
 {demolist}

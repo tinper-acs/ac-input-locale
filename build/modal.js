@@ -12,7 +12,7 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _tinperBee = require('tinper-bee');
+var _nextUi = require('@tinper/next-ui');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -106,7 +106,7 @@ var ModalWrap = function (_Component) {
         close = _state.close;
 
     return _react2["default"].createElement(
-      _tinperBee.Modal,
+      _nextUi.Modal,
       {
         show: showModal,
         width: '600',
@@ -116,29 +116,29 @@ var ModalWrap = function (_Component) {
         enforceFocus: false
       },
       _react2["default"].createElement(
-        _tinperBee.Modal.Header,
+        _nextUi.Modal.Header,
         { closeButton: true },
         _react2["default"].createElement(
-          _tinperBee.Modal.Title,
+          _nextUi.Modal.Title,
           { className: 'modal-title' },
           title
         )
       ),
       _react2["default"].createElement(
-        _tinperBee.Modal.Body,
+        _nextUi.Modal.Body,
         null,
         this.props.children
       ),
       _react2["default"].createElement(
-        _tinperBee.Modal.Footer,
+        _nextUi.Modal.Footer,
         null,
         _react2["default"].createElement(
-          _tinperBee.Button,
+          _nextUi.Button,
           { bordered: true, className: 'cancel-qx', onClick: onCancel },
           cancelName
         ),
         _react2["default"].createElement(
-          _tinperBee.Button,
+          _nextUi.Button,
           { colors: 'primary', onClick: onOk },
           okName
         )

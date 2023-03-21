@@ -1,6 +1,6 @@
 import  React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Label, Col, Row,FormControl,Modal } from 'tinper-bee';
+import { Button, Modal } from '@tinper/next-ui';
 
 const propTypes = {
   onOk: PropTypes.func,//确定按钮钩子函数
