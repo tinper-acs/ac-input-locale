@@ -177,6 +177,7 @@ var AcInputLocale = function (_Component) {
     _this.open = _this.open.bind(_this);
     _this.onOk = _this.onOk.bind(_this);
     _this.onCancel = _this.onCancel.bind(_this);
+    _this.requireKey = [];
     return _this;
   }
 
@@ -739,6 +740,14 @@ var _initialiseProps = function _initialiseProps() {
     _this5.setState({
       localeList: localeList
     });
+    var requireKey = [];
+    Object.getOwnPropertyNames(localeList).forEach(function (key) {
+      console.log(key, localeList[key]);
+      if (localeList[key].required) {
+        requireKey.push({ key: key, value: localeList[key].value });
+      }
+    });
+    _this5.requireKey = requireKey;
 
     var isPopConfirm = _this5.state.isPopConfirm;
 
@@ -793,9 +802,9 @@ var _initialiseProps = function _initialiseProps() {
       localeListProp[localeKey].props = props;
     });
 
-    _this5.setState({
-      localeValue: localeValue
-    });
+    // this.setState({
+    //   localeValue
+    // });
 
     // 如果有form表单，就校验，否则就不校验
     if (_this5.props.form) {
@@ -804,14 +813,23 @@ var _initialiseProps = function _initialiseProps() {
       _this5.props.form.validateFields(validatedArray, function (err, values) {
         if (err) {
           console.log('validate failed', values);
+          _this5.requireKey.map(function (item) {
+            localeList['' + item.key].value = item.value;
+          });
           return;
         } else {
+          _this5.setState({
+            localeValue: localeValue
+          });
           _this5.props.form.setFieldsValue(obj);
           _this5.props.onOk && _this5.props.onOk(localeList);
           _this5.close();
         }
       });
     } else {
+      _this5.setState({
+        localeValue: localeValue
+      });
       _this5.props.onOk && _this5.props.onOk(localeList);
       _this5.close();
     }

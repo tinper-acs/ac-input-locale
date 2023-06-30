@@ -127,6 +127,7 @@ class AcInputLocale extends Component {
         this.open = this.open.bind(this);
         this.onOk = this.onOk.bind(this);
         this.onCancel = this.onCancel.bind(this);
+        this.requireKey = []
     }
 
     componentWillReceiveProps(nextProps){
@@ -206,6 +207,14 @@ class AcInputLocale extends Component {
       this.setState({
         localeList
       })
+      let requireKey = []
+      Object.getOwnPropertyNames(localeList).forEach(function(key){
+        console.log(key,localeList[key]);
+        if (localeList[key].required) {
+          requireKey.push({key, value: localeList[key].value})
+        }
+      });
+      this.requireKey = requireKey
 
       const { isPopConfirm } = this.state
       isPopConfirm ? this.setState({ showPop: true }) : this.setState({ showModal: true });
@@ -246,9 +255,9 @@ class AcInputLocale extends Component {
         localeListProp[localeKey].props = props
       })
 
-      this.setState({
-        localeValue
-      });
+      // this.setState({
+      //   localeValue
+      // });
 
       // 如果有form表单，就校验，否则就不校验
       if (this.props.form) {
@@ -257,14 +266,23 @@ class AcInputLocale extends Component {
         this.props.form.validateFields(validatedArray,(err, values) => {
           if (err) {
             console.log('validate failed', values);
+            this.requireKey.map(item => {
+              localeList[`${item.key}`].value = item.value
+            })
             return;
           } else {
+            this.setState({
+              localeValue
+            });
             this.props.form.setFieldsValue(obj)
             this.props.onOk && this.props.onOk(localeList);
             this.close()
           }
         });
       } else {
+        this.setState({
+          localeValue
+        });
         this.props.onOk && this.props.onOk(localeList);
         this.close()
       }
