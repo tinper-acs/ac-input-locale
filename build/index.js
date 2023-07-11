@@ -26,6 +26,8 @@ var _modal2 = _interopRequireDefault(_modal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -727,6 +729,69 @@ var _initialiseProps = function _initialiseProps() {
     isPopConfirm ? _this5.setState({ showPop: false }) : _this5.setState({ showModal: false });
   };
 
+  this.delayEvent = function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var fnArgs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      var fn = arguments[1];
+      var callBack = arguments[2];
+      var callBackArgs = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
+      var backOnOk, isAllowClose;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (!fn) {
+                _context.next = 15;
+                break;
+              }
+
+              backOnOk = fn.apply(undefined, _toConsumableArray(fnArgs));
+
+              if (!(!backOnOk instanceof Promise)) {
+                _context.next = 4;
+                break;
+              }
+
+              return _context.abrupt('return', _this5.close.apply(_this5, _toConsumableArray(callBackArgs)));
+
+            case 4:
+              _context.prev = 4;
+              _context.next = 7;
+              return backOnOk;
+
+            case 7:
+              isAllowClose = _context.sent;
+
+              if (!(isAllowClose !== false)) {
+                _context.next = 10;
+                break;
+              }
+
+              return _context.abrupt('return', callBack.apply(undefined, _toConsumableArray(callBackArgs)));
+
+            case 10:
+              _context.next = 15;
+              break;
+
+            case 12:
+              _context.prev = 12;
+              _context.t0 = _context['catch'](4);
+
+              console.log(_context.t0);
+
+            case 15:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, _this5, [[4, 12]]);
+    }));
+
+    return function () {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
   this.open = function (event) {
     event.stopPropagation();
     _this5.clickDom = event.target;
@@ -775,65 +840,114 @@ var _initialiseProps = function _initialiseProps() {
     onKeyDown && onKeyDown(e);
   };
 
-  this.onOk = function () {
-    var _state2 = _this5.state,
-        localeList = _state2.localeList,
-        locale = _state2.locale;
+  this.onOk = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+    var _state2, localeList, locale, localeListProp, inputId, localeValue, validatedArray, obj;
 
-    var localeListProp = _this5.props.localeList;
-    var inputId = _this5.props.inputId;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _state2 = _this5.state, localeList = _state2.localeList, locale = _state2.locale;
+            localeListProp = _this5.props.localeList;
+            inputId = _this5.props.inputId;
+            localeValue = void 0;
+            validatedArray = [];
+            // console.log('onOk',localeList)
 
-    var localeValue = void 0;
-    var validatedArray = [];
-    // console.log('onOk',localeList)
-    Object.keys(localeList).forEach(function (localeKey) {
-      validatedArray.push(inputId + "_" + localeKey);
-      if (localeKey === locale) {
-        localeValue = localeList[localeKey].value;
-      }
-      var _localeListProp$local = localeListProp[localeKey],
-          _localeListProp$local2 = _localeListProp$local.rules,
-          rules = _localeListProp$local2 === undefined ? [] : _localeListProp$local2,
-          _localeListProp$local3 = _localeListProp$local.props,
-          props = _localeListProp$local3 === undefined ? {} : _localeListProp$local3;
+            Object.keys(localeList).forEach(function (localeKey) {
+              validatedArray.push(inputId + "_" + localeKey);
+              if (localeKey === locale) {
+                localeValue = localeList[localeKey].value;
+              }
+              var _localeListProp$local = localeListProp[localeKey],
+                  _localeListProp$local2 = _localeListProp$local.rules,
+                  rules = _localeListProp$local2 === undefined ? [] : _localeListProp$local2,
+                  _localeListProp$local3 = _localeListProp$local.props,
+                  props = _localeListProp$local3 === undefined ? {} : _localeListProp$local3;
 
-      localeListProp[localeKey] = localeList[localeKey];
-      localeListProp[localeKey].rules = rules;
-      localeListProp[localeKey].props = props;
-    });
+              localeListProp[localeKey] = localeList[localeKey];
+              localeListProp[localeKey].rules = rules;
+              localeListProp[localeKey].props = props;
+            });
 
-    // this.setState({
-    //   localeValue
-    // });
+            // this.setState({
+            //   localeValue
+            // });
 
-    // 如果有form表单，就校验，否则就不校验
-    if (_this5.props.form) {
-      var obj = {};
-      obj[_this5.props.inputId] = localeValue;
-      _this5.props.form.validateFields(validatedArray, function (err, values) {
-        if (err) {
-          console.log('validate failed', values);
-          _this5.requireKey.map(function (item) {
-            localeList['' + item.key].value = item.value;
-          });
-          return;
-        } else {
-          _this5.setState({
-            localeValue: localeValue
-          });
-          _this5.props.form.setFieldsValue(obj);
-          _this5.props.onOk && _this5.props.onOk(localeList);
-          _this5.close();
+            // 如果有form表单，就校验，否则就不校验
+
+            if (!_this5.props.form) {
+              _context3.next = 12;
+              break;
+            }
+
+            obj = {};
+
+            obj[_this5.props.inputId] = localeValue;
+            _this5.props.form.validateFields(validatedArray, function () {
+              var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(err, values) {
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        if (!err) {
+                          _context2.next = 6;
+                          break;
+                        }
+
+                        console.log('validate failed', values);
+                        _this5.requireKey.map(function (item) {
+                          localeList['' + item.key].value = item.value;
+                        });
+                        return _context2.abrupt('return');
+
+                      case 6:
+                        _this5.props.form.setFieldsValue(obj);
+                        _context2.next = 9;
+                        return _this5.delayEvent([localeList], _this5.props.onOk, function () {
+                          _this5.setState({
+                            localeValue: localeValue
+                          });
+                          _this5.close();
+                        }, []);
+
+                      case 9:
+                        return _context2.abrupt('return', _context2.sent);
+
+                      case 10:
+                      case 'end':
+                        return _context2.stop();
+                    }
+                  }
+                }, _callee2, _this5);
+              }));
+
+              return function (_x3, _x4) {
+                return _ref3.apply(this, arguments);
+              };
+            }());
+            _context3.next = 15;
+            break;
+
+          case 12:
+            _context3.next = 14;
+            return _this5.delayEvent([localeList], _this5.props.onOk, function () {
+              _this5.setState({
+                localeValue: localeValue
+              });
+              _this5.close();
+            }, []);
+
+          case 14:
+            return _context3.abrupt('return', _context3.sent);
+
+          case 15:
+          case 'end':
+            return _context3.stop();
         }
-      });
-    } else {
-      _this5.setState({
-        localeValue: localeValue
-      });
-      _this5.props.onOk && _this5.props.onOk(localeList);
-      _this5.close();
-    }
-  };
+      }
+    }, _callee3, _this5);
+  }));
 
   this.onCancel = function () {
     var onCancel = _this5.props.onCancel;

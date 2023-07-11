@@ -1,6 +1,6 @@
 // /**
 //  *
-//  * @title 多语言 Input 组件
+//  * @title 多语言 Input 组件  延时关闭
 //  * @description 多语言 Input 组件 简单应用 绿色代表 当前选中 预览状态
 //  * 绿色代表 当前语种
 //  * 预览状态
@@ -90,7 +90,12 @@ import { Button, Form } from '@tinper/next-ui';
     }
 
     onOk=(localeList)=>{
-      console.log('oK',localeList)
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+        console.log('oK',localeList)
+        resolve(true)
+        }, 1300)
+      })
     }
 
     onClick = (key)=>{

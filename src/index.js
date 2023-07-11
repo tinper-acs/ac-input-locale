@@ -196,7 +196,22 @@ class AcInputLocale extends Component {
       const { isPopConfirm } = this.state
       isPopConfirm ? this.setState({ showPop: false }) : this.setState({ showModal: false });
     }
-
+    delayEvent = async (fnArgs = [], fn, callBack, callBackArgs = []) => {
+      if (fn) {
+          const backOnOk = fn(...fnArgs)
+          if (!backOnOk instanceof Promise) {
+            return this.close(...callBackArgs)
+          }
+          try {
+            const isAllowClose = await backOnOk;
+            if (isAllowClose !== false) {
+              return callBack(...callBackArgs)
+            }
+          } catch (error) {
+            console.log(error)
+          }
+      }
+    }
     open = (event) => {
       event.stopPropagation();
       this.clickDom = event.target;
@@ -237,7 +252,7 @@ class AcInputLocale extends Component {
       onKeyDown && onKeyDown(e);
     };
 
-    onOk = () => {
+    onOk = async () => {
       const { localeList, locale } = this.state
       let localeListProp = this.props.localeList;
       let { inputId } = this.props;
@@ -263,7 +278,7 @@ class AcInputLocale extends Component {
       if (this.props.form) {
          let obj = {};
         obj[this.props.inputId] = localeValue
-        this.props.form.validateFields(validatedArray,(err, values) => {
+        this.props.form.validateFields(validatedArray, async (err, values) => {
           if (err) {
             console.log('validate failed', values);
             this.requireKey.map(item => {
@@ -271,20 +286,24 @@ class AcInputLocale extends Component {
             })
             return;
           } else {
-            this.setState({
-              localeValue
-            });
             this.props.form.setFieldsValue(obj)
-            this.props.onOk && this.props.onOk(localeList);
-            this.close()
+            return  await this.delayEvent( [localeList], this.props.onOk, () => {
+              this.setState({
+                localeValue
+              });
+              this.close()
+            }, [])
           }
         });
       } else {
-        this.setState({
-          localeValue
-        });
-        this.props.onOk && this.props.onOk(localeList);
-        this.close()
+        return  await this.delayEvent( [localeList], this.props.onOk, () => {
+          this.setState({
+            localeValue
+          });
+          this.close()
+        }, [])
+        // this.props.onOk && this.props.onOk(localeList);
+        // this.close()
       }
     }
 
