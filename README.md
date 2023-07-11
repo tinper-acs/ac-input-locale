@@ -43,7 +43,7 @@ import 'ac-input-locale/dist/index.css';
 |:--|:---:|:--:|---:|---:|
 |className|容器样式|string| --- | 否 |
 |disabled|是否可用|string| --- | 否 |
-|onOk|点击确定的钩子函数|fun|object | 否 |
+|onOk|点击确定的钩子函数, 传入func<Promise<boolean> 表示延时关闭> |fun|func<Promise<boolean>> | 否 |
 |onCancel|点击取消的钩子函数|fun|Object | 否 |
 |locale|当前语种|string | -- | 否 当前语种为空时，默认显示系统语种，若系统语种也为空时，显示zh_CN |
 |sysLocale|系统语种|string | -- | 否 |
